@@ -1,6 +1,6 @@
 ## Instruction 
-    - Make sure you have `Docker` installed!
-    - Make sure Docker Desktop is running!
+ - Make sure you have `Docker` installed!
+ - Make sure Docker Desktop is running!
 
 ```bash
 # How to run frontend container
