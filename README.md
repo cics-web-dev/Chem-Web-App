@@ -1,6 +1,8 @@
 # Chemistry Web App
-**Backend Stack**: 
 **Frontend Stack**: Svelte, TailwindCSS, Preline UI
+
+**Backend Stack**: Express.js, Typescript
+
 ## Instruction 
  - Make sure you have `Docker` installed!
  - Make sure Docker Desktop is running!
@@ -19,8 +21,7 @@ make up
 make down
 ```
 
-### Dealing with errors
-#### `make` is not working!
+## Dealing with errors
 ```
 make : The term 'make' is not recognized as the name of a cmdlet, function, script file, or operable program.
 ```
