@@ -19,6 +19,11 @@ app.get('/', (req: Request, res: Response) => {
     res.status(200).json({ message: 'Hello, world!' });
 });
 
+app.get('/hello', (req: Request, res: Response) => {
+    res.status(200).json({ message: 'Hello, world!' });
+});
+
+
 /**
  * Server Listening for connections
  */
