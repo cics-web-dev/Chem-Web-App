@@ -46,3 +46,8 @@ export const function1 = () => {
 export const function2 = () => {
     return 'HELLO, function2';
 };
+
+export const getSingleQuestion = async (id: string) => {
+    const questions = await loadQuestions();
+    return questions.find((question: any) => question.id === id);
+};
