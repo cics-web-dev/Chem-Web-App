@@ -1,12 +1,12 @@
 import winston from 'winston';
 
 /**
- * This custom winston logger will log any incoming HTTP requests to the `backend/logs` folder 
+ * This custom winston logger will log any incoming HTTP requests to the `backend/logs` folder
  * in the `combined.log` and `error.log` file.
- * 
+ *
  * The `combined.log` includes both informational and error logs.
  * The `error.log` includes only the error log.
- * 
+ *
  * The `simple` format is used.
  */
 const winstonLogger = winston.createLogger({

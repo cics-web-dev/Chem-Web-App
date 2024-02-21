@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import QuestionRouter from "../services/question/question.routes.js";
+import QuestionRouter from '../services/question/question.routes.js';
 
 const router = Router();
 
