@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 import 'dotenv/config';
 
+import morganMiddleware from './middlewares/Morgan.middleware.js';
+
 const app = express();
 
 /**
@@ -11,6 +13,7 @@ const app = express();
  */
 
 app.use(morgan('dev'));
+app.use(morganMiddleware);
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
