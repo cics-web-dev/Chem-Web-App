@@ -2,19 +2,19 @@ export interface QuestionBase {
     id: string;
     chapter: number;
     question: number;
+    title: string;
     type: QuestionType;
     feedback: string;
-    title: string;
 }
 
-export interface MCQ extends QuestionBase {
-    type: "MCQ";
+export interface MultipleChoice extends QuestionBase {
+    type: 'MCQ';
     options: string[];
     correctAnswer: number[];
 }
 
-export interface FIB extends QuestionBase {
-    type: "FIB";
+export interface FillInBlank extends QuestionBase {
+    type: 'FIB';
     correctAnswer: string;
 }
 
@@ -24,5 +24,5 @@ export interface QuestionMetadata {
     id: string;
     chapter: number;
     question: number;
-    questionTitle: string;
+    title: string;
 }

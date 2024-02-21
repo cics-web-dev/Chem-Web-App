@@ -1,8 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
 
+import { MultipleChoice } from './question.model.js';
+
 // TESTING PURPOSES (WILL REMOVE ONCE WE USE THE ACTUAL DATABASE)
-const DATAFOLDER = path.resolve(process.cwd(), '../../sampleData');
+const DATAFOLDER = path.resolve(process.cwd(), 'src/api/sampleData');
 
 const loadQuestions = async () => {
     try {
@@ -26,28 +28,12 @@ const addNewQuestion = async (question: any) => {
     }
 };
 
-const testQuestion = {
-    id: '123',
-    type: 'MCQ',
-    chapter: 10,
-    question: 11,
-    title: 'Testing title',
-    options: ['option1', 'option2', 'option3', 'option4'],
-    correctAnswer: [0, 1],
-    feedback: 'feedback is important',
+export const getSingleQuestionById = async (id: string) => {
+    const questions: [MultipleChoice] = await loadQuestions();
+    return questions.find((question) => question.id === id);
 };
 
-// await addNewQuestion(testQuestion);
-
-export const function1 = () => {
-    return 'HELLO, function1';
-};
-
-export const function2 = () => {
-    return 'HELLO, function2';
-};
-
-export const getSingleQuestion = async (id: string) => {
-    const questions = await loadQuestions();
-    return questions.find((question: any) => question.id === id);
-};
+export const getSidebarQuestion = async () => {
+    const questions: [MultipleChoice] = await loadQuestions();
+    return questions;
+}

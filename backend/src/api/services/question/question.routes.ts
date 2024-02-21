@@ -4,7 +4,7 @@ import * as questionController from './question.controller.js';
 
 const router = Router();
 
-router.get('/questions/:id', questionController.getSingleQuestion);
-router.get('/questions/list', questionController.getSidebarQuestions);
+router.get('/:id', questionController.getSingleQuestion);
+router.get('/list', questionController.getSidebarQuestions);
 
 export default router;
