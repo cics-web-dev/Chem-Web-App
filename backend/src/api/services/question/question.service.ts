@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-import { MultipleChoice } from './question.model.js';
+import { MultipleChoice, QuestionMetadata } from './question.model.js';
 
 // TESTING PURPOSES (WILL REMOVE ONCE WE USE THE ACTUAL DATABASE)
 const DATAFOLDER = path.resolve(process.cwd(), 'src/api/sampleData');
@@ -11,6 +11,16 @@ const loadQuestions = async () => {
         const data = await fs.readFile(path.resolve(DATAFOLDER, 'questions.json'), 'utf8');
         const questions = JSON.parse(data);
         return questions;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const loadQuestionSidebar = async () => {
+    try {
+        const data = await fs.readFile(path.resolve(DATAFOLDER, 'sidebarQuestions.json'), 'utf8');
+        const sidebarQuestions = JSON.parse(data);
+        return sidebarQuestions;
     } catch (error) {
         console.error(error);
     }
@@ -34,6 +44,6 @@ export const getSingleQuestionById = async (id: string) => {
 };
 
 export const getSidebarQuestion = async () => {
-    const questions: [MultipleChoice] = await loadQuestions();
-    return questions;
+    const sidebarMetada: [QuestionMetadata] = await loadQuestionSidebar();
+    return sidebarMetada;
 }
