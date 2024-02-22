@@ -30,8 +30,8 @@ export interface FillInBlank extends Question {
 export type AnyQuestion = MultipleChoice | FillInBlank;
 
 export interface StudentProgress {
-    studentId : string;
-    prevProgress: string;
+    studentId: string;
+    previousProgress: string;
     bookMark: string[];
-    completion: string[]; 
+    completion: string[];
 }

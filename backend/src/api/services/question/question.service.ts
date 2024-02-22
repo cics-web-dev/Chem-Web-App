@@ -40,10 +40,10 @@ const addNewQuestion = async (question: any) => {
 
 export const getSingleQuestionById = async (id: string) => {
     const questions: [MultipleChoice] = await loadQuestions();
-    return questions.find((question) => question.id === id);
+    return questions.find(question => question.id === id);
 };
 
 export const getSidebarQuestion = async () => {
     const sidebarMetada: [QuestionMetadata] = await loadQuestionSidebar();
     return sidebarMetada;
-}
+};
