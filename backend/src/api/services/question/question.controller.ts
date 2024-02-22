@@ -23,6 +23,21 @@ export const getSidebarQuestions = async (req: Request, res: Response, next: Nex
         const sidebarQuestions = await questionService.getSidebarQuestion();
         res.status(status.OK).json(sidebarQuestions);
     } catch (error) {
-        next(error);
+        next();
     }
 };
+
+/** 
+ * This function will bookmark a question
+*/
+
+export const bookmarkQuestion = async (req: Request, res: Response, next: NextFunction) => {
+    try{
+        const studentId = req.params.studentid;
+        const bookmarkId = req.params.bookmarkid;
+
+    } catch (error) {
+        //next();
+    }
+};
+

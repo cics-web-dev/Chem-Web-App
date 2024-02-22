@@ -47,3 +47,7 @@ export const getSidebarQuestion = async () => {
     const sidebarMetada: [QuestionMetadata] = await loadQuestionSidebar();
     return sidebarMetada;
 };
+
+export const updateUserBookmark = async (studentId: string, bookmarkId: string) => {
+    
+}
