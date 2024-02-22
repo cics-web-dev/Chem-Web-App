@@ -1,7 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-import { MultipleChoice, QuestionMetadata } from './question.model.js';
+import { MultipleChoice, QuestionMetadata, StudentProgress } from './question.model.js';
+import { Student } from '../auth/auth.model.js';
 
 // TESTING PURPOSES (WILL REMOVE ONCE WE USE THE ACTUAL DATABASE)
 const DATAFOLDER = path.resolve(process.cwd(), 'src/api/sampleData');
@@ -11,6 +12,16 @@ const loadQuestions = async () => {
         const data = await fs.readFile(path.resolve(DATAFOLDER, 'questions.json'), 'utf8');
         const questions = JSON.parse(data);
         return questions;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const loadProgress = async () => {
+    try {
+        const data = await fs.readFile(path.resolve(DATAFOLDER, 'progress.json'), 'utf8');
+        const progress = JSON.parse(data);
+        return progress;
     } catch (error) {
         console.error(error);
     }
@@ -51,3 +62,14 @@ export const getSidebarQuestion = async () => {
 export const updateUserBookmark = async (studentId: string, bookmarkId: string) => {
     
 }
+
+export const updateQuestionStatus = async (studentId: string, questionId: string, status: string) => {
+    const students: [StudentProgress] = await loadProgress();
+    const student = students.find(student => student.studentId === studentId);
+    if (!student) {
+        throw new Error('Student not found');
+    }
+    student.completion.push(questionId);
+
+    return student;
+};

@@ -41,3 +41,18 @@ export const bookmarkQuestion = async (req: Request, res: Response, next: NextFu
     }
 };
 
+/**
+ * This function will update the status of the question for a student
+ */
+
+export const updateQuestionStatus = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const studentId = req.params.studentid;
+        const questionId = req.params.id;
+        const status = req.body.status;
+        const updatedQuestion = await questionService.updateQuestionStatus(studentId, questionId, status);
+        res.status(status.OK).json(updatedQuestion);
+    } catch (error) {
+        next(error);
+    }
+};
