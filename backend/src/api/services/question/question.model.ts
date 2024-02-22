@@ -6,7 +6,12 @@ export interface QuestionMetadata {
     title: string;
 }
 
-export interface Question extends QuestionMetadata {
+export interface MolFile {
+    questionMolFile: string;
+    feedbackMolFile: string;
+}
+
+export interface Question extends QuestionMetadata, MolFile {
     type: QuestionType;
     feedback: string;
 }
@@ -23,3 +28,10 @@ export interface FillInBlank extends Question {
 }
 
 export type AnyQuestion = MultipleChoice | FillInBlank;
+
+export interface StudentProgress {
+    studentId : string;
+    prevProgress: string;
+    bookMark: string[];
+    completion: string[]; 
+}
