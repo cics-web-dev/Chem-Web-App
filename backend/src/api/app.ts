@@ -26,4 +26,18 @@ app.get('/', (req: Request, res: Response) => {
     res.status(200).json({ message: 'Hello, world!' });
 });
 
+import fs from 'fs/promises';
+import path from 'path';
+
+const DATAFOLDER = path.resolve(process.cwd(), 'src/api/sampleData');
+
+app.get('/mol', async (req: Request, res: Response) => {
+    const molPathBase64 = await fs.readFile(path.resolve(DATAFOLDER, 'reaction3_1.mol'), 'base64');
+
+    res.json({
+        mol: molPathBase64
+    })
+});
+
+
 export default app;
