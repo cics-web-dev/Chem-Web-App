@@ -4,12 +4,12 @@ import * as questionController from './question.controller.js';
 
 const router = Router();
 
-router.get('/:id', questionController.getSingleQuestion);
+// GET
+router.get('/:questionID', questionController.getSingleQuestion);
 router.get('/sidebar/list', questionController.getSidebarQuestions);
-router.post('/bookmark/:studentid/:bookmarkid', questionController.bookmarkQuestion);
-// update the status of the question for a student
-// change incomplete to complete or vice versa
-router.post('/status/:studentid/:id', questionController.updateQuestionStatus);
-// update previous progress of the question by id
-router.post('/:studentid/:id', questionController.updateQuestionProgress);
+
+// POST
+router.post('/bookmark/:questionID/student/:studentID', questionController.bookmarkQuestion);
+router.post('/status/:questionID/student/:studentID', questionController.updateQuestionStatus);
+router.post('/progress/:questionID/student/:studentID', questionController.updateQuestionProgress);
 export default router;
