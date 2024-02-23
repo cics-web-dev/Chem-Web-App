@@ -1,0 +1,1 @@
+<h1 class="underline">Sign up page</h1>
