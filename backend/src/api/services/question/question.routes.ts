@@ -6,10 +6,11 @@ const router = Router();
 
 // GET
 router.get('/:questionID', questionController.getSingleQuestion);
-router.get('/sidebar/list', questionController.getSidebarQuestions);
+router.get('/sidebar/:studentID', questionController.getSidebarQuestions);
 
 // POST
 router.post('/bookmark/:questionID/student/:studentID', questionController.bookmarkQuestion);
 router.post('/status/:questionID/student/:studentID', questionController.updateQuestionStatus);
-router.post('/progress/:questionID/student/:studentID', questionController.updateQuestionProgress);
+router.post('/progress/:questionID/student/:studentID', questionController.updateUserProgress);
+
 export default router;
