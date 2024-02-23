@@ -8,8 +8,8 @@ import * as questionService from './question.service.js';
  * This will be used to display the question on the right side of main page.
  * @authentication required
  * @authorization student
- * @route {GET} `/api/questions/1`.
- * @pathParam {string} questionID - The id of the question.
+ * @route {GET} `/api/questions/100`.
+ * @pathParam {string} questionID - The id of the question. (eg. 100)
  * @return a json body with the question (eg. id, title chapter, question, feedback, type, mol file)
  */
 export const getSingleQuestion = async (req: Request, res: Response, next: NextFunction) => {
@@ -23,12 +23,12 @@ export const getSingleQuestion = async (req: Request, res: Response, next: NextF
 
 /**
  * Get all the side bar questions for a student.
- * This will be used to display the sidebar questions to navigate 
+ * This will be used to display the sidebar questions to navigate
  * through the questions on the left side of the main page.
  * @authentication required
  * @authorization student
  * @route {GET} `/api/questions/sidebar/1234`.
- * @pathParam {string} studentID - The id of the student.
+ * @pathParam {string} studentID - The id of the student. (eg. 1234)
  * @return a json body with the question metadata (eg. id, chapter, question, title, bookmark, completion)
  */
 export const getSidebarQuestions = async (req: Request, res: Response, next: NextFunction) => {
@@ -45,9 +45,9 @@ export const getSidebarQuestions = async (req: Request, res: Response, next: Nex
  * Add a new question id to the student bookmark list.
  * @authentication required
  * @authorization student
- * @route {POST} `api/questions/bookmark/1/student/1`.
- * @pathParam {string} studentID - The id of the student.
- * @pathParam {string} questionID - The id of the questionID to bookmark.
+ * @route {POST} `api/questions/bookmark/876/student/111`.
+ * @pathParam {string} questionID - The id of the questionID to bookmark. (eg. 876)
+ * @pathParam {string} studentID - The id of the student. (eg. 111)
  * @return a json body with the updated student progress (eg. studentId, previousProgress, bookMark, completion)
  */
 export const bookmarkQuestion = async (req: Request, res: Response, next: NextFunction) => {
@@ -65,9 +65,9 @@ export const bookmarkQuestion = async (req: Request, res: Response, next: NextFu
  * Add a new question id to the student completed list.
  * @authentication required
  * @authorization student
- * @route {POST} `api/questions/status/1/student/1`.
- * @pathParam {string} studentID - The id of the student.
- * @pathParam {string} questionID - The id of the question to change status.
+ * @route {POST} `api/questions/status/876/student/111`.
+ * @pathParam {string} questionID - The id of the question to change status. (eg. 876)
+ * @pathParam {string} studentID - The id of the student. (eg. 111)
  * @return a json body with the updated student progress (eg. studentId, previousProgress, bookMark, completion)
  */
 export const updateQuestionStatus = async (req: Request, res: Response, next: NextFunction) => {
@@ -85,9 +85,9 @@ export const updateQuestionStatus = async (req: Request, res: Response, next: Ne
  * Update the student's `previousProgress` id
  * @authentication required
  * @authorization student
- * @route {POST} `api/questions/progress/1/student/1`.
- * @pathParam {string} studentID - The id of the student.
- * @pathParam {string} questionID - The id of the question to update the progress.
+ * @route {POST} `api/questions/progress/876/student/111`.
+ * @pathParam {string} questionID - The id of the question to update the progress. (eg. 876)
+ * @pathParam {string} studentID - The id of the student. (eg. 111)
  * @return a json body with the updated student progress (eg. studentId, previousProgress, bookMark, completion)
  */
 export const updateUserProgress = async (req: Request, res: Response, next: NextFunction) => {
