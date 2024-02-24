@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1234",
+        "name": "John wick",
+        "email": "johnWick@gmail.com",
+        "password": "Johnjohn",
+        "role:": "student"
+    },
+    {
+        "id": "1235",
+        "name": "Apple pie",
+        "email": "applePie@gmail.com",
+        "password": "applepie123",
+        "role:": "teacher"
+    },
+    {
+        "id": "1236",
+        "name": "Mary Jane",
+        "email": "maryJane@gmail.com",
+        "password": "marymary",
+        "role:": "student"
+    }
+]
