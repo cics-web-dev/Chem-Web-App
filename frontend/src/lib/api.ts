@@ -6,7 +6,7 @@ import { error, type NumericRange } from '@sveltejs/kit';
 const baseURL = 'http://localhost:8080/api';
 
 // an interface that specifies the HTTP payload
-// key must be a key, value can be a string, number, boolean or object
+// key must be a string, value can be a string, number, boolean or object
 interface HttpPayload {
 	[key: string]: string | number | boolean | object;
 }
