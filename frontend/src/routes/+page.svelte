@@ -2,7 +2,7 @@
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
 
 <script>
-    import DisplayQuestion from "$lib/components/DisplayQuestion.svelte";
+    import DisplayQuestion from '$components/DisplayQuestion.svelte';
 </script>
 
 <DisplayQuestion/>
