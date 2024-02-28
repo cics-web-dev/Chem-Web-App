@@ -25,7 +25,7 @@
         <!-- this requires separation of concerns -->
         <form on:submit={check_answer}>
             {#each question.options as option, index}
-                {#if question.correctAnswer.length > 1}
+                {#if question.correctAnswers.length > 1}
                     <input
                         type="checkbox"
                         id={index.toString()}
