@@ -5,17 +5,21 @@
         "chapter": 10,
         "question": 11,
         "title": "Testing title 123",
+        "difficulty": "Easy",
+        "description": "Testing description 123",
         "options": [
             "option1",
             "option2",
             "option3",
             "option4"
         ],
-        "correctAnswer": [
+        "correctAnswers": [
             0,
             1
         ],
-        "feedback": "feedback is important"
+        "feedback": "feedback is important",
+        "questionMolFile": "some mol file",
+        "feedbackMolFile": "some feedback mol file"
     },
     {
         "id": "124",
@@ -23,17 +27,21 @@
         "chapter": 10,
         "question": 12,
         "title": "Testing title 124",
+        "difficulty": "Easy",
+        "description": "Testing description 124",
         "options": [
             "option1",
             "option2",
             "option3",
             "option4"
         ],
-        "correctAnswer": [
+        "correctAnswers": [
             0,
             1
         ],
-        "feedback": "feedback is important"
+        "feedback": "feedback is important",
+        "questionMolFile": "some mol file",
+        "feedbackMolFile": "some feedback mol file"
     },
     {
         "id": "125",
@@ -41,16 +49,20 @@
         "chapter": 10,
         "question": 13,
         "title": "Testing title 125",
+        "difficulty": "Easy",
+        "description": "Testing description 125",
         "options": [
             "option1",
             "option2",
             "option3",
             "option4"
         ],
-        "correctAnswer": [
+        "correctAnswers": [
             0,
             1
         ],
-        "feedback": "feedback is important"
+        "feedback": "feedback is important",
+        "questionMolFile": "some mol file",
+        "feedbackMolFile": "some feedback mol file"
     }
 ]
