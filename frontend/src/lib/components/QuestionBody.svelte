@@ -1,7 +1,7 @@
 <script lang="ts">
-    import type { MultipleChoice } from '$lib/types/question';
+    import type { AnyQuestion, MultipleChoice } from '$lib/types/question';
 
-    export let question: MultipleChoice; // TODO: Change MultipleChoice to AnyQuestion type in the future
+    export let question: AnyQuestion; 
 </script>
 
 <h1>

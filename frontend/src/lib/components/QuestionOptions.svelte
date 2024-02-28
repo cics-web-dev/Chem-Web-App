@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { MultipleChoice } from '$lib/types/question';
+    import type { AnyQuestion, MultipleChoice } from '$lib/types/question';
     import _ from 'lodash';
 
     // Props
-    export let question: MultipleChoice; // TODO: Change MultipleChoice to AnyQuestion type in the future
+    export let question: AnyQuestion; // TODO: Change MultipleChoice to AnyQuestion type in the future
 
     // Internal State
     let selected_answer: number[] = [];
@@ -19,24 +19,27 @@
 
 <!-- We can add different types of question options 
     (like matching questions or fill in the blank) here in the future -->
-<form on:submit={check_answer}>
-    {#each question.options as option, index}
-        {#if question.correctAnswer.length > 1}
-            <input
-                type="checkbox"
-                id={index.toString()}
-                bind:group={selected_answer}
-                value={index}
-            />
-        {:else}
-            <input type="radio" id={index.toString()} bind:group={selected_answer} value={index} />
-        {/if}
-        <label for={index.toString()}>{option}</label>
-        <br />
-    {/each}
-    <button type="submit">Submit</button>
-</form>
-
+{#if question.type === "MCQ"}
+    <form on:submit={check_answer}>
+        {#each question.options as option, index}
+            {#if question.correctAnswer.length > 1}
+                <input
+                    type="checkbox"
+                    id={index.toString()}
+                    bind:group={selected_answer}
+                    value={index}
+                />
+            {:else}
+                <input type="radio" id={index.toString()} bind:group={selected_answer} value={index} />
+            {/if}
+            <label for={index.toString()}>{option}</label>
+            <br />
+        {/each}
+        <button type="submit">Submit</button>
+    </form>
+{:else}
+<!-- Implement other question options here later, preferably in different components -->
+{/if}
 {#if show_feedback}
     <p>{question.feedback}</p>
 {:else}
