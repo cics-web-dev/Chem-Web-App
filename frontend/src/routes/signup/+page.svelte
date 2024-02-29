@@ -10,7 +10,6 @@
     <div class="container-page">
         <div class="auth-row">
             <div class="p-4 sm:p-7">
-
                 <!-- Header section -->
                 <div class="text-center">
                     <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">
@@ -66,6 +65,7 @@
                                         type="password"
                                         name="password"
                                         class="auth-input-field-style"
+                                        autocomplete="off"
                                         required
                                     />
                                 </div>
@@ -82,6 +82,7 @@
                                         type="password"
                                         name="confirm-password"
                                         class="auth-input-field-style"
+                                        autocomplete="off"
                                         required
                                     />
                                 </div>
