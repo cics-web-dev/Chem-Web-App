@@ -1,5 +1,10 @@
 <script>
-	import '../app.pcss';
+    import '../app.pcss';
+    import Navbar from '$components/NavBar/Navbar.svelte';
 </script>
 
-<slot />
+<Navbar />
+
+<main>
+    <slot />
+</main>
