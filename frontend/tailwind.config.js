@@ -5,9 +5,9 @@ export default {
     './node_modules/preline/preline.js'
   ],
 
-	theme: {
-		extend: {}
-	},
+    theme: {
+        extend: {}
+    },
 
 	plugins: [
     require('preline/plugin')
