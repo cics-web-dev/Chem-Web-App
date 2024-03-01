@@ -42,5 +42,5 @@ export interface StudentProgress {
 }
 
 export type QuestionMetadata = Pick<QuestionBase, 'id' | 'chapter' | 'question' | 'title'>;
-export type SideBarMetadata = QuestionMetadata & Pick<StudentProgress, 'bookMark' | 'completion'>;
+export type SideBarMetadata = QuestionMetadata & { isBookmarked: boolean, isCompleted: boolean };
 export type AnyQuestion = MultipleChoice | FillInBlank;
