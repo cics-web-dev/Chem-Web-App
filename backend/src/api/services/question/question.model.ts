@@ -1,37 +1,46 @@
-export type QuestionType = 'MCQ' | 'FIB';
-export interface QuestionMetadata {
+// an interface that defines the mol data that will be stored in the database
+interface MolFile {
+    // the mol file of question in base 64 string format
+    questionMolFile: string;
+
+    // the optional mol file of feedback in base 64 string format
+    feedbackMolFile?: string;
+}
+
+export interface QuestionBase extends MolFile {
     id: string;
     chapter: number;
     question: number;
     title: string;
-}
-
-export interface MolFile {
-    questionMolFile: string;
-    feedbackMolFile: string;
-}
-
-export interface Question extends QuestionMetadata, MolFile {
-    type: QuestionType;
+    description: string;
+    difficulty: 'Easy' | 'Medium' | 'Hard';
+    type: 'MCQ' | 'FIB';
     feedback: string;
 }
 
-export interface MultipleChoice extends Question {
+export interface MultipleChoice extends QuestionBase {
     type: 'MCQ';
     options: string[];
-    correctAnswer: number[];
+    correctAnswers: number[];
 }
 
-export interface FillInBlank extends Question {
+export interface FillInBlank extends QuestionBase {
     type: 'FIB';
-    correctAnswer: string;
 }
-
-export type AnyQuestion = MultipleChoice | FillInBlank;
 
 export interface StudentProgress {
     studentID: string;
+
+    // the most recent progress of question id that the student has completed
     previousProgress: string;
+
+    // an array of bookmark id that student has bookmarked
     bookMark: string[];
+
+    // an array of question id that student has completed
     completion: string[];
 }
+
+export type QuestionMetadata = Pick<QuestionBase, 'id' | 'chapter' | 'question' | 'title'>;
+export type SideBarMetadata = QuestionMetadata & Pick<StudentProgress, 'bookMark' | 'completion'>;
+export type AnyQuestion = MultipleChoice | FillInBlank;
