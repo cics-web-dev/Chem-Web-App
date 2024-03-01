@@ -1,4 +1,5 @@
 <script lang="ts">
+    import "$styles/Auth.pcss";
     import { enhance } from '$app/forms';
 </script>
 
