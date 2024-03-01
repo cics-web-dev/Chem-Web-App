@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "$styles/NavBar.pcss"
+    import '$styles/NavBar.pcss';
     import NavbarCollapseButton from './Navbar+CollapseButton.svelte';
 </script>
 

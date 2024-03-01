@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "$styles/Auth.pcss";
+    import '$styles/Auth.pcss';
     import { enhance } from '$app/forms';
 </script>
 
@@ -13,12 +13,8 @@
             <div class="p-4 sm:p-7">
                 <!-- Header section -->
                 <div class="text-center">
-                    <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">
-                        Let's get learning
-                    </h1>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Please sign up to continue
-                    </p>
+                    <h1 class="auth-title-style">Let's get learning</h1>
+                    <p class="auth-subtitle-style">Please sign up to continue</p>
                 </div>
                 <!-- End of Header section -->
 
@@ -96,7 +92,7 @@
                             <button type="submit" class="auth-submit-button-style">Sign up</button>
 
                             <div class="text-center">
-                                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                                <p class="auth-subtitle-style">
                                     Already have an account?
                                     <a class="auth-redirect-button-style" href="/login">
                                         Login in here
