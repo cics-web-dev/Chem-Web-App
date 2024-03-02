@@ -24,6 +24,10 @@ export interface MultipleChoice extends QuestionBase {
     correctAnswers: number[];
 }
 
+export interface FillInBlank extends QuestionBase {
+    type: 'FIB';
+}
+
 export interface StudentProgress {
     studentID: string;
 
