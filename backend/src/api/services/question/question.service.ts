@@ -1,8 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-import { MultipleChoice, QuestionMetadata, StudentProgress } from './question.model.js';
-import { Student } from '../auth/auth.model.js';
+import { AnyQuestion, QuestionMetadata, StudentProgress } from './question.model.js';
 
 // TESTING PURPOSES (WILL REMOVE ONCE WE USE THE ACTUAL DATABASE)
 const DATAFOLDER = path.resolve(process.cwd(), 'src/api/sampleData');
@@ -17,21 +16,9 @@ const loadData = async (pathname: string) => {
     }
 };
 
-// const addNewQuestion = async (question: any) => {
-//     try {
-//         const allQuestions = await loadData();
-//         allQuestions.push(question);
-
-//         const data = JSON.stringify(allQuestions, null, 4); // add four spacing to make JSON visualize better
-//         await fs.writeFile(path.resolve(DATAFOLDER, 'questions.json'), data, 'utf8');
-//     } catch (err) {
-//         console.log(err);
-//     }
-// };
-
-export const getSingleQuestionById = async (id: string) => {
-    const questions: [MultipleChoice] = await loadData('questions.json');
-    return questions.find(question => question.id === id);
+export const getSingleQuestionById = async (questionID: string) => {
+    const questions: [AnyQuestion] = await loadData('questions.json');
+    return questions.find(question => question.id === questionID);
 };
 
 export const getSidebarQuestions = async (studentID: string) => {
@@ -39,23 +26,38 @@ export const getSidebarQuestions = async (studentID: string) => {
     return sidebarMetada;
 };
 
-export const updateUserBookmark = async (studentId: string, bookmarkId: string) => {};
-
-export const updateUserStatus = async (studentId: string, questionId: string) => {
+export const updateUserBookmark = async (studentID: string, questionID: string) => {
     const students: [StudentProgress] = await loadData('progress.json');
-    console.log(students);
-    console.log(studentId);
-    const student = students.find(student => student.studentID === studentId);
+    const student = students.find(student => student.studentID === studentID);
     if (!student) {
         throw new Error('Student not found');
     }
-    student.completion.push(questionId);
+    student.bookMark.push(questionID);
 
     return student;
 };
 
-export const updateUserProgress = async (studentId: string, questionId: string) => {
-    return {
-        message: 'progress',
-    };
+export const updateUserStatus = async (studentID: string, questionID: string) => {
+    const students: [StudentProgress] = await loadData('progress.json');
+    const student = students.find(student => student.studentID === studentID);
+    if (!student) {
+        throw new Error('Student not found');
+    }
+    student.completion.push(questionID);
+
+    return student;
+};
+
+export const updateUserProgress = async (studentID: string, questionID: string) => {
+    const students: [StudentProgress] = await loadData('progress.json');
+    const student = students.find(student => student.studentID === studentID);
+
+    if (!student) {
+        throw new Error('Student not found');
+    }
+
+    student.previousProgress = questionID;
+
+    return student;
+
 };
