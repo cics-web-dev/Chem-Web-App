@@ -1,6 +1,7 @@
 <script lang="ts">
-    import '$styles/NavBar.pcss';
+    import '$styles/Navbar.pcss';
     import NavbarCollapseButton from './Navbar+CollapseButton.svelte';
+    import Sidebar from '../Sidebar/Sidebar.svelte';
 </script>
 
 <header
@@ -10,7 +11,8 @@
         class="mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between"
         aria-label="Global"
     >
-        <div class="flex items-center justify-between">
+        <div class="flex gap-4 items-center justify-between">
+            <Sidebar />
             <a class="flex-none text-xl font-semibold dark:text-white" href="/">Home</a>
             <div class="sm:hidden">
                 <NavbarCollapseButton />
