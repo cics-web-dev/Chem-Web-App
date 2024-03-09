@@ -1,0 +1,40 @@
+/* the style for the input field in the authentication page (eg. sign up and login page) */
+.auth-page {
+    @apply flex min-h-screen flex-col justify-center bg-gray-100 px-6 py-16 lg:px-8 dark:bg-slate-800;
+}
+
+.container-page {
+    @apply mx-auto w-full max-w-md p-6;
+}
+
+.auth-row {
+    @apply mt-7 rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800;
+}
+
+.auth-title-style {
+    @apply block text-2xl font-bold text-gray-800 dark:text-white;
+}
+
+.auth-subtitle-style {
+    @apply mt-2 text-sm text-gray-600 dark:text-gray-400;
+}
+
+.auth-input-field-style {
+    @apply block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600;
+}
+
+.auth-submit-button-style {
+    @apply inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600;
+}
+
+.auth-input-field-label-style {
+    @apply mb-2 block text-sm dark:text-white;
+}
+
+.auth-redirect-button-style {
+    @apply font-medium text-blue-600 decoration-2 hover:underline dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600;
+}
+
+.dashline {
+    @apply border-t border-gray-200 dark:border-gray-600;
+}
