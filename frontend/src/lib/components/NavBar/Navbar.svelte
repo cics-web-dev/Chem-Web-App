@@ -1,7 +1,7 @@
 <script lang="ts">
     import '$styles/Button.pcss';
     import HamburgerButton from '$icons/Navbar+Hamburger.svelte';
-    import Sidebar from '$components/Sidebar/Sidebar.svelte'
+    import Sidebar from '$components/Sidebar/Sidebar.svelte';
 </script>
 
 <header
@@ -11,7 +11,7 @@
         class="mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between"
         aria-label="Global"
     >
-        <div class="flex gap-4 items-center justify-between">
+        <div class="flex items-center justify-between gap-4">
             <Sidebar />
             <a class="flex-none text-xl font-semibold dark:text-white" href="/">Home</a>
             <div class="sm:hidden">
