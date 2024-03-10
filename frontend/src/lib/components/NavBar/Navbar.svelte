@@ -1,6 +1,7 @@
 <script lang="ts">
     import '$styles/Button.pcss';
-    import HamburgerButton from '$lib/icons/Navbar+Hamburger.svelte';
+    import HamburgerButton from '$icons/Navbar+Hamburger.svelte';
+    import Sidebar from '$components/Sidebar/Sidebar.svelte'
 </script>
 
 <header
