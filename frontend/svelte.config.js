@@ -26,9 +26,11 @@ const config = {
         // See https://kit.svelte.dev/docs/adapters for more information about adapters.
         adapter: adapter(),
         alias: {
+            $chemdoodle: path.resolve('./src/lib/chemdoodle'),
             $components: path.resolve('./src/lib/components'),
             $styles: path.resolve('./src/lib/styles'),
-            $icons: path.resolve('./src/lib/icons')
+            $icons: path.resolve('./src/lib/icons'),
+            $types: path.resolve('./src/lib/types'),
         }
     }
 };
