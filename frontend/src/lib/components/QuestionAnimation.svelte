@@ -50,7 +50,5 @@
         <div class="text-center md:text-start">
             <canvas id={viewCanvasID} />
         </div>
-
-        <button on:click={() => initViewerCanvas()}> HELLO </button>
     </div>
 </div>
