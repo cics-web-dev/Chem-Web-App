@@ -4665,7 +4665,7 @@ let ChemDoodle = (function () {
 	var a = (e.event.special.mousewheel = {
 		version: '3.1.12',
 		setup: function () {
-			if (this.addEventListener) for (var b = d.length; b; ) this.addEventListener(d[--b], p, !1);
+			if (this.addEventListener) for (var b = d.length; b; ) this.addEventListener(d[--b], p, { passive: true} );
 			else this.onmousewheel = p;
 			e.data(this, 'mousewheel-line-height', a.getLineHeight(this));
 			e.data(this, 'mousewheel-page-height', a.getPageHeight(this));
