@@ -24,8 +24,8 @@
                         <div class="grid gap-y-4">
                             <!-- Email form group -->
                             <div>
-                                <label for="email" class="auth-input-field-label-style"
-                                    >Email address</label
+                                <span class="auth-input-field-label-style"
+                                    >Email address</span
                                 >
                                 <div class="relative">
                                     <input
@@ -41,8 +41,8 @@
                             <!-- Password Form Group -->
                             <div>
                                 <div class="flex items-center justify-between">
-                                    <label for="password" class="mb-2 block text-sm dark:text-white"
-                                        >Password</label
+                                    <span class="mb-2 block text-sm dark:text-white"
+                                        >Password</span
                                     >
                                     <!-- TODO: Need to change /signup to /forget -->
                                     <a class="auth-redirect-button-style" href="/signup"

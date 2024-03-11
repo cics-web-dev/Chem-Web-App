@@ -24,7 +24,7 @@
                         <div class="grid gap-y-4">
                             <!-- Name form group -->
                             <div>
-                                <label for="name" class="auth-input-field-label-style">Name</label>
+                                <span class="auth-input-field-label-style">Name</span>
                                 <div class="relative">
                                     <input
                                         type="text"
@@ -38,8 +38,8 @@
 
                             <!-- Email form group -->
                             <div>
-                                <label for="email" class="auth-input-field-label-style"
-                                    >Email address</label
+                                <span class="auth-input-field-label-style"
+                                    >Email address</span
                                 >
                                 <div class="relative">
                                     <input
@@ -54,8 +54,8 @@
 
                             <!-- Password Form Group -->
                             <div>
-                                <label for="password" class="auth-input-field-label-style"
-                                    >Password</label
+                                <span class="auth-input-field-label-style"
+                                    >Password</span
                                 >
                                 <div class="relative">
                                     <input
@@ -71,8 +71,8 @@
 
                             <!-- Confirm password Form Group -->
                             <div>
-                                <label for="confirm-password" class="auth-input-field-label-style"
-                                    >Confirm Password</label
+                                <span class="auth-input-field-label-style"
+                                    >Confirm Password</span
                                 >
                                 <div class="relative">
                                     <input
