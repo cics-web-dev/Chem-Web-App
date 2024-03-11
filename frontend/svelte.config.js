@@ -30,7 +30,7 @@ const config = {
             $components: path.resolve('./src/lib/components'),
             $styles: path.resolve('./src/lib/styles'),
             $icons: path.resolve('./src/lib/icons'),
-            $types: path.resolve('./src/lib/types'),
+            $types: path.resolve('./src/lib/types')
         }
     }
 };

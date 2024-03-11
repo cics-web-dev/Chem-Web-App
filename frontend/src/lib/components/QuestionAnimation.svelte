@@ -1,6 +1,4 @@
 <script lang="ts">
-    import chemdoodle from '$chemdoodle/ChemDoodleWeb.js?url';
-    import '$chemdoodle/ChemDoodleWeb.css';
     import { viewCanvasStyle } from '$chemdoodle/chemDoodleCanvasStyle';
     import type { ViewCanvasStyle } from '$types/chemDoodle';
 
@@ -39,11 +37,6 @@
         initViewerCanvas();
     });
 </script>
-
-<!-- import chemDoodle javascript logic -->
-<svelte:head>
-    <script type="text/javascript" src={chemdoodle}></script>
-</svelte:head>
 
 <div class="mx-auto max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8">
     <div class="grid justify-center gap-3 md:grid-cols-2 md:items-center md:justify-between">
