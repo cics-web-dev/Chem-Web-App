@@ -1,3 +1,4 @@
 package-lock.json
 src/lib/chemdoodle
 static/preline/preline.js
+src/lib/styles
