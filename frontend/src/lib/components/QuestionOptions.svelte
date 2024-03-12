@@ -1,7 +1,10 @@
 <script lang="ts">
     import type { MultipleChoice } from '$lib/types/question';
     import DisplayOption from './DisplayOption.svelte';
-    import { selected_store } from './store.js';
+    import { selected_store } from '$stores/store.js';
+    import BackArrowIcon from '$icons/backArrow.svelte';
+    import NextArrowIcon from '$icons/nextArrow.svelte';
+    import '$styles/Button.pcss';
 
     import _ from 'lodash';
 
@@ -60,48 +63,17 @@
     {/each}
 
     <!-- this is the submit button -->
-    <button
-        class="m-3 inline-flex items-center gap-x-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:text-gray-400 dark:hover:border-blue-600 dark:hover:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-        type="submit">Submit</button
-    >
+    <button class="navigation-button-style" type="submit">Submit</button>
     <br />
 
     <!-- this is the back button -->
-    <button
-        class="m-3 inline-flex items-center gap-x-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:text-gray-400 dark:hover:border-blue-600 dark:hover:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-        ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-        >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
-            />
-        </svg>
+    <button class="navigation-button-style">
+        <BackArrowIcon />
     </button>
 
     <!-- this is the next button -->
-    <button
-        class="m-3 inline-flex items-center gap-x-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:text-gray-400 dark:hover:border-blue-600 dark:hover:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-        ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-        >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-            />
-        </svg>
+    <button class="navigation-button-style">
+        <NextArrowIcon />
     </button>
 </form>
 
