@@ -107,7 +107,9 @@
 
 <!-- This will display the feedback display -->
 {#if show_feedback}
-    <p>{question.feedback}</p>
+    <div class="m-3 w-1/2 rounded-lg bg-slate-300 p-3">
+        <p>{question.feedback}</p>
+    </div>
 {:else}
     <p style="display:none">{question.feedback}</p>
 {/if}
