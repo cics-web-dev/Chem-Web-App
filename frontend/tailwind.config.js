@@ -1,24 +1,10 @@
 /** @type {import('tailwindcss').Config}*/
-import colors from 'tailwindcss/colors';
-
-
 export default {
-    content: ['./src/**/*.{html,js,svelte,ts}'],
+    content: ['./src/**/*.{html,js,svelte,ts}', './node_modules/preline/preline.js'],
 
     theme: {
-        colors: {
-          transparent: 'transparent',
-          current: 'currentColor',
-          black: colors.black,
-          white: colors.white,
-          gray: colors.slate,
-          green: colors.emerald,
-          purple: colors.violet,
-          yellow: colors.amber,
-          pink: colors.fuchsia,
-        },
-      
+        extend: {}
     },
 
-    plugins: []
+    plugins: [require('preline/plugin')]
 };
