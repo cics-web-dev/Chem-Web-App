@@ -6,7 +6,7 @@
     aria-label="Toggle navigation"
 >
     <svg
-        class="hs-collapse-open:hidden size-4 flex-shrink-0"
+        class="size-4 flex-shrink-0 hs-collapse-open:hidden"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
