@@ -1,7 +1,6 @@
 <script lang="ts">
-    import '$styles/Button.pcss';
-    import HamburgerButton from '$icons/Navbar+Hamburger.svelte';
-    import Sidebar from '$components/Sidebar/Sidebar.svelte';
+    import '$styles/NavBar.pcss';
+    import NavbarCollapseButton from './Navbar+CollapseButton.svelte';
 </script>
 
 <header
@@ -11,19 +10,10 @@
         class="mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between"
         aria-label="Global"
     >
-        <div class="flex items-center justify-between gap-4">
-            <Sidebar />
+        <div class="flex items-center justify-between">
             <a class="flex-none text-xl font-semibold dark:text-white" href="/">Home</a>
             <div class="sm:hidden">
-                <button
-                    type="button"
-                    class="hs-collapse-toggle hamburger-button-style"
-                    data-hs-collapse="#navbar-collapse-with-animation"
-                    aria-controls="navbar-collapse-with-animation"
-                    aria-label="Toggle navigation"
-                >
-                    <HamburgerButton />
-                </button>
+                <NavbarCollapseButton />
             </div>
         </div>
         <div

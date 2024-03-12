@@ -23,12 +23,12 @@
                     <form method="POST" use:enhance>
                         <div class="grid gap-y-4">
                             <!-- Name form group -->
-                            <div class="name-form-group">
-                                <span class="auth-input-field-label-style">Name</span>
+                            <div>
+                                <label for="name" class="auth-input-field-label-style">Name</label>
                                 <div class="relative">
                                     <input
                                         type="text"
-                                        name="userFullName"
+                                        name="name"
                                         class="auth-input-field-style"
                                         required
                                     />
@@ -37,12 +37,14 @@
                             <!-- End Name Form Group -->
 
                             <!-- Email form group -->
-                            <div class="email-form-group">
-                                <span class="auth-input-field-label-style">Email address</span>
+                            <div>
+                                <label for="email" class="auth-input-field-label-style"
+                                    >Email address</label
+                                >
                                 <div class="relative">
                                     <input
                                         type="email"
-                                        name="userEmail"
+                                        name="email"
                                         class="auth-input-field-style"
                                         required
                                     />
@@ -51,12 +53,14 @@
                             <!-- End Email Form Group -->
 
                             <!-- Password Form Group -->
-                            <div class="password-form-group">
-                                <span class="auth-input-field-label-style">Password</span>
+                            <div>
+                                <label for="password" class="auth-input-field-label-style"
+                                    >Password</label
+                                >
                                 <div class="relative">
                                     <input
                                         type="password"
-                                        name="userPassword"
+                                        name="password"
                                         class="auth-input-field-style"
                                         autocomplete="off"
                                         required
@@ -66,12 +70,14 @@
                             <!-- Password End Form Group -->
 
                             <!-- Confirm password Form Group -->
-                            <div class="confirm-password-form-group">
-                                <span class="auth-input-field-label-style">Confirm Password</span>
+                            <div>
+                                <label for="confirm-password" class="auth-input-field-label-style"
+                                    >Confirm Password</label
+                                >
                                 <div class="relative">
                                     <input
                                         type="password"
-                                        name="userConfirmPassword"
+                                        name="confirm-password"
                                         class="auth-input-field-style"
                                         autocomplete="off"
                                         required

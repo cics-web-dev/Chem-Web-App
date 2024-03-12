@@ -23,12 +23,14 @@
                     <form method="POST" use:enhance>
                         <div class="grid gap-y-4">
                             <!-- Email form group -->
-                            <div class="email-form-group">
-                                <span class="auth-input-field-label-style">Email address</span>
+                            <div>
+                                <label for="email" class="auth-input-field-label-style"
+                                    >Email address</label
+                                >
                                 <div class="relative">
                                     <input
                                         type="email"
-                                        name="userEmail"
+                                        name="email"
                                         class="auth-input-field-style"
                                         required
                                     />
@@ -37,9 +39,11 @@
                             <!-- End Email Form Group -->
 
                             <!-- Password Form Group -->
-                            <div class="password-form-group">
+                            <div>
                                 <div class="flex items-center justify-between">
-                                    <span class="mb-2 block text-sm dark:text-white">Password</span>
+                                    <label for="password" class="mb-2 block text-sm dark:text-white"
+                                        >Password</label
+                                    >
                                     <!-- TODO: Need to change /signup to /forget -->
                                     <a class="auth-redirect-button-style" href="/signup"
                                         >Forgot password?</a
@@ -48,7 +52,7 @@
                                 <div class="relative">
                                     <input
                                         type="password"
-                                        name="userPassword"
+                                        name="password"
                                         class="auth-input-field-style"
                                         autocomplete="off"
                                         required
