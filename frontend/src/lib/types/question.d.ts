@@ -41,6 +41,4 @@ export interface StudentProgress {
     completion: string[];
 }
 
-export type QuestionMetadata = Pick<QuestionBase, 'id' | 'chapter' | 'question' | 'title'>;
-export type SideBarMetadata = QuestionMetadata & { isBookmarked: boolean; isCompleted: boolean };
 export type AnyQuestion = MultipleChoice | FillInBlank;

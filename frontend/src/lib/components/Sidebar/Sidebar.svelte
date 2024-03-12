@@ -2,7 +2,9 @@
     import HamburgerIcon from '$icons/Sidebar/Hamburger.svelte';
     import SidebarChapterList from './SidebarChapterList.svelte';
 
-    let sidebarData = [
+    import type { SidebarMetadata } from '$types/sidebarMetaData';
+
+    let sidebarMetaData: SidebarMetadata[] = [
         {
             chapter: 'Structure and Bonding',
             questions: [
@@ -67,8 +69,9 @@
         data-hs-accordion-always-open
     >
         <ul class="space-y-1.5">
-            {#each sidebarData as chapterData, index}
-                <SidebarChapterList {chapterData} chapterIndex={index + 1} />
+            {#each sidebarMetaData as metaData, index}
+                <!-- chapter index + 1 because array is based 0, and we need number 1 for index 0 -->
+                <SidebarChapterList chapterMetaData={metaData} chapterIndex={index + 1} />
             {/each}
         </ul>
     </nav>
