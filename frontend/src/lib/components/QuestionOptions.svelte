@@ -22,7 +22,7 @@
     // this function handles a submit
     function check_answer() {
         console.log(selected_answer);
-        return _.isEmpty(_.xor(question.correctAnswer, selected_answer))
+        return _.isEmpty(_.xor(question.correctAnswers, selected_answer))
             ? (correct = selected_answer)
             : ((show_feedback = true), (incorrect = selected_answer));
     }
@@ -36,25 +36,25 @@
         <!-- this div is displayed if the form has been submitted and the answer is correct -->
         {#if correct.includes(index)}
             <div class="m-3 w-1/2 rounded-lg bg-green-200 p-3">
-                <DisplayOption {option} {index} correct={question.correctAnswer} checked={false} />
+                <DisplayOption {option} {index} correct={question.correctAnswers} checked={false} />
             </div>
 
             <!-- this div is displayed if the form has been submitted and the answer is incorrect -->
         {:else if incorrect.includes(index)}
             <div class="m-3 w-1/2 rounded-lg bg-red-200 p-3">
-                <DisplayOption {option} {index} correct={question.correctAnswer} checked={false} />
+                <DisplayOption {option} {index} correct={question.correctAnswers} checked={false} />
             </div>
 
             <!-- this div is displayed if the form has not been submitted and the option is selected -->
         {:else if selected_answer.includes(index)}
             <div class="m-3 w-1/2 rounded-lg bg-slate-300 p-3">
-                <DisplayOption {option} {index} correct={question.correctAnswer} checked={true} />
+                <DisplayOption {option} {index} correct={question.correctAnswers} checked={true} />
             </div>
 
             <!-- this div is displayed if the form has not been submitted and the option is not selected yet -->
         {:else}
             <div class="m-3 w-1/2 rounded-lg p-3 hover:bg-slate-300">
-                <DisplayOption {option} {index} correct={question.correctAnswer} checked={false} />
+                <DisplayOption {option} {index} correct={question.correctAnswers} checked={false} />
             </div>
         {/if}
     {/each}
