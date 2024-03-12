@@ -11,7 +11,7 @@
 
     function check_answer() {
         console.log(selected_answer);
-        return _.isEmpty(_.xor(question.correctAnswer, selected_answer))
+        return _.isEmpty(_.xor(question.correctAnswers, selected_answer))
             ? console.log('right')
             : (show_feedback = true);
     }
@@ -21,7 +21,7 @@
     (like matching questions or fill in the blank) here in the future -->
 <form on:submit={check_answer}>
     {#each question.options as option, index}
-        {#if question.correctAnswer.length > 1}
+        {#if question.correctAnswers.length > 1}
             <input
                 type="checkbox"
                 id={index.toString()}
