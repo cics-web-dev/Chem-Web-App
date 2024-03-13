@@ -1,6 +1,12 @@
 <script lang="ts">
     import '$styles/Auth.pcss';
+
     import { enhance } from '$app/forms';
+
+    import ListErrors from '$components/Miscellaneous/ListErrors.svelte';
+        import type { ActionData } from './$types';
+
+    export let form: ActionData;
 </script>
 
 <svelte:head>
@@ -24,7 +30,7 @@
                         <div class="grid gap-y-4">
                             <!-- Name form group -->
                             <div class="name-form-group">
-                                <span class="auth-input-field-label-style">Name</span>
+                                <span class="auth-input-field-label-style">Full Name</span>
                                 <div class="relative">
                                     <input
                                         type="text"
@@ -79,6 +85,10 @@
                                 </div>
                             </div>
                             <!-- End Confirm password Form Group -->
+                            
+                            <!-- Show a list of errors here with bullet point -->
+                            <!-- <ListErrors errors={form?.error} /> -->
+                            <ListErrors errors={["The password must be 8+ characters", "Email is not email you know"]} />
 
                             <!-- dash line -->
                             <div class="dashline"></div>
