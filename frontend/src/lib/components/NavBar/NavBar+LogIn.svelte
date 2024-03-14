@@ -36,7 +36,7 @@
                     </button>
 
                     <div
-                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800"
+                        class="hs-dropdown-menu duration hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:border dark:border-gray-700 dark:bg-gray-800"
                         aria-labelledby="hs-dropdown-with-header"
                     >
                         <div class="-m-2 rounded-t-lg bg-gray-100 px-5 py-3 dark:bg-gray-700">
