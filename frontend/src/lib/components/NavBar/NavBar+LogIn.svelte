@@ -1,18 +1,30 @@
 <script>
     import UserProfileIcon from '$icons/Popover/userProfile.svelte';
     import LogoutIcon from '$icons/Popover/Logout.svelte';
+    import Hamburger from '$icons/Sidebar/Hamburger.svelte';
 </script>
 
 <header
-    class="sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap border-b bg-white py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-4 lg:ps-64 dark:border-gray-700 dark:bg-gray-800"
+    class="sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap border-b bg-white py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-2 lg:ps-64 dark:border-gray-700 dark:bg-gray-800"
 >
     <nav
         class="mx-auto flex w-full basis-full items-center px-4 sm:px-6 md:px-8"
         aria-label="Global"
     >
-        <div class="me-5 lg:me-0 lg:hidden">
-            <a class="flex-none text-xl font-semibold dark:text-white" href="/" aria-label="Brand"
-                >Brand</a
+        <div class="me-5 flex gap-3 lg:me-0 lg:hidden">
+            <!-- the hamburger button to trigger the open and close of the sidebar -->
+            <!-- very important to incldue the data-hs-overlay because it is how tailwindcss trigger the sidebar -->
+            <button
+                type="button"
+                class="text-gray-500 hover:text-gray-600"
+                data-hs-overlay="#application-sidebar"
+            >
+                <span class="sr-only">Toggle Navigation</span>
+                <Hamburger />
+            </button>
+
+            <a class="flex-none text-xl font-semibold dark:text-white" href="/" aria-label="Home"
+                >Home</a
             >
         </div>
 
@@ -36,7 +48,7 @@
                     </button>
 
                     <div
-                        class="hs-dropdown-menu duration hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:border dark:border-gray-700 dark:bg-gray-800"
+                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800"
                         aria-labelledby="hs-dropdown-with-header"
                     >
                         <div class="-m-2 rounded-t-lg bg-gray-100 px-5 py-3 dark:bg-gray-700">

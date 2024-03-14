@@ -3,7 +3,7 @@
     import NavBarLogIn from './NavBar+LogIn.svelte';
     import NavBarNotLogIn from './NavBar+NotLogIn.svelte';
 
-    let isLogged: boolean = false;
+    let isLogged: boolean = true;
 </script>
 
 {#if isLogged}
