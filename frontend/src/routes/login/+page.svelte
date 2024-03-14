@@ -41,7 +41,7 @@
                                 <div class="flex items-center justify-between">
                                     <span class="mb-2 block text-sm dark:text-white">Password</span>
                                     <!-- TODO: Need to change /signup to /forget -->
-                                    <a class="auth-redirect-button-style" href="/signup"
+                                    <a class="auth-redirect-button-style" href="/forget"
                                         >Forgot password?</a
                                     >
                                 </div>
