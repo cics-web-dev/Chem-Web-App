@@ -29,14 +29,14 @@
         </div>
 
         <div class="mt-3 gap-4 text-center md:flex md:items-center md:justify-end md:text-start">
-            <button type="button" class="question-header-button-style">
+            <button type="button" class="question-header-button">
                 <RedoIcon />
                 Redo
             </button>
 
             <button
                 type="button"
-                class="question-header-button-style"
+                class="question-header-button"
                 on:click={() => (isTwoDimensional = !isTwoDimensional)}
             >
                 {#if isTwoDimensional}

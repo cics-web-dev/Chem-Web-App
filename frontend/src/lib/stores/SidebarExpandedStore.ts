@@ -9,4 +9,4 @@ function createIsSidebarOpenStore() {
     };
 }
 
-export const isSidebarOpenStore = createIsSidebarOpenStore();
+export const sidebarExpanded = createIsSidebarOpenStore();
