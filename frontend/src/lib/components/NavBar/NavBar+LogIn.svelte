@@ -1,13 +1,11 @@
 <script lang="ts">
-    import UserProfileIcon from '$icons/Popover/userProfile.svelte';
+    import UserProfileIcon from '$icons/Popover/UserProfile.svelte';
     import LogoutIcon from '$icons/Popover/Logout.svelte';
     import Hamburger from '$icons/Sidebar/Hamburger.svelte';
 
-    import { isSidebarOpenStore } from '$stores/store';
+    import { isSidebarOpenStore } from '$stores/SidebarOpenStore';
 
-    function toggleSidebar() {
-        isSidebarOpenStore.update((value) => !value);
-    }
+    // the store to keep track of the width of the window
     $: outerWidth = 0;
 </script>
 
@@ -39,9 +37,10 @@
 
         <div class="flex w-full items-center justify-between">
             <!-- it has to have this block to push the avatar to the other side -->
+            <!-- if the window is greater than 1024 pixel, then show the hamburger icon -->
             <div class="text-white sm:block">
                 {#if outerWidth >= 1024}
-                    <button on:click={() => toggleSidebar()}>
+                    <button on:click={isSidebarOpenStore.toggle}>
                         <Hamburger />
                     </button>
                 {/if}

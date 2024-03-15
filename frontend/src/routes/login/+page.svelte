@@ -1,6 +1,8 @@
 <script lang="ts">
     import '$styles/Auth.pcss';
     import { enhance } from '$app/forms';
+
+    import { isUserAuthenticated } from '$stores/UserAuthenticationStore';
 </script>
 
 <svelte:head>
@@ -73,6 +75,15 @@
                         </div>
                     </form>
                     <!-- End Form -->
+                    <a
+                        href="/questions/1"
+                        on:click={() => {
+                            isUserAuthenticated.login();
+                        }}
+                        class="text-center text-white"
+                    >
+                        Secret Button to enter question page
+                    </a>
                 </div>
             </div>
         </div>

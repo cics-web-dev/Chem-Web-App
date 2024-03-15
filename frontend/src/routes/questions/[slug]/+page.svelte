@@ -1,6 +1,6 @@
 <script lang="ts">
     import DisplayQuestion from '$components/DisplayQuestion.svelte';
-    import { isSidebarOpenStore } from '$stores/store';
+    import { isSidebarOpenStore } from '$stores/SidebarOpenStore';
 
     let isSidebarOpen: boolean;
 

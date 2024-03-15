@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { selected_store } from '$stores/store.js';
+    import { selectedStore } from '$stores/OptionsSelectStore.js';
     export let option: string;
     export let index: number;
     export let correct: number[];
@@ -12,12 +12,12 @@
     function select() {
         selected = !selected;
         if (selected) {
-            selected_store.update((_store) => {
+            selectedStore.update((_store) => {
                 _store.push(index);
                 return _store;
             });
         } else {
-            selected_store.update((_store) => _store.filter((entry) => entry !== index));
+            selectedStore.update((_store) => _store.filter((entry) => entry !== index));
         }
     }
 </script>
