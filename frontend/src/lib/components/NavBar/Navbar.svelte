@@ -5,34 +5,22 @@
     import { browser } from '$app/environment';
 
     import { isUserAuthenticated } from '$stores/UserAuthenticationStore';
-    import ArrowDown from '$icons/Sidebar/ArrowDown.svelte';
 
     // if (browser) {
     //     isUserAuthenticated.set(sessionStorage.getItem('isAuthenticated') === 'true');
-    //     console.log("HELLO")
     // }
 
-    let loggedIn: boolean = true;
+    let isLoggedIn: boolean;
 
-    $: console.log('isUserAuthenticated: ', loggedIn);
-
-    // isUserAuthenticated.subscribe((value) => {
-    //     if (browser) {
-    //         console.log("am i logged in? ", value);
-    //         sessionStorage.setItem('isAuthenticated', JSON.stringify(value));
-    //     }
-    //     loggedIn = value;
-    // });
+    isUserAuthenticated.subscribe((value) => {
+        // if (browser) {
+        //     sessionStorage.setItem('isAuthenticated', JSON.stringify(value));
+        // }
+        isLoggedIn = value;
+    });
 </script>
 
-<button
-    on:click={() => {
-        loggedIn = !loggedIn;
-    }}
->
-    try me
-</button>
-{#if loggedIn}
+{#if isLoggedIn}
     <NavBarLogIn />
 {:else}
     <NavBarNotLogIn />

@@ -1,13 +1,12 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
 function createIsSidebarOpenStore() {
-  
     const { subscribe, update } = writable<boolean>(true);
 
     return {
         subscribe,
-        toggle: () => update((value) => !value),
-    }
+        toggle: () => update((value) => !value)
+    };
 }
 
 export const isSidebarOpenStore = createIsSidebarOpenStore();

@@ -80,7 +80,7 @@
                         on:click={() => {
                             isUserAuthenticated.login();
                         }}
-                        class="text-white text-center"
+                        class="text-center text-white"
                     >
                         Secret Button to enter question page
                     </a>
