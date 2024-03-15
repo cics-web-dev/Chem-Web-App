@@ -1,6 +1,8 @@
 <script lang="ts">
     import '$styles/Auth.pcss';
     import { enhance } from '$app/forms';
+
+    import { userLoggedInStore } from '$stores/UserLoggedInStore';
 </script>
 
 <svelte:head>
@@ -73,6 +75,15 @@
                         </div>
                     </form>
                     <!-- End Form -->
+                    <a
+                        href="/questions/1"
+                        on:click={() => {
+                            userLoggedInStore.toggle();
+                        }}
+                        class="text-white text-center"
+                    >
+                        Secret Button to enter question page
+                    </a>
                 </div>
             </div>
         </div>

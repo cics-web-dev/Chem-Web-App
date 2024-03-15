@@ -3,10 +3,16 @@
     import NavBarLogIn from './NavBar+LogIn.svelte';
     import NavBarNotLogIn from './NavBar+NotLogIn.svelte';
 
-    let isLogged: boolean = true;
+    import { userLoggedInStore } from '$stores/UserLoggedInStore';
+
+    let isLoggedIn: boolean;
+
+    userLoggedInStore.subscribe((value) => {
+        isLoggedIn = value;
+    })
 </script>
 
-{#if isLogged}
+{#if isLoggedIn}
     <NavBarLogIn />
 {:else}
     <NavBarNotLogIn />

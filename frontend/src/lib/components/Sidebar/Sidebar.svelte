@@ -1,13 +1,9 @@
 <script lang="ts">
     import SidebarChapterList from './SidebarChapterList.svelte';
-    import SidebarLeftCollapseIcon from '$icons/Sidebar/sidebarLeftCollapse.svelte';
+    import SidebarLeftCollapseIcon from '$icons/Sidebar/SidebarLeftCollapse.svelte';
 
     import type { SidebarMetadata } from '$types/sidebarMetaData';
-    import { isSidebarOpenStore } from '$stores/store';
-
-    function toggleSidebar() {
-        isSidebarOpenStore.update((value) => !value);
-    }
+    import { isSidebarOpenStore } from '$stores/SidebarOpenStore';
 
     let isSideBarOpen: boolean;
 
@@ -60,7 +56,7 @@
 >
     <div class="flex items-center justify-between px-6">
         <a class="text-xl font-semibold dark:text-white" href="/" aria-label="Chapters">Chapters</a>
-        <button class="dark:text-white" on:click={() => toggleSidebar()}>
+        <button class="dark:text-white" on:click={isSidebarOpenStore.toggle}>
             <SidebarLeftCollapseIcon /></button
         >
     </div>

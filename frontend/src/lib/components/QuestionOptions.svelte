@@ -1,9 +1,11 @@
 <script lang="ts">
-    import type { MultipleChoice } from '$lib/types/question';
     import DisplayOption from './DisplayOption.svelte';
-    import { selected_store } from '$stores/store.js';
-    import BackArrowIcon from '$icons/backArrow.svelte';
-    import NextArrowIcon from '$icons/nextArrow.svelte';
+    import BackArrowIcon from '$icons/BackArrow.svelte';
+    import NextArrowIcon from '$icons/NextArrow.svelte';
+
+    import type { MultipleChoice } from '$lib/types/question';
+    import { selectedStore } from '$stores/OptionsSelectStore.js';
+
     import '$styles/Button.pcss';
 
     import _ from 'lodash';
@@ -18,7 +20,7 @@
     let incorrect: number[] = [];
 
     // this function gets the selected items from the store
-    selected_store.subscribe((_store) => {
+    selectedStore.subscribe((_store) => {
         selected_answer = _store;
     });
 
