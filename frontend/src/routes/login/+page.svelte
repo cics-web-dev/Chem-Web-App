@@ -1,6 +1,8 @@
 <script lang="ts">
     import '$styles/Auth.pcss';
     import { enhance } from '$app/forms';
+
+    import { isUserAuthenticated } from '$stores/UserAuthenticationStore';
 </script>
 
 <svelte:head>
@@ -41,7 +43,7 @@
                                 <div class="flex items-center justify-between">
                                     <span class="mb-2 block text-sm dark:text-white">Password</span>
                                     <!-- TODO: Need to change /signup to /forget -->
-                                    <a class="auth-redirect-button-style" href="/signup"
+                                    <a class="auth-redirect-button-style" href="/forget"
                                         >Forgot password?</a
                                     >
                                 </div>
@@ -73,6 +75,15 @@
                         </div>
                     </form>
                     <!-- End Form -->
+                    <a
+                        href="/questions/1"
+                        on:click={() => {
+                            isUserAuthenticated.login();
+                        }}
+                        class="text-center text-white"
+                    >
+                        Secret Button to enter question page
+                    </a>
                 </div>
             </div>
         </div>
