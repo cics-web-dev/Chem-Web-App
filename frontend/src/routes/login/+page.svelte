@@ -2,7 +2,7 @@
     import '$styles/Auth.pcss';
     import { enhance } from '$app/forms';
 
-    import { userLoggedInStore } from '$stores/UserLoggedInStore';
+    import { isUserAuthenticated } from '$stores/UserAuthenticationStore';
 </script>
 
 <svelte:head>
@@ -78,7 +78,7 @@
                     <a
                         href="/questions/1"
                         on:click={() => {
-                            userLoggedInStore.toggle();
+                            isUserAuthenticated.login();
                         }}
                         class="text-white text-center"
                     >
