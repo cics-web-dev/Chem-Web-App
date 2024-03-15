@@ -15,7 +15,7 @@
     export let chapterIndex: number;
 </script>
 
-<li class="hs-accordion" id="account-accordion">
+<li class="hs-accordion">
     <button type="button" class="hs-accordion-toggle sidebar-chapter-button-style">
         <BeakerIcon />
 

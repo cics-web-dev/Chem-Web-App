@@ -1,11 +1,20 @@
-<script>
+<script lang="ts">
     import UserProfileIcon from '$icons/Popover/userProfile.svelte';
     import LogoutIcon from '$icons/Popover/Logout.svelte';
     import Hamburger from '$icons/Sidebar/Hamburger.svelte';
+
+    import { isSidebarOpenStore } from '$stores/store';
+
+    function toggleSidebar() {
+        isSidebarOpenStore.update((value) => !value);
+    }
+    $: outerWidth = 0;
 </script>
 
+<svelte:window bind:outerWidth />
+
 <header
-    class="sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap border-b bg-white py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-2 lg:ps-64 dark:border-gray-700 dark:bg-gray-800"
+    class="sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap border-b bg-white py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-2 dark:border-gray-700 dark:bg-gray-800"
 >
     <nav
         class="mx-auto flex w-full basis-full items-center px-4 sm:px-6 md:px-8"
@@ -28,10 +37,15 @@
             >
         </div>
 
-        <div
-            class="ms-auto flex w-full items-center justify-end sm:order-3 sm:justify-between sm:gap-x-3"
-        >
-            <div class="hidden sm:block"></div>
+        <div class="flex w-full items-center justify-between">
+            <!-- it has to have this block to push the avatar to the other side -->
+            <div class="text-white sm:block">
+                {#if outerWidth >= 1024}
+                    <button on:click={() => toggleSidebar()}>
+                        <Hamburger />
+                    </button>
+                {/if}
+            </div>
 
             <div class="flex flex-row items-center justify-end gap-2">
                 <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
@@ -48,7 +62,7 @@
                     </button>
 
                     <div
-                        class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800"
+                        class="hs-dropdown-menu duration hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:border dark:border-gray-700 dark:bg-gray-800"
                         aria-labelledby="hs-dropdown-with-header"
                     >
                         <div class="-m-2 rounded-t-lg bg-gray-100 px-5 py-3 dark:bg-gray-700">
