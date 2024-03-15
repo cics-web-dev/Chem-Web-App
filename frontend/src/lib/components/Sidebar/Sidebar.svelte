@@ -1,6 +1,6 @@
 <script lang="ts">
     import SidebarChapterList from './SidebarChapterList.svelte';
-    import HamburgerIcon from '$icons/Sidebar/Hamburger.svelte';
+    import SidebarLeftCollapseIcon from '$icons/Sidebar/sidebarLeftCollapse.svelte';
 
     import type { SidebarMetadata } from '$types/sidebarMetaData';
 
@@ -46,11 +46,9 @@
     id="application-sidebar"
     class="hs-overlay hs-overlay-open:translate-x-0 fixed bottom-0 start-0 top-0 z-[60] hidden w-64 -translate-x-full transform overflow-y-auto border-e border-gray-200 bg-white pb-10 pt-7 transition-all duration-300 lg:bottom-0 lg:end-auto lg:block lg:translate-x-0 dark:border-gray-700 dark:bg-gray-800 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-slate-500 [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-slate-700 [&::-webkit-scrollbar]:w-2"
 >
-    <div class="px-6">
-        <a class="flex-none text-xl font-semibold dark:text-white" href="/" aria-label="Chapters"
-            >Chapters</a
-        >
-        <span class="dark:text-white"> <HamburgerIcon /></span>
+    <div class="flex justify-between items-center px-6">
+        <a class="text-xl font-semibold dark:text-white" href="/" aria-label="Chapters">Chapters</a>
+        <span class="dark:text-white"> <SidebarLeftCollapseIcon /></span>
     </div>
 
     <nav
