@@ -26,7 +26,7 @@
 {#if correct.length > 1}
     <input
         type="checkbox"
-        class="checkbox-style"
+        class="checkbox-option"
         id={index.toString()}
         {checked}
         on:click={select}
@@ -35,7 +35,7 @@
     <!-- this displays the radio button (more on this later) -->
 {:else}
     <input
-        class="radio-style"
+        class="radio-option"
         type="radio"
         id={index.toString()}
         bind:group={selected}
@@ -47,10 +47,10 @@
 <br />
 
 <style lang="postcss">
-    .checkbox-style {
+    .checkbox-option {
         @apply h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600;
     }
-    .radio-style {
+    .radio-option {
         @apply mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800;
     }
 </style>
