@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "http-status": "^1.7.3",
+    "mongoose": "^8.2.3",
     "supertest": "^6.3.4",
     "winston": "^3.11.0"
   }
