@@ -1,12 +1,6 @@
 <script lang="ts">
-    import DisplayQuestion from '$components/DisplayQuestion.svelte';
-    import { isSidebarOpenStore } from '$stores/SidebarOpenStore';
-
-    let isSidebarOpen: boolean;
-
-    isSidebarOpenStore.subscribe((value) => {
-        isSidebarOpen = value;
-    });
+    import DisplayQuestion from '$components/Questions/DisplayQuestion.svelte';
+    import { sidebarExpanded } from '$stores/SidebarExpandedStore';
 </script>
 
 <!-- This is where we display the question -->
