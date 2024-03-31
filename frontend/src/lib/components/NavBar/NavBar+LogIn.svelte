@@ -1,4 +1,5 @@
 <script lang="ts">
+    import DarkModeIcon from '$icons/Popover/DarkMode.svelte';
     import UserProfileIcon from '$icons/Popover/UserProfile.svelte';
     import LogoutIcon from '$icons/Popover/Logout.svelte';
     import Hamburger from '$icons/Sidebar/Hamburger.svelte';
@@ -74,15 +75,28 @@
                                 chemwebapp@site.com
                             </p>
                         </div>
-                        <div class="mt-2 py-2 first:pt-0 last:pb-0">
+                        <div class="mt-2 flex flex-col py-2 first:pt-0 last:pb-0">
+                            <button class="drowdown-menu-button dark-mode-button justify-between">
+                                <div class="flex items-center gap-x-3.5">
+                                    <DarkModeIcon />
+                                    Dark mode
+                                </div>
+
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only" />
+                                    <div class="dark-mode-switch peer"></div>
+                                </label>
+                            </button>
+
                             <a class="drowdown-menu-button" href="/profile">
                                 <UserProfileIcon />
                                 Profile
                             </a>
-                            <a class="drowdown-menu-button" href="/">
+
+                            <button class="drowdown-menu-button">
                                 <LogoutIcon />
                                 Log out
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -92,7 +106,22 @@
 </header>
 
 <style lang="postcss">
+    /* adding inline-flex allows button to behave like inline element, allowing the hover effect to extend the full width of the container  */
     .drowdown-menu-button {
-        @apply flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300;
+        @apply inline-flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800;
+        @apply focus:ring-2 focus:ring-blue-500;
+        @apply hover:bg-gray-100;
+        @apply dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300;
+    }
+
+    .dark-mode-button {
+        @apply hover:bg-transparent; /* Remove hover effect for Dark Mode button */
+        cursor: default; /* Remove pointer cursor for Dark Mode button */
+    }
+
+    .dark-mode-switch {
+        @apply relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''];
+        @apply peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full;
+        @apply dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800;
     }
 </style>
