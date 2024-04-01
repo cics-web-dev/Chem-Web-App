@@ -110,4 +110,3 @@
         white-space: nowrap; /* Prevent text wrapping */
     }
 </style>
-
