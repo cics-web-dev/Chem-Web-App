@@ -34,11 +34,11 @@
     function startTimer() {
         // if timer not started, start the timer
         if (!isTimerStarted) {
-            timer = setInterval(() => secondsElapsed++, 1000); // 1000 milliseconds = 1 second, increment the secondsElapsed every 1 second in a repeated interval
+            timer = setInterval(() => secondsElapsed++, 1000); // increment the secondsElapsed every 1 second
             isTimerStarted = true; // set the timer as started
         } else {
             clearInterval(timer); // if timer is already started, pause the timer
-            isTimerStarted = false;
+            isTimerStarted = false; // set the timer as not started
         }
     }
 
@@ -94,11 +94,10 @@
             >
                 {#if isTimerStarted}
                     <TimerPauseIcon />
-                    {formatTime(secondsElapsed)}
                 {:else}
                     <TimerIcon />
-                    Timer
                 {/if}
+                {formatTime(secondsElapsed)}
             </button>
         </div>
     </div>
