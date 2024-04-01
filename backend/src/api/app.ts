@@ -7,7 +7,6 @@ import 'dotenv/config';
 import routes from './routes/routes.js';
 import morganMiddleware from './middlewares/Morgan.middleware.js';
 import errorMiddleware from './middlewares/Error.middleware.js';
-import connectMongoDB from './configs/mongoose.config.js';
 
 const app = express();
 
@@ -22,7 +21,6 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 app.use(errorMiddleware);
-connectMongoDB();
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json({ message: 'Hello, world!' });
