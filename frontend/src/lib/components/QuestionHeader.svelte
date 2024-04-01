@@ -1,7 +1,10 @@
 <script lang="ts">
-    import RedoIcon from '$icons/Redo.svelte';
-    import TwoDIcon from '$icons/2D-stack.svelte';
-    import ThreeDIcon from '$icons/3D-cube.svelte';
+    import { onDestroy } from 'svelte';
+    import RedoIcon from '$icons/Question/Redo.svelte';
+    import TwoDIcon from '$icons/Question/2D-stack.svelte';
+    import ThreeDIcon from '$icons/Question/3D-cube.svelte';
+    import TimerIcon from '$icons/Question/Timer.svelte';
+    import TimerPauseIcon from '$icons/Question/TimerPause.svelte';
 
     import '$styles/Button.pcss';
 
@@ -14,7 +17,42 @@
     export let title: string;
     export let description: string;
 
-    let isTwoDimensional: boolean = true;
+    let isTwoDimensional: boolean = true; // The default display is 2D
+
+    // The start of timer logic
+    let isTimerStarted: boolean = false; // The timer is not started by default
+    let secondsElapsed: number = 0; // The total elapsed time in seconds
+    let timer: NodeJS.Timeout; // The timer object that will be used to increment the secondsElapsed
+
+    // Converts the elapsed time in seconds to a minutes:seconds format
+    function formatTime(seconds: number) {
+        const minutes = Math.floor(seconds / 60); // one minute has 60 seconds
+        const remainingSeconds = seconds % 60; // the remaining seconds after converting to minutes
+        return `${minutes}m:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}s`;
+    }
+
+    function startTimer() {
+        // if timer not started, start the timer
+        if (!isTimerStarted) {
+            timer = setInterval(() => secondsElapsed++, 1000); // 1000 milliseconds = 1 second, increment the secondsElapsed every 1 second in a repeated interval
+            isTimerStarted = true; // set the timer as started
+        } else {
+            clearInterval(timer); // if timer is already started, pause the timer
+            isTimerStarted = false;
+        }
+    }
+
+    function resetTimer() {
+        clearInterval(timer); // pauses the timer
+        secondsElapsed = 0; // reset to original value
+        isTimerStarted = false; // set the timer as not started
+    }
+
+    // Cleanup the timer when the component is destroyed
+    onDestroy(() => {
+        clearInterval(timer);
+    });
+    // The end of timer logic
 </script>
 
 <div class="mx-auto max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8">
@@ -47,6 +85,29 @@
                     3D display
                 {/if}
             </button>
+
+            <button
+                type="button"
+                class="question-header-button timer-button"
+                on:click={startTimer}
+                on:dblclick={resetTimer}
+            >
+                {#if isTimerStarted}
+                    <TimerPauseIcon />
+                    {formatTime(secondsElapsed)}
+                {:else}
+                    <TimerIcon />
+                    Timer
+                {/if}
+            </button>
         </div>
     </div>
 </div>
+
+<style>
+    .timer-button {
+        width: 105px;
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+</style>
+
