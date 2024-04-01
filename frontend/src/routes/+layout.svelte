@@ -20,6 +20,7 @@
 
 <svelte:head>
     <script type="text/javascript" src={chemdoodle}></script>
+    <title>Chem Web App</title>
 </svelte:head>
 
 <Navbar />

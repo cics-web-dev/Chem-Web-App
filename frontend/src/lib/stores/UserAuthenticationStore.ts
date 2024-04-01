@@ -11,4 +11,4 @@ function createUserLoggedInStore() {
     };
 }
 
-export const isUserAuthenticated = createUserLoggedInStore();
+export const userAuthenticated = createUserLoggedInStore();

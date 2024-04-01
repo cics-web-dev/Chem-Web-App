@@ -1,22 +1,22 @@
 <script lang="ts">
     import '$styles/Button.pcss';
-    import NavBarLogIn from './NavBar+LogIn.svelte';
-    import NavBarNotLogIn from './NavBar+NotLogIn.svelte';
+    import NavBarLogIn from './Navbar+LogIn.svelte';
+    import NavBarNotLogIn from './Navbar+NotLogIn.svelte';
+    import { userAuthenticated } from '$stores/UserAuthenticationStore';
     import { browser } from '$app/environment';
 
-    import { isUserAuthenticated } from '$stores/UserAuthenticationStore';
+    let isLoggedIn: boolean = false; // a boolean to check if the user is logged in or not
 
-    // if (browser) {
-    //     isUserAuthenticated.set(sessionStorage.getItem('isAuthenticated') === 'true');
-    // }
+    // since we enable SSR and sessionStorage only exists on browser, therefore we need to check if browser exists
+    if (browser) {
+        userAuthenticated.set(sessionStorage.getItem('isAuthenticated') === 'true');
+    }
 
-    let isLoggedIn: boolean;
-
-    isUserAuthenticated.subscribe((value) => {
-        // if (browser) {
-        //     sessionStorage.setItem('isAuthenticated', JSON.stringify(value));
-        // }
+    userAuthenticated.subscribe((value) => {
         isLoggedIn = value;
+        if (browser) {
+            sessionStorage.setItem('isAuthenticated', JSON.stringify(isLoggedIn));
+        }
     });
 </script>
 

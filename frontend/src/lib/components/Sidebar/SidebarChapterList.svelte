@@ -16,7 +16,7 @@
 </script>
 
 <li class="hs-accordion">
-    <button type="button" class="hs-accordion-toggle sidebar-chapter-button-style">
+    <button type="button" class="hs-accordion-toggle sidebar-chapter-button">
         <BeakerIcon />
 
         {chapterIndex}. {chapterMetaData.chapter}

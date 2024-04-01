@@ -87,17 +87,17 @@
 
             <div class="flex items-center justify-center">
                 <!-- this is the submit button -->
-                <button class="navigation-button-style" type="submit">Submit</button>
+                <button class="navigation-button" type="submit">Submit</button>
             </div>
 
             <div class="flex items-center justify-center">
                 <!-- this is the back button -->
-                <button class="navigation-button-style">
+                <button class="navigation-button">
                     <BackArrowIcon />
                 </button>
 
                 <!-- this is the next button -->
-                <button class="navigation-button-style">
+                <button class="navigation-button">
                     <NextArrowIcon />
                 </button>
             </div>
