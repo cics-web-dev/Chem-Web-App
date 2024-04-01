@@ -77,14 +77,17 @@
                         </div>
                         <div class="mt-2 flex flex-col py-2 first:pt-0 last:pb-0">
                             <button class="drowdown-menu-button dark-mode-button justify-between">
-                                <div class="flex items-center gap-x-3.5">
+                                <div class="flex gap-x-3.5">
                                     <DarkModeIcon />
                                     Dark mode
                                 </div>
 
-                                <label class="cursor-pointer">
+                                <!-- svelte-ignore a11y-no-noninteractive-element-interactions a11y-click-events-have-key-events -->
+                                <!-- clicking the switch would automatically dismiss the popover, in order to prevent this behavior from 
+                                    happening from the parent component, stopPropagation is used to prevent the event from bubbling up -->
+                                <label class="cursor-pointer" on:click|stopPropagation>
                                     <input type="checkbox" class="peer sr-only" />
-                                    <div class="dark-mode-switch peer"></div>
+                                    <div class="dark-mode-switch"></div>
                                 </label>
                             </button>
 
