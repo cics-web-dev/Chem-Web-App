@@ -1,5 +1,5 @@
 <script lang="ts">
-    import DisplayQuestion from '$components/DisplayQuestion.svelte';
+    import DisplayQuestion from '$components/Questions/DisplayQuestion.svelte';
     import { isSidebarOpenStore } from '$stores/SidebarOpenStore';
 
     let isSidebarOpen: boolean;
