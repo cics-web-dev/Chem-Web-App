@@ -6,6 +6,12 @@
  * if (condition) {
  *     throw new HttpError(<error-code>, <errorMessage>);
  * }
+ *
+ * // This is same as: (this is how the error middleware will handle the error and send it back to the client)
+ *    return res.status(<error-code>).json({
+ *       message: <errorMessage>,
+ *       status: 'failure',
+ * });
  * ```
  */
 export class HttpError extends Error {

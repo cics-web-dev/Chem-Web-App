@@ -45,7 +45,7 @@ export const type = z.enum(['MCQ'], errorMessage('Type level must be MCQ or othe
 export const feedback: z.ZodString = z
     .string(errorMessage('Feedback string is required.'))
     .min(1, { message: 'Feedback must have at least one charcter.' });
-    
+
 export const questionMolFile: z.ZodString = z.string(
     errorMessage('questionMolFile string is required.'),
 );

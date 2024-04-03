@@ -6,8 +6,10 @@ import {
     description,
     feedback,
     questionMolFile,
+    feedbackMolFile,
     difficulty,
     type,
+    QuestionBaseSchema,
 } from '../../api/valiations/schemaLibrary.validation.js';
 
 type Diffculty = z.ZodEnum<['Easy', 'Medium', 'Hard']>;
@@ -181,9 +183,28 @@ describe('Validation testing for QuestionBaseSchema', () => {
         });
     });
 
-    // describe('feedbackMolFile field', () => {
-    //     it('feedbackMolFile is not provided', () => {
-    //         console.log("feedbackMolFile", feedbackMolFile.parse(null))
-    //     });
-    // });
+    describe('feedbackMolFile field', () => {
+        it('feedbackMolFile valid', () => {
+            const result = feedbackMolFile.parse(undefined);
+            expect(result).toBe(undefined);
+        });
+    });
+
+    describe('QuestionBaseSchema', () => {
+        it('QuestionBaseSchema is valid', () => {
+            const payload = {
+                chapter: 1,
+                question: 1,
+                title: 'Hello world',
+                description: 'This is a test question',
+                difficulty: 'Easy',
+                type: 'MCQ',
+                feedback: 'Feedback is very important',
+                questionMolFile: 'Some random question mol file',
+            };
+            const result = QuestionBaseSchema.parse(payload);
+
+            expect(result).toEqual(payload);
+        });
+    });
 });

@@ -100,7 +100,6 @@ export const updateUserProgress = async (req: Request, res: Response, next: Next
     }
 };
 
-
 /**
  * Upload question for professor/TA.
  * @authentication required

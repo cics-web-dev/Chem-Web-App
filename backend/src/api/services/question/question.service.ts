@@ -59,9 +59,8 @@ export const updateUserProgress = async (studentID: string, questionID: string) 
     student.previousProgress = questionID;
 
     return student;
-
 };
 
-export const uploadQuestion = async (question: AnyQuestion) => {
-    return "not yet implemented"
+export const uploadQuestion = (question: AnyQuestion) => {
+    return question;
 };

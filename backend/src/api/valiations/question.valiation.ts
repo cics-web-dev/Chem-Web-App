@@ -1,29 +1,27 @@
 import { z } from 'zod';
-import library from './schemaLibrary.validation.js';
+import library, { errorMessage } from './schemaLibrary.validation.js';
 
-const MultipleChoiceSchema = library.QuestionBaseSchema.extend({
-    type: z.literal('MCQ'),
+export const MultipleChoiceSchema = z.object({
+    body: library.QuestionBaseSchema.extend({
+        type: z.literal('MCQ'),
 
-    options: z.string().array().nonempty({ message: 'Options must have at least one option.' }),
+        options: z
+            .string(errorMessage('Options must be an string array'))
+            .array()
+            .nonempty({ message: 'Options must have at least one option.' }),
 
-    correctAnswers: z
-        .number()
-        .array()
-        .nonempty({ message: 'Correct answers must have at least one answer.' }),
+        correctAnswers: z
+            .number(errorMessage('CorrcetAnswers must be an number array'))
+            .array()
+            .nonempty({ message: 'Correct answers must have at least one answer.' }),
+    }),
 });
 
-// const QuestionSchema = z.union([MultipleChoiceSchema, ]);
+// a make up schema (does not exist yet, just for experimental )
+export const OpenResponseSchema = z.object({
+    body: library.QuestionBaseSchema.extend({
+        type: z.literal('OR'),
 
-try {
-    const result = MultipleChoiceSchema.parse({
-        chapter: 1,
-        question: 1,
-        title: 'a',
-        description: 'b',
-        difficulty: 'aasy',
-    });
-
-    console.log('Validation successful:', result);
-} catch (error) {
-    console.error('Validation failed:', error);
-}
+        text: z.string().min(1, { message: 'Text must have at least one character.' }),
+    }),
+});

@@ -1,6 +1,5 @@
 import mongoose, { set } from 'mongoose';
 
-
 /**
  * The **MongoDB** class is a custom class that allows us for making Connections to MongoDB.
  * @example
@@ -15,7 +14,6 @@ import mongoose, { set } from 'mongoose';
  * ```
  */
 export class MongoDB {
-
     /**
      * The MongoDB URL to connect to.
      */
@@ -56,5 +54,4 @@ export class MongoDB {
             console.error(error);
         }
     }
-
-};
+}

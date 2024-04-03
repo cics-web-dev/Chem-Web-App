@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import * as questionController from './question.controller.js';
 
+import { TypeCheckerMiddleware as typeChecker } from '../../middlewares/Zod.middleware.js';
+
 const router = Router();
 
 // GET
@@ -14,6 +16,6 @@ router.post('/status/:questionID/student/:studentID', questionController.updateQ
 router.post('/progress/:questionID/student/:studentID', questionController.updateUserProgress);
 
 // Teacher routes
-router.post('/upload', questionController.uploadQuestion);
+router.post('/upload', typeChecker(), questionController.uploadQuestion);
 
 export default router;
