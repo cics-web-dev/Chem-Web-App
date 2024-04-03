@@ -1,39 +1,15 @@
 import { z } from 'zod';
+import library from './schemaLibrary.validation.js';
 
-const MultipleChoiceSchema = z.object({
-    chapter: z
-        .number({ required_error: 'Chapter number is required.' })
-        .nonnegative({ message: 'Chapter number must be a non-negative number.' })
-        .int({ message: 'Chapter number must be an integer.' })
-        .min(1, { message: 'Chapter number must be at least 1.' }),
+const MultipleChoiceSchema = library.QuestionBaseSchema.extend({
+    type: z.literal('MCQ'),
 
-    question: z
-        .number({ required_error: 'Question number is required.' })
-        .nonnegative({ message: 'Question number must be a non-negative number.' })
-        .int({ message: 'Question number must be an integer.' })
-        .min(1, { message: 'Question number must be at least 1.' }),
+    options: z.string().array().nonempty({ message: 'Options must have at least one option.' }),
 
-    title: z
-        .string({ required_error: 'Title is required.' })
-        .min(1, { message: 'Title must have at least one charcter.' }),
-
-    description: z
-        .string({ required_error: 'Description is required.' })
-        .min(1, { message: 'Description must have at least one charcter.' }),
-
-    // Credit: https://github.com/colinhacks/zod/issues/580#issuecomment-1425044684
-    difficulty:
-        z.enum(['Easy', 'Medium', 'Hard'], {
-            errorMap: (_issue, _ctx) => ({ message: 'Diffculty level must be Easy, Medium, or Hard' })
-        }),
-
-    type:
-        z.enum(['MCQ'], {
-            errorMap: (_issue, _ctx) => ({ message: 'Type level must be MCQ or other type' })
-        }),
-    
-    options: 
-        
+    correctAnswers: z
+        .number()
+        .array()
+        .nonempty({ message: 'Correct answers must have at least one answer.' }),
 });
 
 // const QuestionSchema = z.union([MultipleChoiceSchema, ]);
@@ -44,7 +20,7 @@ try {
         question: 1,
         title: 'a',
         description: 'b',
-        difficulty: 'Easy',
+        difficulty: 'aasy',
     });
 
     console.log('Validation successful:', result);
