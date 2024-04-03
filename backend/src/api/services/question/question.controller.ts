@@ -110,7 +110,7 @@ export const updateUserProgress = async (req: Request, res: Response, next: Next
  */
 export const uploadQuestion = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const uploadedQuestion = await questionService.uploadQuestion(req.body.question);
+        const uploadedQuestion = await questionService.uploadQuestion(req.body);
         res.status(status.CREATED).json(uploadedQuestion);
     } catch (error) {
         next(error);
