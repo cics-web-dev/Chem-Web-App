@@ -4,3 +4,7 @@ static/preline/preline.js
 src/lib/styles
 .svelte-kit
 /static
+
+# Ignore test report for playwright
+**/playwright-report
+**/test-results

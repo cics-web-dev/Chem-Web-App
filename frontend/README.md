@@ -1,38 +1,18 @@
-# create-svelte
+# Chem Web App Frontend
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A simple svelte kit web app that develops a chemistry distribution websites.
 
-## Creating a project
+## Scripts
 
-If you're seeing this, you've probably already done this step. Congrats!
+An explanation of the package.json scripts.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+| Command               | Description                                                            |
+| --------------------- | ---------------------------------------------------------------------- |
+| `npm run dev`         | Runs in a local development server                                     |
+| `npm run build`       | Builds the app for production to the `dist` folder using Vite          |
+| `npm run preview`     | Serves the production build of the app for local testing               |
+| `npm run test`        | Runs the Playwright tests to test the application across all browsers. |
+| `npm run test:report` | Runs the Playwright tests and opens the report in the default browser. |
+| `npm run test:ui`     | Executes Playwright tests in a UI mode.                                |
+| `npm run lint`        | Catches any bugs using `eslint`                                        |
+| `npm run format`      | Standardizes code format using `prettier`                              |
