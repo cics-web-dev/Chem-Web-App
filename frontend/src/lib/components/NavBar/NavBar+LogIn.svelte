@@ -1,5 +1,5 @@
 <script lang="ts">
-    import UserProfileIcon from '$icons/Popover/UserProfile.svelte';
+    import UserProfileIcon from '$icons/Popover/Profile.svelte';
     import LogoutIcon from '$icons/Popover/Logout.svelte';
     import Hamburger from '$icons/Sidebar/Hamburger.svelte';
 
