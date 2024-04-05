@@ -10,13 +10,13 @@ const jwtMiddleware = {
         algorithms: ['HS256'], // specify the algorithm
     }),
 
-    // if the token is not present, the request will still go through 
+    // if the token is not present, the request will still go through
     // but the `req.user` will be undefined
     optional: expressjwt({
         secret: process.env.JWT_SECRET || 'secret',
         credentialsRequired: false,
         algorithms: ['HS256'], // specify the algorithm
-    })
-}
+    }),
+};
 
 export default jwtMiddleware;

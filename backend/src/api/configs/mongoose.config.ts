@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-
+import mongoose, { set } from 'mongoose';
 
 /**
  * The **MongoDB** class is a custom class that allows us for making Connections to MongoDB.
@@ -15,19 +14,30 @@ import mongoose from 'mongoose';
  * ```
  */
 export class MongoDB {
-
     /**
      * The MongoDB URL to connect to.
      */
-    private static MONGODB_URL = 'mongodb://localhost:27017/ChemWebApp';
+    private static MONGODB_URL = '';
+
+    /**
+     * Sets the MongoDB URL.
+     */
+    private static setMongoDBURL() {
+        if (process.env.MONGODB_URL) {
+            MongoDB.MONGODB_URL = process.env.MONGODB_URL;
+        } else {
+            throw new Error('MongoDB URL is not found in the .env file');
+        }
+    }
 
     /**
      * Establishes a connection to MongoDB using mooogose's `connect` method.
      */
     public static async connect() {
         try {
+            MongoDB.setMongoDBURL();
             await mongoose.connect(MongoDB.MONGODB_URL);
-            console.log('Pinged! You successfully connected to MongoDB!');
+            console.log('Pinged! You successfully connected to MongoDB Altas!');
         } catch (error) {
             console.error(error);
         }
@@ -44,5 +54,4 @@ export class MongoDB {
             console.error(error);
         }
     }
-
-};
+}
