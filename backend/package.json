@@ -20,6 +20,7 @@
     "@types/jest": "^29.5.12",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.11.16",
+    "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "cors": "^2.8.5",
@@ -37,6 +38,8 @@
   },
   "dependencies": {
     "http-status": "^1.7.3",
+    "mongoose": "^8.2.3",
+    "supertest": "^6.3.4",
     "winston": "^3.11.0"
   }
 }

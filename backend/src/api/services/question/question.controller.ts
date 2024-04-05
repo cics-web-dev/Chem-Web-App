@@ -22,8 +22,8 @@ export const getSingleQuestion = async (req: Request, res: Response, next: NextF
 };
 
 /**
- * Get all the side bar questions for a student.
- * This will be used to display the sidebar questions to navigate
+ * Get all the side bar metadata for a student.
+ * This will be used to display the sidebar metadata to navigate
  * through the questions on the left side of the main page.
  * @authentication required
  * @authorization student
@@ -31,10 +31,10 @@ export const getSingleQuestion = async (req: Request, res: Response, next: NextF
  * @pathParam {string} studentID - The id of the student. (eg. 1234)
  * @return a json body with the question metadata (eg. id, chapter, question, title, bookmark, completion)
  */
-export const getSidebarQuestions = async (req: Request, res: Response, next: NextFunction) => {
+export const getSidebarMetadata = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const sidebarQuestions = await questionService.getSidebarQuestions(req.params.studentID);
-        res.status(status.OK).json(sidebarQuestions);
+        const sidebarMetada = await questionService.getSidebarMetadata(req.params.studentID);
+        res.status(status.OK).json(sidebarMetada);
     } catch (error) {
         next(error);
     }
@@ -73,7 +73,7 @@ export const bookmarkQuestion = async (req: Request, res: Response, next: NextFu
 export const updateQuestionStatus = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { studentID, questionID } = req.params;
-        const updatedQuestion = await questionService.updateUserStatus(studentID, questionID);
+        const updatedQuestion = await questionService.updateQuestionStatus(studentID, questionID);
         res.status(status.OK).json(updatedQuestion);
     } catch (error) {
         next(error);
@@ -95,6 +95,24 @@ export const updateUserProgress = async (req: Request, res: Response, next: Next
         const { studentID, questionID } = req.params;
         const updatedQuestion = await questionService.updateUserProgress(studentID, questionID);
         res.status(status.OK).json(updatedQuestion);
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+/**
+ * Upload question for professor/TA.
+ * @authentication required
+ * @authorization teacher
+ * @route {POST} `api/questions/upload`.
+ * @body {MultipleChoice | other type} question - The question to upload.
+ * @return a json body with the uploaded question (eg. id, chapter, question, title, description)
+ */
+export const uploadQuestion = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const uploadedQuestion = await questionService.uploadQuestion(req.body.question);
+        res.status(status.CREATED).json(uploadedQuestion);
     } catch (error) {
         next(error);
     }
