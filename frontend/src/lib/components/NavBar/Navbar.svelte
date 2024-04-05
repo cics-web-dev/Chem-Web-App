@@ -1,7 +1,7 @@
 <script lang="ts">
     import '$styles/Button.pcss';
-    import NavBarLogIn from './Navbar+LogIn.svelte';
-    import NavBarNotLogIn from './Navbar+NotLogIn.svelte';
+    import NavBarLogIn from './NavBar+LogIn.svelte';
+    import NavBarNotLogIn from './NavBar+NotLogIn.svelte';
     import { userAuthenticated } from '$stores/UserAuthenticationStore';
     import { browser } from '$app/environment';
 

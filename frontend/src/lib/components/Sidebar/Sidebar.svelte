@@ -1,6 +1,6 @@
 <script lang="ts">
     import SidebarChapterList from './SidebarChapterList.svelte';
-    import SidebarLeftCollapseIcon from '$icons/Sidebar/SidebarLeftCollapse.svelte';
+    import SidebarLeftCollapseIcon from '$icons/Sidebar/SidebarLeftCollapseSlide.svelte';
 
     import type { SidebarMetadata } from '$types/sidebarMetaData';
     import { sidebarExpanded } from '$stores/SidebarExpandedStore';
