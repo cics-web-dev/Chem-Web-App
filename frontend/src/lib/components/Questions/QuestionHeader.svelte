@@ -3,8 +3,8 @@
     import RedoIcon from '$icons/Question/Redo.svelte';
     import TwoDIcon from '$icons/Question/2D-stack.svelte';
     import ThreeDIcon from '$icons/Question/3D-cube.svelte';
-    import TimerIcon from '$icons/Question/Timer.svelte';
-    import TimerPauseIcon from '$icons/Question/TimerPause.svelte';
+    import PlayIcon from '$icons/Question/Play.svelte';
+    import PauseIcon from '$icons/Question/Pause.svelte';
 
     import '$styles/Button.pcss';
 
@@ -19,7 +19,7 @@
 
     let isTwoDimensional: boolean = true; // The default display is 2D
 
-    // The start of timer logic
+    /*--- The start of timer logic -----*/
     let isTimerStarted: boolean = false; // The timer is not started by default
     let secondsElapsed: number = 0; // The total elapsed time in seconds
     let timer: NodeJS.Timeout; // The timer object that will be used to increment the secondsElapsed
@@ -52,7 +52,7 @@
     onDestroy(() => {
         clearInterval(timer);
     });
-    // The end of timer logic
+    /*--- The end of timer logic -----*/
 </script>
 
 <div class="mx-auto max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8">
@@ -93,9 +93,9 @@
                 on:dblclick={resetTimer}
             >
                 {#if isTimerStarted}
-                    <TimerPauseIcon />
+                    <PauseIcon />
                 {:else}
-                    <TimerIcon />
+                    <PlayIcon />
                 {/if}
                 {formatTime(secondsElapsed)}
             </button>
@@ -106,6 +106,5 @@
 <style>
     .timer-button {
         width: 105px;
-        white-space: nowrap; /* Prevent text wrapping */
     }
 </style>

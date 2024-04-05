@@ -8,8 +8,10 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    class="icon icon-tabler icons-tabler-outline icon-tabler-clock-pause"
+    class="icon icon-tabler icons-tabler-outline icon-tabler-player-pause"
     ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
-        d="M20.942 13.018a9 9 0 1 0 -7.909 7.922"
-    /><path d="M12 7v5l2 2" /><path d="M17 17v5" /><path d="M21 17v5" /></svg
+        d="M6 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"
+    /><path
+        d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"
+    /></svg
 >
