@@ -1,13 +1,11 @@
-// an interface that defines the mol data that will be stored in the database
-interface MolFile {
-    // the mol file of question in base 64 string format
-    questionMolFile: string;
+import mongoose, { Document } from 'mongoose';
 
-    // the optional mol file of feedback in base 64 string format
+interface MolFile {
+    questionMolFile: string;
     feedbackMolFile?: string;
 }
 
-export interface QuestionBase extends MolFile {
+export interface QuestionBase extends MolFile, Document {
     id: string;
     chapter: number;
     question: number;
@@ -42,5 +40,25 @@ export interface StudentProgress {
 }
 
 export type QuestionMetadata = Pick<QuestionBase, 'id' | 'chapter' | 'question' | 'title'>;
-export type SideBarMetadata = QuestionMetadata & { isBookmarked: boolean, isCompleted: boolean };
+export type SideBarMetadata = QuestionMetadata & { isBookmarked: boolean; isCompleted: boolean };
 export type AnyQuestion = MultipleChoice | FillInBlank;
+
+const QuestionBaseSchema = new mongoose.Schema(
+    {
+        chapter: { type: Number, required: true },
+        question: { type: Number, required: true },
+        title: { type: String, required: true },
+        description: { type: String, required: true },
+        difficulty: { type: String, required: true, enum: ['Easy', 'Medium', 'Hard'] },
+        type: { type: String, required: true, enum: ['MCQ', 'FIB'] },
+        feedback: { type: String, required: true },
+        questionMolFile: { type: String, required: true },
+        feedbackMolFile: { type: String, required: false },
+    },
+    {
+        collection: 'Question',
+        versionKey: false,
+    },
+);
+
+const QuestionBaseModel = mongoose.model<QuestionBase>('QuestionBase', QuestionBaseSchema);

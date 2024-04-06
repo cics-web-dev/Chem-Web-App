@@ -1,0 +1,45 @@
+/* the style for the input field in the authentication page (eg. sign up and login page) */
+.auth-page {
+    @apply flex min-h-screen flex-col justify-center bg-gray-100 px-6 py-16 lg:px-8 dark:bg-slate-800;
+}
+
+.container-page {
+    @apply mx-auto w-full max-w-md p-6;
+}
+
+.auth-row {
+    @apply mt-7 rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800;
+}
+
+.auth-title {
+    @apply block text-2xl font-bold text-gray-800 dark:text-white;
+}
+
+.auth-subtitle {
+    @apply mt-2 text-sm text-gray-600 dark:text-gray-400;
+}
+
+.auth-input-field {
+    @apply block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600;
+}
+
+.auth-submit-button {
+    @apply w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600;
+}
+
+/* There is an ongoing issue with Tailwind CSS where, if you refresh the page, the previously applied color is overridden by the default button style. To work around this, we must include the color style using an ID. */
+#auth-submit-button {
+    @apply bg-blue-600;
+}
+
+.auth-input-field-label {
+    @apply mb-2 block text-sm dark:text-white;
+}
+
+.auth-redirect-button {
+    @apply font-medium text-blue-600 decoration-2 hover:underline dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600;
+}
+
+.dashline {
+    @apply border-t border-gray-200 dark:border-gray-600;
+}
