@@ -15,4 +15,3 @@ export interface Teacher extends User {
 export interface Student extends User {
     role: 'student';
 }
-
