@@ -9,6 +9,7 @@ import z from 'zod';
  */
 export const errorMessage = (message: string) => {
     return {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         errorMap: (_issue: z.ZodIssueOptionalMessage, _ctx: z.ErrorMapCtx) => ({
             message: message,
         }),

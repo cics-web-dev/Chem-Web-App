@@ -1,4 +1,4 @@
-import mongoose, { set } from 'mongoose';
+import mongoose from 'mongoose';
 
 /**
  * The **MongoDB** class is a custom class that allows us for making Connections to MongoDB.
@@ -17,17 +17,16 @@ export class MongoDB {
     /**
      * The MongoDB URL to connect to.
      */
-    private static MONGODB_URL = '';
+    private static MONGODB_URL: string = '';
 
     /**
      * Sets the MongoDB URL.
      */
     private static setMongoDBURL() {
-        if (process.env.MONGODB_URL) {
-            MongoDB.MONGODB_URL = process.env.MONGODB_URL;
-        } else {
+        if (!process.env.MONGODB_URL) {
             throw new Error('MongoDB URL is not found in the .env file');
         }
+        MongoDB.MONGODB_URL = process.env.MONGODB_URL;
     }
 
     /**

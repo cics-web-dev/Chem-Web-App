@@ -31,7 +31,7 @@ export const TypeCheckerMiddleware = () => (req: Request, res: Response, next: N
  * @param schema
  */
 const ZodValidationMiddleware =
-    (schema: ZodSchema<any>) => (req: Request, res: Response, next: NextFunction) => {
+    (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
         try {
             const requestStructure = { body: req.body, query: req.query, params: req.params };
             schema.parse(requestStructure);
