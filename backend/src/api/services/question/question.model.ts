@@ -10,6 +10,7 @@ interface MolFile {
 
 /**
  * Represents the base properties of a question.
+ * implements Document from mongoose adds the `_id` property to the interface.
  */
 export interface QuestionBase extends MolFile, Document {
     chapter: number;
@@ -101,7 +102,7 @@ const MultipleChoiceSchema = new mongoose.Schema({
 /*
  * Represents the base options of a question for a moogoose model.
  */
-const QuestionBaseModel = mongoose.model<QuestionBase>('QuestionBase', QuestionBaseSchema);
+export const QuestionBaseModel = mongoose.model<QuestionBase>('QuestionBase', QuestionBaseSchema);
 
 /**
  * Represents the multiple choice question model.
