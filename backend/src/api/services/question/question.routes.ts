@@ -16,6 +16,6 @@ router.post('/status/:questionID/student/:studentID', questionController.updateQ
 router.post('/progress/:questionID/student/:studentID', questionController.updateUserProgress);
 
 // Teacher routes
-router.post('/upload', typeChecker(), questionController.uploadQuestion);
+router.post('/upload', typeChecker, questionController.uploadQuestion);
 
 export default router;
