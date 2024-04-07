@@ -1,7 +1,13 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-import { AnyQuestion, QuestionMetadata, StudentProgress } from './question.model.js';
+import {
+    AnyQuestion,
+    QuestionMetadata,
+    StudentProgress,
+    MultipleQuestionModel,
+    MultipleChoice,
+} from './question.model.js';
 
 // TESTING PURPOSES (WILL REMOVE ONCE WE USE THE ACTUAL DATABASE)
 const DATAFOLDER = path.resolve(process.cwd(), 'src/api/sampleData');
@@ -61,6 +67,13 @@ export const updateUserProgress = async (studentID: string, questionID: string) 
     return student;
 };
 
-export const uploadQuestion = (question: AnyQuestion) => {
-    return question;
+export const uploadQuestion = async (question: AnyQuestion) => {
+    switch (question.type) {
+        case 'MCQ':
+            const MCQ: MultipleChoice = await MultipleQuestionModel.create(question);
+            return MCQ;
+        case 'FIB':
+            console.log('Fill in the blank question uploaded');
+            return question;
+    }
 };
