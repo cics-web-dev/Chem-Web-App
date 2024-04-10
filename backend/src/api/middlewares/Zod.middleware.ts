@@ -10,7 +10,7 @@ import { HttpError } from '../utils/httpError.utils.js';
  * If the type is not provided, it will throw an error.
  * If the type is valid, it will forward the request to the ZodValidationMiddleware with the correct schema.
  */
-export const TypeCheckerMiddleware = () => (req: Request, res: Response, next: NextFunction) => {
+export const TypeCheckerMiddleware = (req: Request, res: Response, next: NextFunction) => {
     if (!req.body) throw new HttpError(status.BAD_REQUEST, 'Request body is required');
     if (!req.body.type) throw new HttpError(status.BAD_REQUEST, 'Question type is required');
 
@@ -31,7 +31,7 @@ export const TypeCheckerMiddleware = () => (req: Request, res: Response, next: N
  * @param schema
  */
 const ZodValidationMiddleware =
-    (schema: ZodSchema<any>) => (req: Request, res: Response, next: NextFunction) => {
+    (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
         try {
             const requestStructure = { body: req.body, query: req.query, params: req.params };
             schema.parse(requestStructure);
