@@ -39,16 +39,6 @@ export interface FillInBlank extends QuestionBase {
 }
 
 /**
- * Represents the progress of a student.
- */
-export interface StudentProgress {
-    studentID: string;
-    previousProgress: string;
-    bookMark: string[];
-    completion: string[];
-}
-
-/**
  * Represents the metadata of a question.
  */
 export type QuestionMetadata = Pick<QuestionBase, 'id' | 'chapter' | 'question' | 'title'>;
