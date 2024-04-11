@@ -10,7 +10,7 @@ import {
     difficulty,
     type,
     QuestionBaseSchema,
-} from '../../api/valiations/schemaLibrary.validation.js';
+} from '../../api/validations/schemaLibrary.validation.js';
 
 type Diffculty = z.ZodEnum<['Easy', 'Medium', 'Hard']>;
 type QuestionType = z.ZodEnum<['MCQ']>;

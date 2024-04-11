@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
 import { ZodError, ZodSchema } from 'zod';
 
-import { MultipleChoiceSchema, OpenResponseSchema } from '../valiations/question.valiation.js';
+import { MultipleChoiceSchema, OpenResponseSchema } from '../validations/question.valiation.js';
 import { HttpError } from '../utils/httpError.utils.js';
 
 /**
@@ -30,7 +30,7 @@ export const TypeCheckerMiddleware = (req: Request, res: Response, next: NextFun
  * otherwise, the middleware will return a series of errors from Zod.
  * @param schema
  */
-const ZodValidationMiddleware =
+export const ZodValidationMiddleware =
     (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
         try {
             const requestStructure = { body: req.body, query: req.query, params: req.params };
