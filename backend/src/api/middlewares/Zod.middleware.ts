@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
 import { ZodError, ZodSchema } from 'zod';
 
-import { MultipleChoiceSchema, OpenResponseSchema } from '../validations/question.valiation.js';
+import { MultipleChoiceSchema, OpenResponseSchema } from '../validations/question.validation.js';
 import { HttpError } from '../utils/httpError.utils.js';
 
 /**

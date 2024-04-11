@@ -1,5 +1,5 @@
 import { ZodError } from 'zod';
-import { MultipleChoiceSchema } from '../../api/validations/question.valiation.js';
+import { MultipleChoiceSchema } from '../../api/validations/question.validation.js';
 
 describe('MultipleChoiceSchema', () => {
     const data = {
