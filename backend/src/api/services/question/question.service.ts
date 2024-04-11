@@ -5,11 +5,12 @@ import status from 'http-status';
 import {
     AnyQuestion,
     QuestionMetadata,
-    StudentProgress,
     QuestionBaseModel,
     MultipleQuestionModel,
     MultipleChoice,
 } from './question.model.js';
+
+import { StudentProgress } from './student.model.js';
 
 import { objectID } from '../../utils/objectID.utils.js';
 import { HttpError } from '../../utils/httpError.utils.js';

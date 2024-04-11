@@ -38,6 +38,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "express-jwt": "^8.4.1",
     "http-status": "^1.7.3",
     "jsonwebtoken": "^9.0.2",

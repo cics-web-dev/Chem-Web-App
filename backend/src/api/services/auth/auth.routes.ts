@@ -1,8 +1,6 @@
 import { Router } from 'express';
+import { signup } from './auth.controller.js';
 
-import * from './auth.controller.js'; 
-
-// Create a new router
 const router = Router();
 
 router.post('/signup', signup);
