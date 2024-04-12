@@ -169,11 +169,11 @@ describe('Validation testing for QuestionBaseSchema', () => {
 
     describe('difficulty field', () => {
         it('difficulty is not provided', () => {
-            testParse(difficulty, null, 'Diffculty level must be Easy, Medium, or Hard');
+            testParse(difficulty, null, 'Difficulty level must be Easy, Medium, or Hard');
         });
 
         it('difficulty is provided but invalid one', () => {
-            testParse(difficulty, 'SUPERHARD', 'Diffculty level must be Easy, Medium, or Hard');
+            testParse(difficulty, 'SUPERHARD', 'Difficulty level must be Easy, Medium, or Hard');
         });
 
         it('difficulty is valid type', () => {

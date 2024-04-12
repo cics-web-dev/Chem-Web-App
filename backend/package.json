@@ -10,7 +10,7 @@
     "dev": "nodemon src/api/server.ts",
     "format": "prettier --write src/ --config .prettierrc",
     "lint": "eslint src/ --config .eslintrc.json",
-    "test": "jest src/tests"
+    "test": "jest src/tests --forceExit --detectOpenHandles NODE_ENV=test"
   },
   "author": "Chem Web App",
   "license": "ISC",
@@ -43,6 +43,7 @@
     "express-jwt": "^8.4.1",
     "http-status": "^1.7.3",
     "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^9.1.8",
     "mongoose": "^8.2.3",
     "supertest": "^6.3.4",
     "winston": "^3.11.0",

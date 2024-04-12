@@ -10,12 +10,12 @@ import * as questionService from './question.service.js';
  * @authorization student
  * @route {GET} `/api/questions/100`.
  * @pathParam {string} questionID - The id of the question. (eg. 100)
- * @return a json body with the question (eg. id, title chapter, question, feedback, type, mol file)
+ * @return a json body with the question (eg. _id, title chapter, question, feedback, type, mol file)
  */
 export const getSingleQuestion = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const question = await questionService.getSingleQuestionById(req.params.questionID);
-        res.status(status.OK).json(question);
+        res.status(status.OK).json({ question, status: 'success' });
     } catch (error) {
         next(error);
     }
@@ -111,7 +111,7 @@ export const updateUserProgress = async (req: Request, res: Response, next: Next
 export const uploadQuestion = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const uploadedQuestion = await questionService.uploadQuestion(req.body);
-        res.status(status.CREATED).json(uploadedQuestion);
+        res.status(status.CREATED).json({ question: uploadedQuestion, status: 'success' });
     } catch (error) {
         next(error);
     }

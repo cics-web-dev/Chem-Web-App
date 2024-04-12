@@ -25,11 +25,14 @@ const userSchemaOptions = {
     versionKey: false, // the version key is not needed
 };
 
-const userSchema = new Schema<User>({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, required: true, enum: ['teacher', 'student'] },
-}, userSchemaOptions);
+const userSchema = new Schema<User>(
+    {
+        name: { type: String, required: true },
+        email: { type: String, required: true, unique: true },
+        password: { type: String, required: true },
+        role: { type: String, required: true, enum: ['teacher', 'student'] },
+    },
+    userSchemaOptions,
+);
 
 export const UserModel = mongoose.model<User>('User', userSchema);

@@ -60,7 +60,7 @@ describe('MultipleChoiceSchema', () => {
                     MultipleChoiceSchema.parse({ body: invalidData });
                 } catch (error) {
                     const message = (error as ZodError).errors[0].message;
-                    expect(message).toBe('CorrcetAnswers must be an number array');
+                    expect(message).toBe('CorrectAnswers must be an number array');
                 }
             });
 

@@ -60,7 +60,7 @@ export const description: z.ZodString = z
 
 export const difficulty = z.enum(
     ['Easy', 'Medium', 'Hard'],
-    errorMessage('Diffculty level must be Easy, Medium, or Hard'),
+    errorMessage('Difficulty level must be Easy, Medium, or Hard'),
 );
 
 export const type = z.enum(['MCQ'], errorMessage('Type level must be MCQ or other type'));

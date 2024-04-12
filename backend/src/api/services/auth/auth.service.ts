@@ -23,8 +23,8 @@ export const createUser = async (payload: SignupPayload) => {
             name: user.name,
             email: user.email,
             role: user.role,
-            token: generateToken(user._id)
-        }
+            token: generateToken(user._id),
+        },
     };
 };
 
@@ -42,13 +42,13 @@ export const loginUser = async (payload: LoginPayload) => {
     if (!isPasswordValid) {
         throw new HttpError(status.UNAUTHORIZED, 'Invalid credentials');
     }
-    
+
     return {
         user: {
             name: user.name,
             email: user.email,
             role: user.role,
-            token: generateToken(user._id)
-        }
+            token: generateToken(user._id),
+        },
     };
 };
