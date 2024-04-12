@@ -42,7 +42,7 @@ export const getSingleQuestionById = async (questionID: string): Promise<AnyQues
 export const getSidebarMetadata = async (studentID: string) => {
     const sidebarMetada: [QuestionMetadata] = await loadData('sidebarQuestions.json');
     return sidebarMetada;
-};
+}; // to be changed to mongodb
 
 export const updateUserBookmark = async (studentID: string, questionID: string) => {
     const students: [StudentProgress] = await loadData('progress.json');

@@ -4,6 +4,7 @@ import status from 'http-status';
 import { UserModel, SignupPayload, LoginPayload } from './auth.model.js';
 import { HttpError } from '../../utils/httpError.utils.js';
 import { generateToken } from '../../utils/token.utils.js';
+import Error from '../../configs/error.config.js';
 
 export const createUser = async (payload: SignupPayload) => {
     const { email, password, name, role } = payload;
@@ -11,7 +12,7 @@ export const createUser = async (payload: SignupPayload) => {
     const existingUser = await UserModel.findOne({ email });
 
     if (existingUser) {
-        throw new HttpError(status.CONFLICT, 'User with this email already exists');
+        throw new HttpError(status.CONFLICT, Error.AuthError.USER_EXISTS);
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
