@@ -11,7 +11,7 @@ export const MultipleChoiceSchema = z.object({
             .nonempty('Options must have at least one option.'),
 
         correctAnswers: z
-            .number(errorMessage('CorrcetAnswers must be an number array'))
+            .number(errorMessage('CorrectAnswers must be an number array'))
             .array()
             .nonempty('Correct answers must have at least one answer.'),
     }),

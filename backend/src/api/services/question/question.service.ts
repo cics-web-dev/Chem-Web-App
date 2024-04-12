@@ -8,6 +8,7 @@ import {
     QuestionBaseModel,
     MultipleQuestionModel,
     MultipleChoice,
+    MultipleChoiceDocument,
 } from './question.model.js';
 
 import { StudentProgress } from './student.model.js';

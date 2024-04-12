@@ -10,9 +10,8 @@ interface MolFile {
 
 /**
  * Represents the base properties of a question.
- * implements Document from mongoose adds the `_id` property to the interface.
  */
-export interface QuestionBase extends MolFile, Document {
+export interface QuestionBase extends MolFile {
     chapter: number;
     question: number;
     title: string;
@@ -39,9 +38,26 @@ export interface FillInBlank extends QuestionBase {
 }
 
 /**
+ * Represents a document of a question base. (mongoose document)
+ * implements Document from mongoose adds the `_id` property to the interface and many other functions
+ */
+export interface QuestionBaseDocument extends QuestionBase, Document {}
+
+/**
+ * Represents a document of a multiple choice question. (mongoose document)
+ */
+export interface MultipleChoiceDocument extends MultipleChoice, Document {}
+
+/**
+ * Represents a document of a fill in the blank question. (mongoose document)
+ */
+export interface FillInBlankDocument extends FillInBlank, Document {}
+
+
+/**
  * Represents the metadata of a question.
  */
-export type QuestionMetadata = Pick<QuestionBase, 'id' | 'chapter' | 'question' | 'title'>;
+export type QuestionMetadata = Pick<QuestionBase, 'chapter' | 'question' | 'title'>;
 
 /**
  * Represents the metadata of a question in the sidebar.
@@ -92,7 +108,7 @@ const MultipleChoiceSchema = new mongoose.Schema({
 /*
  * Represents the base options of a question for a moogoose model.
  */
-export const QuestionBaseModel = mongoose.model<QuestionBase>('QuestionBase', QuestionBaseSchema);
+export const QuestionBaseModel = mongoose.model<QuestionBaseDocument>('QuestionBase', QuestionBaseSchema);
 
 /**
  * Represents the multiple choice question model.
@@ -118,7 +134,7 @@ export const QuestionBaseModel = mongoose.model<QuestionBase>('QuestionBase', Qu
  * });
  * ```
  */
-export const MultipleQuestionModel = QuestionBaseModel.discriminator<MultipleChoice>(
+export const MultipleQuestionModel = QuestionBaseModel.discriminator<MultipleChoiceDocument>(
     'MCQ',
     MultipleChoiceSchema,
 );

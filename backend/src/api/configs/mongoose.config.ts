@@ -34,7 +34,6 @@ export class MongoDB {
         if (process.env.NODE_ENV === 'test') {
             MongoDB.mongoMemoryServer = await MongoMemoryServer.create();
             MongoDB.MONGODB_URL = MongoDB.mongoMemoryServer.getUri();
-            console.log("in memory db url", MongoDB.MONGODB_URL)
             return;
         }
 
@@ -52,7 +51,6 @@ export class MongoDB {
         try {
             await MongoDB.setMongoDBURL();
             await mongoose.connect(MongoDB.MONGODB_URL);
-            console.log("HELLO")
             console.log('Pinged! You successfully connected to MongoDB Altas!');
         } catch (error) {
             console.error(error);
