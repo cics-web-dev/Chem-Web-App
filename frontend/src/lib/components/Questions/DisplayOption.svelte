@@ -4,6 +4,7 @@
     export let index: number;
     export let correct: number[];
     export let checked: boolean;
+    export let className: string;
 
     // this boolean defines whether the current element has been selected
     let selected: boolean = checked;
@@ -22,29 +23,30 @@
     }
 </script>
 
-<!-- This displays the checkbox -->
-{#if correct.length > 1}
-    <input
-        type="checkbox"
-        class="checkbox-option"
-        id={index.toString()}
-        {checked}
-        on:click={select}
-        value={index}
-    />
-    <!-- this displays the radio button (more on this later) -->
-{:else}
-    <input
-        class="radio-option"
-        type="radio"
-        id={index.toString()}
-        bind:group={selected}
-        value={index}
-    />
-    <!-- this displays the label for the option -->
-{/if}
-<label class="ms-2 text-sm" for={index.toString()}>{option}</label>
-<br />
+<label class={`flex gap-4 items-center ${className}`} for={index.toString()}>
+    <!-- This displays the checkbox -->
+    {#if correct.length > 1}
+        <input
+            type="checkbox"
+            class="checkbox-option"
+            id={index.toString()}
+            {checked}
+            on:click={select}
+            value={index}
+        />
+        <!-- this displays the radio button (more on this later) -->
+    {:else}
+        <input
+            class="radio-option"
+            type="radio"
+            id={index.toString()}
+            bind:group={selected}
+            value={index}
+        />
+        <!-- this displays the label for the option -->
+    {/if}
+    {option}
+</label>
 
 <style lang="postcss">
     .checkbox-option {
