@@ -13,3 +13,7 @@ static
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# Ignore test report for playwright
+**/playwright-report
+**/test-results

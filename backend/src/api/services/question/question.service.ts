@@ -21,7 +21,7 @@ export const getSingleQuestionById = async (questionID: string) => {
     return questions.find(question => question.id === questionID);
 };
 
-export const getSidebarQuestions = async (studentID: string) => {
+export const getSidebarMetadata = async (studentID: string) => {
     const sidebarMetada: [QuestionMetadata] = await loadData('sidebarQuestions.json');
     return sidebarMetada;
 };
@@ -37,7 +37,7 @@ export const updateUserBookmark = async (studentID: string, questionID: string) 
     return student;
 };
 
-export const updateUserStatus = async (studentID: string, questionID: string) => {
+export const updateQuestionStatus = async (studentID: string, questionID: string) => {
     const students: [StudentProgress] = await loadData('progress.json');
     const student = students.find(student => student.studentID === studentID);
     if (!student) {
@@ -59,5 +59,8 @@ export const updateUserProgress = async (studentID: string, questionID: string) 
     student.previousProgress = questionID;
 
     return student;
+};
 
+export const uploadQuestion = (question: AnyQuestion) => {
+    return question;
 };

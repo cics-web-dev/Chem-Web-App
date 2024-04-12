@@ -1,7 +1,7 @@
 <script lang="ts">
     import DisplayOption from './DisplayOption.svelte';
-    import BackArrowIcon from '$icons/BackArrow.svelte';
-    import NextArrowIcon from '$icons/NextArrow.svelte';
+    import BackArrowIcon from '$icons/Question/BackArrow.svelte';
+    import NextArrowIcon from '$icons/Question/NextArrow.svelte';
 
     import type { MultipleChoice } from '$lib/types/question';
     import { selectedStore } from '$stores/OptionsSelectStore.js';
