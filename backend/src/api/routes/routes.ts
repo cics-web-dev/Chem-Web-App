@@ -7,4 +7,3 @@ const router = Router();
 router.use('/question', QuestionRouter);
 
 export default Router().use('/api', router);
-

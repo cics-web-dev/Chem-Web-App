@@ -2,6 +2,9 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export type Role = 'teacher' | 'student';
 
+export type SignupPayload = Pick<User, 'name' | 'email' | 'password' | 'role'>;
+export type LoginPayload = Pick<User, 'email' | 'password'>;
+
 export interface User extends Document {
     name: string;
     email: string;

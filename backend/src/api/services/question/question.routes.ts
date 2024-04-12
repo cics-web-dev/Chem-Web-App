@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import * as questionController from './question.controller.js';
 
-import { TypeCheckerMiddleware as typeChecker } from '../../middlewares/Zod.middleware.js';
+import { typeCheckerMiddleware as typeChecker } from '../../middlewares/Zod.middleware.js';
 
 const router = Router();
 

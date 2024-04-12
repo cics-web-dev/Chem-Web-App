@@ -1,28 +1,38 @@
-import { UserModel } from './auth.model.js';
-import { HttpError } from '../../utils/httpError.utils.js';
 import bcrypt from 'bcryptjs';
+import status from 'http-status';
 
-export const createUser = async (email: string, password: string, name: string, role: 'teacher' | 'student') => {
-    if (await UserModel.findOne({ email })) {
-        throw new HttpError(409, 'User with this email already exists');
+import { UserModel, SignupPayload, LoginPayload } from './auth.model.js';
+import { HttpError } from '../../utils/httpError.utils.js';
+
+export const createUser = async (payload: SignupPayload) => {
+    const { email, password, name, role } = payload;
+
+    const existingUser = await UserModel.findOne({ email });
+
+    if (existingUser) {
+        throw new HttpError(status.CONFLICT, 'User with this email already exists');
     }
-    try {
-        const hashedPassword = await bcrypt.hash(password, 12);
-        const user = await UserModel.create({ email, password: hashedPassword, name, role });
-        return user;
-    } catch (error) {
-        throw new HttpError(500, 'Internal server error');
-    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const newUser = await UserModel.create({ email, password: hashedPassword, name, role });
+
+    return newUser;
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async (payload: LoginPayload) => {
+    const { email, password } = payload;
+
     const user = await UserModel.findOne({ email });
+
     if (!user) {
-        throw new HttpError(404, 'User not found');
+        throw new HttpError(status.NOT_FOUND, 'User not found');
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    const isPasswordValid: boolean = await bcrypt.compare(password, user.password);
+
     if (!isPasswordValid) {
-        throw new HttpError(401, 'Invalid credentials');
+        throw new HttpError(status.UNAUTHORIZED, 'Invalid credentials');
     }
     return user;
-}
+};
