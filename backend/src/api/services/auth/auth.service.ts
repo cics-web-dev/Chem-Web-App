@@ -4,6 +4,7 @@ import status from 'http-status';
 import { UserModel, SignupPayload, LoginPayload } from './auth.model.js';
 import { HttpError } from '../../utils/httpError.utils.js';
 import { generateToken } from '../../utils/token.utils.js';
+import Error from '../../configs/error.config.js';
 
 export const createUser = async (payload: SignupPayload) => {
     const { email, password, name, role } = payload;
@@ -11,7 +12,7 @@ export const createUser = async (payload: SignupPayload) => {
     const existingUser = await UserModel.findOne({ email });
 
     if (existingUser) {
-        throw new HttpError(status.CONFLICT, 'User with this email already exists');
+        throw new HttpError(status.CONFLICT, Error.AuthError.USER_EXISTS);
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -34,13 +35,13 @@ export const loginUser = async (payload: LoginPayload) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-        throw new HttpError(status.NOT_FOUND, 'User not found');
+        throw new HttpError(status.NOT_FOUND, Error.AuthError.USER_NOT_FOUND);
     }
 
     const isPasswordValid: boolean = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        throw new HttpError(status.UNAUTHORIZED, 'Invalid credentials');
+        throw new HttpError(status.UNAUTHORIZED, Error.AuthError.INVALID_CREDENTIALS);
     }
 
     return {
