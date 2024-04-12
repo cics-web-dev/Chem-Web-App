@@ -3,6 +3,7 @@ import status from 'http-status';
 
 import { UserModel, SignupPayload, LoginPayload } from './auth.model.js';
 import { HttpError } from '../../utils/httpError.utils.js';
+import { generateToken } from '../../utils/token.utils.js';
 
 export const createUser = async (payload: SignupPayload) => {
     const { email, password, name, role } = payload;
@@ -15,9 +16,16 @@ export const createUser = async (payload: SignupPayload) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const newUser = await UserModel.create({ email, password: hashedPassword, name, role });
+    const user = await UserModel.create({ email, password: hashedPassword, name, role });
 
-    return newUser;
+    return {
+        user: {
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            token: generateToken(user._id)
+        }
+    };
 };
 
 export const loginUser = async (payload: LoginPayload) => {
@@ -34,5 +42,13 @@ export const loginUser = async (payload: LoginPayload) => {
     if (!isPasswordValid) {
         throw new HttpError(status.UNAUTHORIZED, 'Invalid credentials');
     }
-    return user;
+    
+    return {
+        user: {
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            token: generateToken(user._id)
+        }
+    };
 };
