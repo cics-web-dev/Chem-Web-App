@@ -2,6 +2,7 @@
     import UserProfileIcon from '$icons/Popover/Profile.svelte';
     import LogoutIcon from '$icons/Popover/Logout.svelte';
     import Hamburger from '$icons/Sidebar/Hamburger.svelte';
+    import LogoIcon from '$icons/Logo.svelte';
 
     import { page } from '$app/stores';
     import { sidebarExpanded } from '$stores/SidebarExpandedStore';
@@ -34,15 +35,18 @@
                 </button>
             {/if}
 
-            <a class="flex-none text-xl font-semibold dark:text-white" href="/" aria-label="Home"
-                >Home</a
-            >
+            <a class="flex-none text-lg font-semibold dark:text-white" href="/" aria-label="Home">
+                <span class="flex items-center gap-2">
+                    <LogoIcon />
+                    Home
+                </span>
+            </a>
         </div>
 
         <div class="flex w-full items-center justify-between">
             <!-- It has to have this block to push the avatar to the other side -->
             <!-- Hamburger icon only exists on the questions page and when its inner width is greater than 1024 pixel -->
-            <div class="sm:block dark:text-white">
+            <div class="dark:text-white flex items-center">
                 {#if $page.url.pathname.startsWith('/questions') && innerWidth >= 1024}
                     <button on:click={sidebarExpanded.toggle}>
                         <Hamburger />

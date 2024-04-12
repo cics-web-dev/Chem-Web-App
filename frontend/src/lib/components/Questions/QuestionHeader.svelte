@@ -56,7 +56,7 @@
 </script>
 
 <div class="mx-auto max-w-[85rem] px-4 py-4 sm:px-6 lg:px-8">
-    <div class="grid justify-center gap-3 md:grid-cols-2 md:items-center md:justify-between">
+    <div class="grid justify-center gap-3 md:grid-cols-2 items-start md:justify-between">
         <div class="text-center md:text-start">
             <h1 class="text-ls uppercase tracking-wider text-black">
                 {chapter}.{question} : {title}
@@ -66,7 +66,7 @@
             </h2>
         </div>
 
-        <div class="mt-3 gap-4 text-center md:flex md:items-center md:justify-end md:text-start">
+        <div class="mt-3 gap-2 text-center flex flex-wrap items-center justify-center">
             <button type="button" class="question-header-button">
                 <RedoIcon />
                 Redo

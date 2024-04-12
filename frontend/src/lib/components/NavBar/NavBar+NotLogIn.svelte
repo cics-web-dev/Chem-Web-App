@@ -1,4 +1,6 @@
 <script lang="ts">
+    import LogoIcon from '$icons/Logo.svelte';
+
     import { page } from '$app/stores';
 </script>
 
@@ -7,13 +9,22 @@
         class="mx-auto flex w-full max-w-[85rem] items-center justify-between px-4"
         aria-label="Global"
     >
-        <a class="flex-none text-xl font-semibold dark:text-white" href="/">Home</a>
-        <div class="flex flex-row items-center gap-5">
-            <a class="nav-button" class:active={$page.url.pathname === '/login'} href="/login"
-                >Log In</a
+        <a class="flex-none text-lg font-semibold dark:text-white" href="/" aria-label="Home">
+            <span class="flex items-center gap-2">
+                <LogoIcon />
+                Home
+            </span>
+        </a>
+        <div class="flex flex-row items-center gap-8">
+            <a
+                class="nav-button text-md"
+                class:active={$page.url.pathname === '/login'}
+                href="/login">Log In</a
             >
-            <a class="nav-button" class:active={$page.url.pathname === '/signup'} href="/signup"
-                >Sign up</a
+            <a
+                class="nav-button text-md"
+                class:active={$page.url.pathname === '/signup'}
+                href="/signup">Sign up</a
             >
         </div>
     </nav>
