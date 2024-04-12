@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import library from './schemaLibrary.validation.js';
+
 
 export const signupSchema = z.object({
     body: z.object({

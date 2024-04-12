@@ -16,25 +16,34 @@ export const errorMessage = (message: string) => {
     };
 };
 
+export const name: z.ZodString = z.string().min(1, 'Name cannot be empty');
+export const email: z.ZodString = z.string().email('Invalid email format');
+export const password: z.ZodString = z
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .regex(/\d/, 'Password must include a number')
+    .regex(/[a-zA-Z]/, 'Password must include a letter')
+export const role: z.ZodEnum<["teacher", "student"]> = z.enum(['teacher', 'student']);
+
 export const chapter: z.ZodNumber = z
     .number(errorMessage('Chapter number is required.'))
-    .nonnegative({ message: 'Chapter number must be a non-negative number.' })
-    .int({ message: 'Chapter number must be an integer.' })
-    .min(1, { message: 'Chapter number must be at least 1.' });
+    .nonnegative('Chapter number must be a non-negative number.')
+    .int('Chapter number must be an integer.')
+    .min(1, 'Chapter number must be at least 1.');
 
 export const question: z.ZodNumber = z
     .number(errorMessage('Question number is required.'))
-    .nonnegative({ message: 'Question number must be a non-negative number.' })
-    .int({ message: 'Question number must be an integer.' })
-    .min(1, { message: 'Question number must be at least 1.' });
+    .nonnegative('Question number must be a non-negative number.')
+    .int('Question number must be an integer.')
+    .min(1, 'Question number must be at least 1.');
 
 export const title: z.ZodString = z
     .string(errorMessage('Title string is required.'))
-    .min(1, { message: 'Title must have at least one charcter.' });
+    .min(1, 'Title must have at least one charcter.');
 
 export const description: z.ZodString = z
     .string(errorMessage('Description string is required.'))
-    .min(1, { message: 'Description must have at least one charcter.' });
+    .min(1, 'Description must have at least one charcter.');
 
 export const difficulty = z.enum(
     ['Easy', 'Medium', 'Hard'],
@@ -45,7 +54,7 @@ export const type = z.enum(['MCQ'], errorMessage('Type level must be MCQ or othe
 
 export const feedback: z.ZodString = z
     .string(errorMessage('Feedback string is required.'))
-    .min(1, { message: 'Feedback must have at least one charcter.' });
+    .min(1, 'Feedback must have at least one charcter.');
 
 export const questionMolFile: z.ZodString = z.string(
     errorMessage('questionMolFile string is required.'),
@@ -65,5 +74,9 @@ export const QuestionBaseSchema = z.object({
 });
 
 export default {
-    QuestionBaseSchema: QuestionBaseSchema,
+    QuestionBaseSchemaValidation: QuestionBaseSchema,
+    nameValidation: name,
+    emailValiation: email,
+    passwordValidation: password,
+    roleValidation: role,
 };
