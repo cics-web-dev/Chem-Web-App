@@ -53,7 +53,6 @@ export interface MultipleChoiceDocument extends MultipleChoice, Document {}
  */
 export interface FillInBlankDocument extends FillInBlank, Document {}
 
-
 /**
  * Represents the metadata of a question.
  */
@@ -108,7 +107,10 @@ const MultipleChoiceSchema = new mongoose.Schema({
 /*
  * Represents the base options of a question for a moogoose model.
  */
-export const QuestionBaseModel = mongoose.model<QuestionBaseDocument>('QuestionBase', QuestionBaseSchema);
+export const QuestionBaseModel = mongoose.model<QuestionBaseDocument>(
+    'QuestionBase',
+    QuestionBaseSchema,
+);
 
 /**
  * Represents the multiple choice question model.

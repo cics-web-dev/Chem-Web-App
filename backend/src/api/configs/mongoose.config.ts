@@ -41,7 +41,7 @@ export class MongoDB {
         if (!process.env.MONGODB_URL) {
             throw new Error('MongoDB URL is not found in the .env file');
         }
-        MongoDB.MONGODB_URL = process.env.MONGODB_URL;   
+        MongoDB.MONGODB_URL = process.env.MONGODB_URL;
     }
 
     /**
@@ -51,7 +51,10 @@ export class MongoDB {
         try {
             await MongoDB.setMongoDBURL();
             await mongoose.connect(MongoDB.MONGODB_URL);
-            console.log('Pinged! You successfully connected to MongoDB Altas!');
+
+            if (process.env.NODE_ENV !== 'test') {
+                console.log('Pinged! You successfully connected to MongoDB Altas!');
+            }
         } catch (error) {
             console.error(error);
         }
@@ -62,14 +65,12 @@ export class MongoDB {
      */
     public static async disconnect() {
         try {
-
-            // clean up the memory server 
+            // clean up the memory server
             if (MongoDB.mongoMemoryServer) {
                 await MongoDB.mongoMemoryServer.stop();
             }
 
             await mongoose.disconnect();
-            console.log('You successfully disconnected from MongoDB!');
         } catch (error) {
             console.error(error);
         }

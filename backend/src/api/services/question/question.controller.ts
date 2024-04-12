@@ -15,7 +15,7 @@ import * as questionService from './question.service.js';
 export const getSingleQuestion = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const question = await questionService.getSingleQuestionById(req.params.questionID);
-        res.status(status.OK).json({ question, status: "success" });
+        res.status(status.OK).json({ question, status: 'success' });
     } catch (error) {
         next(error);
     }
@@ -111,7 +111,7 @@ export const updateUserProgress = async (req: Request, res: Response, next: Next
 export const uploadQuestion = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const uploadedQuestion = await questionService.uploadQuestion(req.body);
-        res.status(status.CREATED).json({ question: uploadedQuestion, status: "success" },);
+        res.status(status.CREATED).json({ question: uploadedQuestion, status: 'success' });
     } catch (error) {
         next(error);
     }
