@@ -86,7 +86,7 @@
                 <button class="submit-button" type="submit">Submit</button>
             </div>
 
-            <div class="mt-12 lg:mt-24 flex items-center justify-center md:justify-start gap-3">
+            <div class="mt-12 flex items-center justify-center gap-3">
                 <!-- this is the back button -->
                 <button class="navigation-button">
                     <BackArrowIcon />

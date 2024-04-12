@@ -5,7 +5,7 @@
 
 <!-- This is where we display the question -->
 <div
-    class="w-full px-4 pt-2 sm:px-6 md:px-8 transition-all delay-150"
+    class="w-full px-4 pt-2 sm:px-6 md:px-8 transition-all duration-150"
     class:content-expanded={$sidebarExpanded}
 >
     <DisplayQuestion />
