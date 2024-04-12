@@ -12,7 +12,7 @@
         width="20"
         height="20"
         viewBox="0 0 24 24"
-        stroke-width="1.5"
+        stroke-width="2"
         stroke="#00b341"
         fill="none"
         stroke-linecap="round"
@@ -25,9 +25,9 @@
     <!-- Full circle icon when the question is not completed  -->
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-circle-filled"
-        width="20"
-        height="20"
+        class="icon icon-tabler icon-tabler-circle-filled w-[20px]"
+        width="12"
+        height="12"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="#00b341"
