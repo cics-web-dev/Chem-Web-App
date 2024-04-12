@@ -1,27 +1,18 @@
 import { z } from 'zod';
 import library from './schemaLibrary.validation.js';
 
-
 export const signupSchema = z.object({
     body: z.object({
-        name: z.string().min(1, 'Name cannot be empty'),
-        email: z.string().email('Invalid email format'),
-        password: z
-            .string()
-            .min(8, 'Password must be at least 8 characters')
-            .regex(/\d/, 'Password must include a number')
-            .regex(/[a-zA-Z]/, 'Password must include a letter'),
-        role: z.enum(['teacher', 'student']),
+        name: library.nameValidation,
+        email: library.emailValidation,
+        password: library.passwordValidation,
+        role: library.roleValidation,
     }),
 });
 
 export const loginSchema = z.object({
     body: z.object({
-        email: z.string().email('Invalid email format'),
-        password: z
-            .string()
-            .min(8, 'Password must be at least 8 characters')
-            .regex(/\d/, 'Password must include a number')
-            .regex(/[a-zA-Z]/, 'Password must include a letter'),
+        email: library.emailValidation,
+        password: library.passwordValidation,
     }),
 });

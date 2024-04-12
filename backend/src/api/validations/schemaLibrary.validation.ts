@@ -16,15 +16,28 @@ export const errorMessage = (message: string) => {
     };
 };
 
-export const name: z.ZodString = z.string().min(1, 'Name cannot be empty');
-export const email: z.ZodString = z.string().email('Invalid email format');
+/* Start of Auth Validation */
+export const name: z.ZodString = z
+    .string(errorMessage('Name is required'))
+    .min(1, 'Name cannot be empty');
+
+export const email: z.ZodString = z
+    .string(errorMessage('Email is required'))
+    .email('Invalid email format');
+
 export const password: z.ZodString = z
-    .string()
+    .string(errorMessage('Password is required'))
     .min(8, 'Password must be at least 8 characters')
     .regex(/\d/, 'Password must include a number')
-    .regex(/[a-zA-Z]/, 'Password must include a letter')
-export const role: z.ZodEnum<["teacher", "student"]> = z.enum(['teacher', 'student']);
+    .regex(/[a-zA-Z]/, 'Password must include a letter');
 
+export const role: z.ZodEnum<['teacher', 'student']> = z.enum(
+    ['teacher', 'student'],
+    errorMessage('Role must be teacher or student'),
+);
+/* End of Auth Validation */
+
+/* Start of Question Validation */
 export const chapter: z.ZodNumber = z
     .number(errorMessage('Chapter number is required.'))
     .nonnegative('Chapter number must be a non-negative number.')
@@ -72,11 +85,12 @@ export const QuestionBaseSchema = z.object({
     questionMolFile: questionMolFile,
     feedbackMolFile: feedbackMolFile,
 });
+/* End of Question Validation */
 
 export default {
     QuestionBaseSchemaValidation: QuestionBaseSchema,
     nameValidation: name,
-    emailValiation: email,
+    emailValidation: email,
     passwordValidation: password,
     roleValidation: role,
 };
