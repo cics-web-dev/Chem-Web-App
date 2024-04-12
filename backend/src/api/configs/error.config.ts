@@ -4,9 +4,9 @@
  */
 
 export const AuthError = {
-    USER_NOT_FOUND: 'User not found',
-    INVALID_CREDENTIALS: 'Invalid credentials',
-    USER_EXISTS: 'User with this email already exists',
+    USER_NOT_FOUND : 'User not found',
+    INVALID_CREDENTIALS : 'Invalid credentials',
+    USER_EXISTS : 'User with this email already exists',
 }
 
 export default {

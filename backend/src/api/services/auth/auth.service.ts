@@ -35,13 +35,13 @@ export const loginUser = async (payload: LoginPayload) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-        throw new HttpError(status.NOT_FOUND, 'User not found');
+        throw new HttpError(status.NOT_FOUND, Error.AuthError.USER_NOT_FOUND);
     }
 
     const isPasswordValid: boolean = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        throw new HttpError(status.UNAUTHORIZED, 'Invalid credentials');
+        throw new HttpError(status.UNAUTHORIZED, Error.AuthError.INVALID_CREDENTIALS);
     }
     
     return {
