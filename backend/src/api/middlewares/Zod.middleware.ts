@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import status from 'http-status';
 import { ZodError, ZodSchema } from 'zod';
 
-import { MultipleChoiceSchema, OpenResponseSchema } from '../valiations/question.valiation.js';
+import { MultipleChoiceSchema, OpenResponseSchema } from '../validations/question.validation.js';
 import { HttpError } from '../utils/httpError.utils.js';
 
 /**
@@ -10,15 +10,15 @@ import { HttpError } from '../utils/httpError.utils.js';
  * If the type is not provided, it will throw an error.
  * If the type is valid, it will forward the request to the ZodValidationMiddleware with the correct schema.
  */
-export const TypeCheckerMiddleware = () => (req: Request, res: Response, next: NextFunction) => {
+export const typeCheckerMiddleware = (req: Request, res: Response, next: NextFunction) => {
     if (!req.body) throw new HttpError(status.BAD_REQUEST, 'Request body is required');
     if (!req.body.type) throw new HttpError(status.BAD_REQUEST, 'Question type is required');
 
     switch (req.body.type) {
         case 'MCQ':
-            return ZodValidationMiddleware(MultipleChoiceSchema)(req, res, next);
+            return zodValidationMiddleware(MultipleChoiceSchema)(req, res, next);
         case 'OR':
-            return ZodValidationMiddleware(OpenResponseSchema)(req, res, next);
+            return zodValidationMiddleware(OpenResponseSchema)(req, res, next);
         default:
             throw new HttpError(status.BAD_REQUEST, 'Invalid question type');
     }
@@ -30,8 +30,8 @@ export const TypeCheckerMiddleware = () => (req: Request, res: Response, next: N
  * otherwise, the middleware will return a series of errors from Zod.
  * @param schema
  */
-const ZodValidationMiddleware =
-    (schema: ZodSchema<any>) => (req: Request, res: Response, next: NextFunction) => {
+export const zodValidationMiddleware =
+    (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
         try {
             const requestStructure = { body: req.body, query: req.query, params: req.params };
             schema.parse(requestStructure);

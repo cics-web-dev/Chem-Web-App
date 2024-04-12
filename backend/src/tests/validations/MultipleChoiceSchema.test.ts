@@ -1,5 +1,5 @@
 import { ZodError } from 'zod';
-import { MultipleChoiceSchema } from '../../api/valiations/question.valiation.js';
+import { MultipleChoiceSchema } from '../../api/validations/question.validation.js';
 
 describe('MultipleChoiceSchema', () => {
     const data = {
@@ -19,7 +19,7 @@ describe('MultipleChoiceSchema', () => {
 
     describe('valid multiple choice schema', () => {
         it('valid!', () => {
-            expect(() => MultipleChoiceSchema.parse(data)).not.toThrow();
+            expect(() => MultipleChoiceSchema.parse({ body: data })).not.toThrow();
         });
     });
 
@@ -29,7 +29,7 @@ describe('MultipleChoiceSchema', () => {
                 const invalidData = { ...data, options: undefined };
 
                 try {
-                    MultipleChoiceSchema.parse(invalidData);
+                    MultipleChoiceSchema.parse({ body: invalidData });
                 } catch (error) {
                     const message = (error as ZodError).errors[0].message;
                     expect(message).toBe('Options must be an string array');
@@ -44,7 +44,7 @@ describe('MultipleChoiceSchema', () => {
             it('no option (must be non empty)', () => {
                 const invalidData = { ...data, options: [] };
                 try {
-                    MultipleChoiceSchema.parse(invalidData);
+                    MultipleChoiceSchema.parse({ body: invalidData });
                 } catch (error) {
                     const message = (error as ZodError).errors[0].message;
                     expect(message).toBe('Options must have at least one option.');
@@ -57,7 +57,7 @@ describe('MultipleChoiceSchema', () => {
                 const invalidData = { ...data, correctAnswers: undefined };
 
                 try {
-                    MultipleChoiceSchema.parse(invalidData);
+                    MultipleChoiceSchema.parse({ body: invalidData });
                 } catch (error) {
                     const message = (error as ZodError).errors[0].message;
                     expect(message).toBe('CorrcetAnswers must be an number array');
@@ -72,7 +72,7 @@ describe('MultipleChoiceSchema', () => {
             it('no option (must be non empty)', () => {
                 const invalidData = { ...data, correctAnswers: [] };
                 try {
-                    MultipleChoiceSchema.parse(invalidData);
+                    MultipleChoiceSchema.parse({ body: invalidData });
                 } catch (error) {
                     const message = (error as ZodError).errors[0].message;
                     expect(message).toBe('Correct answers must have at least one answer.');
