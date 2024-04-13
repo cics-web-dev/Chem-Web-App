@@ -47,12 +47,22 @@ export const getSidebarMetadata = async (studentID: string) => {
 
 export const updateUserBookmark = async (studentID: string, questionID: string) => {
     try {
+        // Check if the question exists
+        const question = await QuestionBaseModel.findById(questionID);
+        if (!question) {
+            throw new Error('Question not found');
+        }
+
+        // Find the student
         const student = await StudentProgressModel.findOne({ studentID });
         if (!student) {
             throw new Error('Student not found');
         }
+
+        // Update user bookmark
         student.bookMark.push(questionID);
         await student.save();
+        
         return student;
     } catch (error: any) {
         throw new Error('Error updating user bookmark: ' + error.message);
