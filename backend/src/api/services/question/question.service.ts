@@ -40,7 +40,7 @@ export const getSingleQuestionById = async (questionID: string): Promise<AnyQues
     return question as AnyQuestion;
 };
 
-export const getSidebarMetadata = async () => {
+export const getSidebarMetadata = async (studentID: string) => {
     const sidebarMetada: [QuestionMetadata] = await loadData('sidebarQuestions.json');
     return sidebarMetada;
 };
