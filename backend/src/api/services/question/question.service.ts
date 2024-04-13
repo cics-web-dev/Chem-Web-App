@@ -4,11 +4,11 @@ import status from 'http-status';
 
 import {
     AnyQuestion,
+    AnyQuestionWithID,
     QuestionMetadata,
     QuestionBaseModel,
-    MultipleQuestionModel,
+    MultipleChoiceQuestionModel,
     MultipleChoice,
-    MultipleChoiceDocument,
 } from './question.model.js';
 
 import { StudentProgress } from './student.model.js';
@@ -30,14 +30,14 @@ const loadData = async (pathname: string) => {
     }
 };
 
-export const getSingleQuestionById = async (questionID: string): Promise<AnyQuestion> => {
+export const getSingleQuestionById = async (questionID: string): Promise<AnyQuestionWithID> => {
     const question = await QuestionBaseModel.findById(objectID(questionID));
 
     if (!question) {
         throw new HttpError(status.NOT_FOUND, error.QUESTION_NOT_FOUND(questionID));
     }
 
-    return question as AnyQuestion;
+    return question as AnyQuestionWithID;
 };
 
 export const getSidebarMetadata = async (studentID: string) => {
@@ -80,15 +80,16 @@ export const updateUserProgress = async (studentID: string, questionID: string) 
     return student;
 };
 
-export const uploadQuestion = async (question: AnyQuestion): Promise<AnyQuestion> => {
+export const uploadQuestion = async (question: AnyQuestion): Promise<AnyQuestionWithID> => {
     switch (question.type) {
         case 'MCQ': {
-            const MCQ: MultipleChoice = await MultipleQuestionModel.create(question);
+            const MCQ = await MultipleChoiceQuestionModel.create(question);
             return MCQ;
         }
         case 'FIB': {
+            // Update this once we have more type of questions
             console.log('Fill in the blank question uploaded');
-            return question;
+            return question as AnyQuestionWithID;
         }
     }
 };

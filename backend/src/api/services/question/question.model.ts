@@ -68,6 +68,12 @@ export type SideBarMetadata = QuestionMetadata & { isBookmarked: boolean; isComp
  */
 export type AnyQuestion = MultipleChoice | FillInBlank;
 
+/**
+ * Represents any type of question with an `_id` property.
+ * This is useful when we want to return a question with an `_id` property.
+ */
+export type AnyQuestionWithID = AnyQuestion & { _id: string };
+
 /*
  * Represents the base options of a question base schema.
  * Note: All question will be stored in the collection `Question`.
@@ -122,7 +128,7 @@ export const QuestionBaseModel = mongoose.model<QuestionBaseDocument>(
  * The name of the discriminator type must be the same as the `type` property in the base model. (in this case, 'MCQ').
  * @example
  * ```ts
- * await MultipleQuestionModel.save({
+ * await MultipleChoiceQuestionModel.save({
  *   chapter: 1,
  *   question: 1,
  *   title: 'What is the capital of France?',
@@ -136,7 +142,7 @@ export const QuestionBaseModel = mongoose.model<QuestionBaseDocument>(
  * });
  * ```
  */
-export const MultipleQuestionModel = QuestionBaseModel.discriminator<MultipleChoiceDocument>(
+export const MultipleChoiceQuestionModel = QuestionBaseModel.discriminator<MultipleChoiceDocument>(
     'MCQ',
     MultipleChoiceSchema,
 );
