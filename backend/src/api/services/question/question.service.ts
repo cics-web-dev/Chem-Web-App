@@ -11,7 +11,7 @@ import {
     MultipleChoice,
 } from './question.model.js';
 
-import { StudentProgress } from './student.model.js';
+import { StudentProgress, StudentProgressModel } from './student.model.js';
 
 import { objectID } from '../../utils/objectID.utils.js';
 import { HttpError } from '../../utils/httpError.utils.js';
@@ -46,14 +46,17 @@ export const getSidebarMetadata = async (studentID: string) => {
 };
 
 export const updateUserBookmark = async (studentID: string, questionID: string) => {
-    const students: [StudentProgress] = await loadData('progress.json');
-    const student = students.find(student => student.studentID === studentID);
-    if (!student) {
-        throw new Error('Student not found');
+    try {
+        const student = await StudentProgressModel.findOne({ studentID });
+        if (!student) {
+            throw new Error('Student not found');
+        }
+        student.bookMark.push(questionID);
+        await student.save();
+        return student;
+    } catch (error: any) {
+        throw new Error('Error updating user bookmark: ' + error.message);
     }
-    student.bookMark.push(questionID);
-
-    return student;
 };
 
 export const updateQuestionStatus = async (studentID: string, questionID: string) => {
