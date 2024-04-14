@@ -11,7 +11,6 @@
     //     localStorage.setItem("isSidebarOpen", true);
     // });
 
-
     let sidebarMetaData: SidebarMetadata[] = [
         {
             chapter: 'Structure and Bonding',
