@@ -45,28 +45,35 @@ export const getSidebarMetadata = async (studentID: string) => {
     return sidebarMetada;
 };
 
-export const updateUserBookmark = async (studentID: string, questionID: string) => {
-    try {
-        // Check if the question exists
-        const question = await QuestionBaseModel.findById(questionID);
-        if (!question) {
-            throw new Error('Question not found');
-        }
-
-        // Find the student
-        const student = await StudentProgressModel.findOne({ studentID });
-        if (!student) {
-            throw new Error('Student not found');
-        }
-
-        // Update user bookmark
-        student.bookMark.push(questionID);
-        await student.save();
-        
-        return student;
-    } catch (error: any) {
-        throw new Error('Error updating user bookmark: ' + error.message);
+/*
+If student wants to unbookmark, set "bookmark" parameter to false.
+*/
+export const updateUserBookmark = async (studentID: string, questionID: string, bookmark: boolean=true) => {
+    // Check if the question exists
+    const question = await QuestionBaseModel.findById(questionID);
+    if (!question) {
+        throw new HttpError(status.NOT_FOUND, `question is not found with question ID ${questionID}` );
     }
+
+    // Find the student
+    const student = await StudentProgressModel.findOne({ studentID });
+    if (!student) {
+        throw new HttpError(status.NOT_FOUND, `student is not found with student ID ${studentID}` );
+    }
+
+    // Update user bookmark
+    if (bookmark) {
+        // Add to bookmarks
+        if (!student.bookMark.includes(questionID)) {
+            student.bookMark.push(questionID);
+        }
+    } else {
+        // Remove from bookmarks
+        student.bookMark = student.bookMark.filter(id => id !== questionID);
+    }
+    await student.save();
+    
+    return student;
 };
 
 export const updateQuestionStatus = async (studentID: string, questionID: string) => {
