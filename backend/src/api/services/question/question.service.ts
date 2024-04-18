@@ -45,32 +45,30 @@ export const getSidebarMetadata = async (studentID: string) => {
     return sidebarMetada;
 };
 
-/*
-If student wants to unbookmark, set "bookmark" parameter to false.
-*/
-export const updateUserBookmark = async (studentID: string, questionID: string, bookmark: boolean=true) => {
+
+export const updateUserBookmark = async (studentID: string, questionID: string) => {
     // Check if the question exists
     const question = await QuestionBaseModel.findById(questionID);
     if (!question) {
-        throw new HttpError(status.NOT_FOUND, `question is not found with question ID ${questionID}` );
+        throw new HttpError(status.NOT_FOUND, `Question not found with ID ${questionID}`);
     }
 
     // Find the student
-    const student = await StudentProgressModel.findOne({ studentID });
+    let student = await StudentProgressModel.findOne({ studentID });
     if (!student) {
-        throw new HttpError(status.NOT_FOUND, `student is not found with student ID ${studentID}` );
+        throw new HttpError(status.NOT_FOUND, `Student not found with ID ${studentID}`);
     }
 
-    // Update user bookmark
-    if (bookmark) {
-        // Add to bookmarks
-        if (!student.bookMark.includes(questionID)) {
-            student.bookMark.push(questionID);
-        }
+    // Toggle user bookmark
+    const bookmarkIndex = student.bookMark.indexOf(questionID);
+    if (bookmarkIndex !== -1) {
+        // If already bookmarked, remove it
+        student.bookMark.splice(bookmarkIndex, 1);
     } else {
-        // Remove from bookmarks
-        student.bookMark = student.bookMark.filter(id => id !== questionID);
+        // If not bookmarked, add it
+        student.bookMark.push(questionID);
     }
+
     await student.save();
     
     return student;
