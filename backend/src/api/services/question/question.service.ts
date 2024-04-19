@@ -54,7 +54,7 @@ export const updateUserBookmark = async (studentID: string, questionID: string) 
     }
 
     // Find the student
-    let student = await StudentProgressModel.findOne({ studentID });
+    const student = await StudentProgressModel.findOne({ studentID });
     if (!student) {
         throw new HttpError(status.NOT_FOUND, `Student not found with ID ${studentID}`);
     }
@@ -75,12 +75,24 @@ export const updateUserBookmark = async (studentID: string, questionID: string) 
 };
 
 export const updateQuestionStatus = async (studentID: string, questionID: string) => {
-    const students: [StudentProgress] = await loadData('progress.json');
-    const student = students.find(student => student.studentID === studentID);
-    if (!student) {
-        throw new Error('Student not found');
+    const question = await QuestionBaseModel.findById(questionID);
+    if (!question) {
+        throw new HttpError(status.NOT_FOUND, `Question not found with ID ${questionID}`);
     }
-    student.completion.push(questionID);
+
+    const student = await StudentProgressModel.findOne({ studentID });
+
+    if (!student) {
+        throw new HttpError(status.NOT_FOUND, `Student not found with ID ${studentID}`);
+    }
+
+    const completionIndex = student.completion.indexOf(questionID);
+
+    if (completionIndex !== -1) {
+        student.completion.splice(completionIndex, 1);
+    } else {
+        student.completion.push(questionID);
+    }
 
     return student;
 };
