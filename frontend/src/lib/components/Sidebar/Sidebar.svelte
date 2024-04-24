@@ -2,14 +2,8 @@
     import SidebarChapterList from './SidebarChapterList.svelte';
     import SidebarLeftCollapseIcon from '$icons/Sidebar/SidebarLeftCollapseSlide.svelte';
 
-    import { onMount } from 'svelte';
-
     import type { SidebarMetadata } from '$types/sidebarMetaData';
     import { sidebarExpanded } from '$stores/SidebarExpandedStore';
-
-    // onMount(() => {
-    //     localStorage.setItem("isSidebarOpen", true);
-    // });
 
     let sidebarMetaData: SidebarMetadata[] = [
         {
