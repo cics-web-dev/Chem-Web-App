@@ -1,6 +1,6 @@
 // an interface that specifies the HTTP payload
 interface HttpPayload {
-    [key: string]: string | number | boolean | object | FormDataEntryValue | null;
+    [key: string]: string | number | boolean | null | undefined;
 }
 
 // an interface that specifies the HTTP request options

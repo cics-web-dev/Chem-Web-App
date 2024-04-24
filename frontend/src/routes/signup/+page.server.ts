@@ -1,6 +1,7 @@
 import type { Actions } from './$types';
+import { signupSchema } from '$lib/zodSchema/SignupSchema.js';
 import { fail, redirect } from '@sveltejs/kit';
-// import * as api from '$lib/api';
+import * as api from '$lib/api';
 
 /**
  * Handles the form submission actions for the signup page.
@@ -11,40 +12,33 @@ import { fail, redirect } from '@sveltejs/kit';
  * @returns {Promise<void>} - A promise that resolves when the form submission is handled.
  */
 export const actions = {
-    default: async ({ request }) => {
-        const data = await request.formData();
+    default: async ({ request, cookies }) => {
+        const formData = await request.formData();
 
-        const name = data.get('userFullName');
-        const email = data.get('userEmail');
-        const password = data.get('userPassword');
-        const confirmPassword = data.get('userConfirmPassword');
+        const get = (tag: string): string | undefined => formData.get(tag)?.toString();
 
-        // validate the form data and return validation errors
-        // along with the previously submitted form values
-        const errors: string[] = [];
-        const nameRegex = /^[a-zA-Z ]+$/; // 26 letters (upper and lower case) and space
+        // extract the user data from the form submission
+        const name = get('userFullName');
+        const email = get('userEmail');
+        const password = get('userPassword');
+        const confirmPassword = get('userConfirmPassword');
 
-        if (name && !nameRegex.test(name.toString())) {
-            errors.push('Name cannot have letters or symbols');
-        }
+        // validte the form date using zod schema
+        const result = signupSchema.safeParse({ name, email, password, confirmPassword });
 
-        if (email && !email.toString().endsWith('@umass.edu')) {
-            errors.push('Email must be a UMass email');
-        }
-
-        if (password !== confirmPassword) {
-            errors.push('Passwords do not match');
-        }
-
-        if (errors.length > 0) {
-            console.log('errors', errors);
-            return fail(400, { name, email, errors });
+        // if the form data is invalid, return and display a list of error messages
+        // not returning password and confirmPassword for security reasons
+        if (!result.success) {
+            return fail(400, { name, email, errors: result.error.issues.map(issue => issue.message) });
         }
 
         // send the request to the server
-        // const user = api.post('/auth/signup', { name, email, password, isStudent: true });
+        const body = await api.post('/auth/signup', { name, email, password, role: "student" });
 
-        // 307 is temporary redirect: temporarily move a resource but intend to bring it back to the original URL
-        redirect(307, '/login');
+        // decode the jwt token and set it as a cookie
+        const jwt = btoa(JSON.stringify(body.user)); 
+        cookies.set('jwt', jwt, { path: '/' });
+
+        redirect(307, '/signup');
     }
 } satisfies Actions;
