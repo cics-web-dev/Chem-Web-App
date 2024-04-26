@@ -22,7 +22,7 @@ async function send({ method, path, data, token }: HttpRequestFetch): Promise<an
     }
 
     // start fetching the endpoint and convert the response body to json
-    let responseStatus = 200;
+    let responseStatus = 500;
     try {
 
         const response = await fetch(`${baseURL}${path}`, options);
@@ -41,7 +41,6 @@ async function send({ method, path, data, token }: HttpRequestFetch): Promise<an
         }
 
     } catch (e) {
-
         // unexpected server errors ranging from 500 to 599
         error(responseStatus as NumericRange<500, 599>);
     }

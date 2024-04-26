@@ -1,7 +1,19 @@
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { signupSchema } from '$lib/zodSchema/SignupSchema.js';
 import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
+
+/**
+ * redirect user to home page when user already logins
+ * this load function is different from the load function from login
+ * this will check if data from parent +layout.server.js has the user data
+ * whereas the load function from login checks if the app.locals has the user data
+ * both ways would work but syntax for both is a bit different
+ */
+export const load: PageServerLoad = async ({ parent }) => {
+    const { user } = await parent();
+    if (user) redirect(307, "/");
+}
 
 /**
  * Handles the form submission actions for the signup page.

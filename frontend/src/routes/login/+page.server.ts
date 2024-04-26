@@ -1,7 +1,12 @@
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { loginSchema } from '$lib/zodSchema/LoginSchema.js';
 import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
+
+// redirect user to home page when user already logins
+export const load: PageServerLoad = ({ locals }) => {
+    if (locals.user) redirect(307, "/");
+}
 
 /**
  * Handles the form submission actions for the signup page.
@@ -28,7 +33,7 @@ export const actions = {
 
         const body = await api.post('/auth/login', { email, password, role: "student" });
 
-        const jwt = btoa(JSON.stringify(body.user)); 
+        const jwt = btoa(JSON.stringify(body.user));
         cookies.set('jwt', jwt, { path: '/' });
 
         redirect(307, '/');
