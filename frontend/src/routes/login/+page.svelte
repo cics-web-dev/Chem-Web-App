@@ -2,7 +2,10 @@
     import '$styles/Auth.pcss';
     import { enhance } from '$app/forms';
 
-    import { userAuthenticated } from '$stores/UserAuthenticationStore';
+    import ListErrors from '$components/Miscellaneous/ListErrors.svelte';
+    import type { ActionData } from './$types';
+
+    export let form: ActionData;
 
     let showPassword: boolean = false;
 </script>
@@ -34,6 +37,7 @@
                                         type="email"
                                         name="userEmail"
                                         class="auth-input-field"
+                                        value={form?.email ?? ''}
                                         required
                                     />
                                 </div>
@@ -67,6 +71,9 @@
                             </div>
                             <!-- Password End Form Group -->
 
+                            <!-- Show a list of errors here with bullet point -->
+                            <ListErrors errors={form?.errors ?? []} />
+
                             <!-- dash line -->
                             <div class="dashline"></div>
 
@@ -85,15 +92,6 @@
                         </div>
                     </form>
                     <!-- End Form -->
-                    <a
-                        href="/questions/1"
-                        on:click={() => {
-                            userAuthenticated.login();
-                        }}
-                        class="text-center text-white"
-                    >
-                        Secret Button to enter question page
-                    </a>
                 </div>
             </div>
         </div>

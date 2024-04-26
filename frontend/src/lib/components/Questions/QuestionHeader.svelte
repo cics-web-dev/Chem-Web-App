@@ -5,6 +5,7 @@
     import ThreeDIcon from '$icons/Question/3D-cube.svelte';
     import PlayIcon from '$icons/Question/Play.svelte';
     import PauseIcon from '$icons/Question/Pause.svelte';
+    import Difficulty from './Difficulty.svelte';
 
     import '$styles/Button.pcss';
 
@@ -16,6 +17,7 @@
     export let question: number;
     export let title: string;
     export let description: string;
+    export let difficulty: string;
 
     let isTwoDimensional: boolean = true; // The default display is 2D
 
@@ -59,7 +61,7 @@
     <div class="grid justify-center gap-3 md:grid-cols-2 items-start md:justify-between">
         <div class="text-center md:text-start">
             <h1 class="text-ls uppercase tracking-wider text-black">
-                {chapter}.{question} : {title}
+                {chapter}.{question} : {title} <Difficulty difficulty={difficulty}/>
             </h1>
             <h2 class="mt-2 font-medium text-black">
                 {description}

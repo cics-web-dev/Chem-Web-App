@@ -26,6 +26,7 @@
     question={question.question}
     title={question.title}
     description={question.description}
+    difficulty={question.difficulty}
 />
 <QuestionAnimation questionMolFile={question.questionMolFile} />
 <QuestionOptions {question} />
