@@ -2,7 +2,7 @@
     import UserProfileIcon from '$icons/Popover/Profile.svelte';
     import LogoutIcon from '$icons/Popover/Logout.svelte';
     import Hamburger from '$icons/Sidebar/Hamburger.svelte';
-    import LogoIcon from '$icons/Logo.svelte';
+    import Upload from '$icons/Popover/Upload.svelte';
 
     import { page } from '$app/stores';
     import { sidebarExpanded } from '$stores/SidebarExpandedStore';
@@ -24,7 +24,7 @@
             <!-- This is the hamburger button to trigger the expand state of the sidebar. It is very important to
       include the data-hs-overlay because it is how tailwindcss triggers the sidebar. Also, hamburger
       button only exists in the question page, therefore we need to check the pathname -->
-            {#if $page.url.pathname.startsWith('/questions')}
+            {#if $page.url.pathname.startsWith('/question')}
                 <button
                     type="button"
                     class="text-gray-500 hover:text-gray-600"
@@ -43,57 +43,68 @@
         <div class="flex w-full items-center justify-between">
             <!-- It has to have this block to push the avatar to the other side -->
             <!-- Hamburger icon only exists on the questions page and when its inner width is greater than 1024 pixel -->
-            <div class="sm:block dark:text-white flex items-center">
-                {#if $page.url.pathname.startsWith('/questions') && innerWidth >= 1024}
+            <div class="flex items-center sm:block dark:text-white">
+                {#if $page.url.pathname.startsWith('/question') && innerWidth >= 1024}
                     <button on:click={sidebarExpanded.toggle}>
                         <Hamburger />
                     </button>
                 {/if}
             </div>
 
-            <div class="flex flex-row items-center justify-end gap-2">
-                <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
-                    <button
-                        id="hs-dropdown-with-header"
-                        type="button"
-                        class="inline-flex h-[2.375rem] w-[2.375rem] items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    >
-                        <img
-                            class="inline-block size-[38px] rounded-full ring-2 ring-white dark:ring-gray-800"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/694px-Unknown_person.jpg"
-                            alt="User avatar"
-                        />
-                    </button>
+            {#if $page.data.user}
+                <div class="flex flex-row items-center justify-end gap-2">
+                    <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                        <button
+                            id="hs-dropdown-with-header"
+                            type="button"
+                            class="inline-flex h-[2.375rem] w-[2.375rem] items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                        >
+                            <img
+                                class="inline-block size-[38px] rounded-full ring-2 ring-white dark:ring-gray-800"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/694px-Unknown_person.jpg"
+                                alt="User avatar"
+                            />
+                        </button>
 
-                    <div
-                        class="hs-dropdown-menu duration hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:border dark:border-gray-700 dark:bg-gray-800"
-                        aria-labelledby="hs-dropdown-with-header"
-                    >
-                        <div class="-m-2 rounded-t-lg bg-gray-100 px-5 py-3 dark:bg-gray-700">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Signed in as</p>
-                            <p class="text-sm font-medium text-gray-800 dark:text-gray-300">
-                                chemwebapp@site.com
-                            </p>
-                        </div>
-                        <div class="mt-2 py-2 first:pt-0 last:pb-0">
-                            <a class="drowdown-menu-button" href="/profile">
-                                <UserProfileIcon />
-                                Profile
-                            </a>
-                            <a class="drowdown-menu-button" href="/">
-                                <LogoutIcon />
-                                Log out
-                            </a>
+                        <div
+                            class="hs-dropdown-menu duration hs-dropdown-open:opacity-100 hidden min-w-60 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] dark:border dark:border-gray-700 dark:bg-gray-800"
+                            aria-labelledby="hs-dropdown-with-header"
+                        >
+                            <div class="-m-2 rounded-t-lg bg-gray-100 px-5 py-3 dark:bg-gray-700">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Signed in as</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-gray-300">
+                                    {$page.data.user.email}
+                                </p>
+                            </div>
+                            <div class="mt-2 py-2 first:pt-0 last:pb-0">
+
+                                {#if $page.data.user.role === 'student'}
+                                    <a class="dropdown-menu-button" href="/profile">
+                                        <UserProfileIcon />
+                                        Profile
+                                    </a>
+                                {:else if $page.data.user.role === 'teacher'}
+                                    <a class="dropdown-menu-button" href="/upload"> 
+                                        <Upload />
+                                        Upload 
+                                    </a>
+                                {/if}
+
+                                <a class="dropdown-menu-button" href="/">
+                                    <LogoutIcon />
+                                    Log out
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {/if}
         </div>
     </nav>
 </header>
 
 <style lang="postcss">
-    .drowdown-menu-button {
+    .dropdown-menu-button {
         @apply flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300;
     }
 </style>
