@@ -3,7 +3,7 @@ import { error, type NumericRange } from '@sveltejs/kit';
 /* the base URL of the backend API */
 const baseURL = 'http://localhost:8080/api';
 
-async function send({ method, path, data, token }: HttpRequestFetch): Promise<HttpPayload> {
+async function send({ method, path, data, token }: HttpRequestFetch): Promise<any> {
     const options: RequestInit = {};
 
     // specifying the HTTP request options and method
@@ -22,21 +22,29 @@ async function send({ method, path, data, token }: HttpRequestFetch): Promise<Ht
     }
 
     // start fetching the endpoint and convert the response body to json
-    const response = await fetch(`${baseURL}${path}`, options);
-    const json = await response.json();
+    let responseStatus = 200;
+    try {
 
-    // successful response status
-    if (response.ok || response.status === 201) {
-        return json;
+        const response = await fetch(`${baseURL}${path}`, options);
+        const json = await response.json();
+
+        responseStatus = response.status;
+
+        // successful response status
+        if (response.ok || response.status === 201) {
+            return json;
+        }
+
+        // client errors ranging from 400 to 499
+        if (response.status >= 400 || response.status <= 499) {
+            return { error: json, status: response.status };
+        }
+
+    } catch (e) {
+
+        // unexpected server errors ranging from 500 to 599
+        error(responseStatus as NumericRange<500, 599>);
     }
-
-    // client errors ranging from 400 to 499
-    if (response.status >= 400 || response.status <= 499) {
-        return { error: json, status: response.status };
-    }
-
-    // unexpected server errors ranging from 500 to 599
-    error(response.status as NumericRange<500, 599>);
 }
 
 export function get(path: string, token?: string) {

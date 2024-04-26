@@ -24,7 +24,7 @@
             <!-- This is the hamburger button to trigger the expand state of the sidebar. It is very important to
       include the data-hs-overlay because it is how tailwindcss triggers the sidebar. Also, hamburger
       button only exists in the question page, therefore we need to check the pathname -->
-            {#if $page.url.pathname.startsWith('/questions')}
+            {#if $page.url.pathname.startsWith('/question')}
                 <button
                     type="button"
                     class="text-gray-500 hover:text-gray-600"
@@ -44,7 +44,7 @@
             <!-- It has to have this block to push the avatar to the other side -->
             <!-- Hamburger icon only exists on the questions page and when its inner width is greater than 1024 pixel -->
             <div class="sm:block dark:text-white flex items-center">
-                {#if $page.url.pathname.startsWith('/questions') && innerWidth >= 1024}
+                {#if $page.url.pathname.startsWith('/question') && innerWidth >= 1024}
                     <button on:click={sidebarExpanded.toggle}>
                         <Hamburger />
                     </button>

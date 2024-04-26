@@ -11,7 +11,6 @@ export const handle: Handle = async ({ event, resolve }) => {
     // Decode the JWT and add it to the locals object
     // atob decodes a string of data which has been encoded using Base64 encoding.
     event.locals.user = jwt ? JSON.parse(atob(jwt)) : undefined;
-
     const response = await resolve(event);
 
     return response;
