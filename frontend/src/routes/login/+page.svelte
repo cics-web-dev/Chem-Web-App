@@ -2,8 +2,6 @@
     import '$styles/Auth.pcss';
     import { enhance } from '$app/forms';
 
-    import { userAuthenticated } from '$stores/UserAuthenticationStore';
-
     import ListErrors from '$components/Miscellaneous/ListErrors.svelte';
     import type { ActionData } from './$types';
 
@@ -94,15 +92,6 @@
                         </div>
                     </form>
                     <!-- End Form -->
-                    <a
-                        href="/question/1"
-                        on:click={() => {
-                            userAuthenticated.login();
-                        }}
-                        class="text-center text-white"
-                    >
-                        Secret Button to enter question page
-                    </a>
                 </div>
             </div>
         </div>
