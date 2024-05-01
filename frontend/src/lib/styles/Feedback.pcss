@@ -1,0 +1,35 @@
+.text-input-label {
+    @apply block text-sm font-medium mb-2 dark:text-white;
+}
+
+.text-input-field {
+    @apply py-3 px-4 ps-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600;
+}
+
+.email-icon-holder {
+    @apply absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4;
+}
+
+.textarea-input-field {
+    @apply block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+}
+
+.heading-text {
+    @apply m-4 text-4xl font-extrabold dark:text-white text-center
+}
+
+.input-number-outer-wrapper {
+    @apply py-2 px-3 inline-block bg-white border border-gray-200 rounded-lg dark:bg-neutral-900 dark:border-neutral-700
+}
+
+.input-number-inner-wrapper {
+    @apply flex items-center gap-x-1.5
+}
+
+.number-button {
+    @apply size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800
+}
+
+.number-input {
+    @apply p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white
+}
