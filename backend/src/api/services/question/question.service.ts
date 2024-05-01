@@ -9,9 +9,12 @@ import {
     QuestionBaseModel,
     MultipleChoiceQuestionModel,
     MultipleChoice,
+    SideBarMetadata,
 } from './question.model.js';
 
 import { StudentProgress, StudentProgressModel } from './student.model.js';
+
+import { Chapter, ChapterModel } from './chapter.model.js';
 
 import { objectID } from '../../utils/objectID.utils.js';
 import { HttpError } from '../../utils/httpError.utils.js';
@@ -41,8 +44,33 @@ export const getSingleQuestionById = async (questionID: string): Promise<AnyQues
 };
 
 export const getSidebarMetadata = async (studentID: string) => {
-    const sidebarMetada: [QuestionMetadata] = await loadData('sidebarQuestions.json');
-    return sidebarMetada;
+    const chapters = await ChapterModel.find();
+    const metadata: SideBarMetadata[] = [];
+    for (const chapter of chapters) {
+        const questions = await QuestionBaseModel.find({ chapter: chapter.questions});
+        for (const question of questions) {
+            const student = await StudentProgressModel.findOne({ studentID });
+
+            if (!student) {
+                throw new HttpError(status.NOT_FOUND, `Student not found with ID ${studentID}`);
+            }
+
+            const isBookmarked = student.bookMark.includes(question._id);
+            const isCompleted = student.completion.includes(question._id);
+
+            const metadata_i: SideBarMetadata = {
+                chapter: chapter.chapter_num,
+                question: question.question,
+                title: question.title,
+                isBookmarked,
+                isCompleted,
+            };
+
+            metadata.push(metadata_i);
+        }
+    }
+
+    return metadata;
 };
 
 
