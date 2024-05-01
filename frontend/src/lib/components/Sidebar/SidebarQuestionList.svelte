@@ -12,7 +12,7 @@
     <ul class="pr-px ps-2 pt-2">
         {#each questionsMetadata as metadata}
             <li class="pb-px">
-                <a class="sidebar-question-list-item" href="/questions/{metadata.id}">
+                <a class="sidebar-question-list-item" href="/question/{metadata.id}">
                     <StatusIcon isCompleted={metadata.isCompleted} />
                     {metadata.name}
                 </a>
