@@ -27,7 +27,7 @@
 
                 <div class="mt-5">
                     <!-- Form -->
-                    <form method="POST" use:enhance>
+                    <form method="POST" use:enhance action="?/login">
                         <div class="grid gap-y-4">
                             <!-- Email form group -->
                             <div class="email-form-group">

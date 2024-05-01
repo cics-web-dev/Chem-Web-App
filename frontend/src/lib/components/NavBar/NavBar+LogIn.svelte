@@ -5,6 +5,7 @@
     import Upload from '$icons/Popover/Upload.svelte';
 
     import { page } from '$app/stores';
+    import { enhance } from '$app/forms';
     import { sidebarExpanded } from '$stores/SidebarExpandedStore';
 
     // the store to keep track of the inner width of the window
@@ -89,11 +90,13 @@
                                         Upload 
                                     </a>
                                 {/if}
-
-                                <a class="dropdown-menu-button" href="/">
-                                    <LogoutIcon />
-                                    Log out
-                                </a>
+                                
+                                <form use:enhance method="POST" action="/login?/logout">
+                                    <button class="dropdown-menu-button w-full">
+                                        <LogoutIcon />
+                                        Log out
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

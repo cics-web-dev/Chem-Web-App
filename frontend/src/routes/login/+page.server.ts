@@ -17,7 +17,7 @@ export const load: PageServerLoad = ({ locals }) => {
  * @returns {Promise<void>} - A promise that resolves when the form submission is handled.
  */
 export const actions = {
-    default: async ({ request, cookies }) => {
+    login: async ({ request, cookies }) => {
         const formData = await request.formData();
 
         const get = (tag: string): string | undefined => formData.get(tag)?.toString();
@@ -37,5 +37,10 @@ export const actions = {
         cookies.set('jwt', jwt, { path: '/' });
 
         redirect(307, '/');
+    },
+
+    logout: ({ cookies, locals }) => {
+        cookies.delete('jwt', { path: '/' });
+        locals.user = undefined;
     }
 } satisfies Actions;
