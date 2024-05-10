@@ -3,7 +3,6 @@
     import SplitType from 'split-type';
     import { spring } from 'svelte/motion';
 
-    import { page } from '$app/stores';
     import { goto } from '$app/navigation';
 
     import Book from '$icons/Main/Book.svelte';
@@ -14,14 +13,6 @@
     import MolecularStructure from '$icons/Main/MolecularStructure.svelte';
     import Molecule from '$icons/Main/Molecule.svelte';
     import RoundBeaker from '$icons/Main/RoundBeaker.svelte';
-    import ArrowDown from '$icons/Sidebar/ArrowDown.svelte';
-
-    // If the user is already logged in, redirect them to questions (for now)
-    $: {
-        if ($page.data.user) {
-            goto('/question/1');
-        }
-    }
 
     /* ---- ANIMATION FOR TEXT ---- */
 
@@ -29,7 +20,6 @@
     let animatePopIn: HTMLElement;
 
     const animationDuration = 0.3;
-    let animationStarted = false;
     let timeline: gsap.core.Timeline;
 
     $: {
@@ -54,6 +44,7 @@
             });
         }
         if (animatePopIn) {
+
             timeline.fromTo(
                 animatePopIn,
                 {
@@ -104,7 +95,7 @@
 </svelte:head>
 
 <div
-    class={`relative z-0 flex items-center justify-around lg:h-[calc(100vh-60px)] dark:bg-slate-800 text-slate-800 dark:text-white`}
+    class="relative z-0 flex items-center justify-around lg:h-[calc(100vh-60px)] dark:bg-slate-800 text-slate-800 dark:text-white"
 >
     <div id="hero" class="z-0">
         <div bind:this={animateTextWrapper}>
