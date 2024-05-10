@@ -114,7 +114,7 @@
             Start learning
         </button>
     </div>
-    <ul id="hover-card" class="relative flex w-96 flex-col">
+    <ul id="hover-card" class="relative flex w-96 flex-col dark:text-slate-600">
         <li class="tile group self-center">
             <div
                 class="tile-bg top-0 transition-[width,top] group-hover:top-6 dark:bg-slate-400"
