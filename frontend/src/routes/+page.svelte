@@ -19,7 +19,7 @@
     // If the user is already logged in, redirect them to questions (for now)
     $: {
         if ($page.data.user) {
-            goto('/questions');
+            goto('/question/1');
         }
     }
 
