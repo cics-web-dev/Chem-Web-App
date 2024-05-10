@@ -27,7 +27,7 @@
             Array.from(animateTextWrapper.children).forEach((elem) => {
                 timeline = gsap.timeline();
                 const splitText = new SplitType(elem as HTMLElement, {
-                    types: 'lines,words,chars'
+                    types: 'words,chars'
                 });
                 timeline.from(splitText.words, {
                     y: 10,
@@ -44,7 +44,6 @@
             });
         }
         if (animatePopIn) {
-
             timeline.fromTo(
                 animatePopIn,
                 {
@@ -67,16 +66,19 @@
         const xMax = 40;
         const yMin = 0;
         const yMax = 90;
+
+        const getRandomVal = (min: number, max: number) => Math.random() * (max - min) + min;
+
         const coords = spring({
-            x: Math.random() * (xMax - xMin) + xMin,
-            y: Math.random() * (yMax - yMin) + yMin
+            x: getRandomVal(xMin, xMax),
+            y: getRandomVal(yMin, yMax)
         });
         coords.stiffness = 0.002;
         coords.damping = 1;
         const setNewCoords = () => {
             coords.set({
-                x: Math.random() * (xMax - xMin) + xMin,
-                y: Math.random() * (yMax - yMin) + yMin
+                x: getRandomVal(xMin, xMax),
+                y: getRandomVal(yMin, yMax)
             });
         };
         setNewCoords();
@@ -95,7 +97,7 @@
 </svelte:head>
 
 <div
-    class="relative z-0 flex items-center justify-around lg:h-[calc(100vh-60px)] dark:bg-slate-800 text-slate-800 dark:text-white"
+    class="relative z-0 flex items-center justify-around text-slate-800 lg:h-[calc(100vh-60px)] dark:bg-slate-800 dark:text-white"
 >
     <div id="hero" class="z-0">
         <div bind:this={animateTextWrapper}>
@@ -113,9 +115,9 @@
         </button>
     </div>
     <ul id="hover-card" class="relative flex w-96 flex-col">
-        <li class="group relative flex aspect-square w-1/4 items-center justify-center self-center hover:cursor-pointer">
+        <li class="tile group self-center">
             <div
-                class="absolute top-0 -z-10 aspect-square w-full rotate-45 rounded-lg bg-slate-200 dark:bg-slate-400 transition-[width,top] group-hover:top-6 group-hover:z-10 group-hover:w-[225%]"
+                class="tile-bg top-0 transition-[width,top] group-hover:top-6 dark:bg-slate-400"
             ></div>
             <Book className="w-8 h-8 group-hover:z-20" />
             <p
@@ -125,11 +127,9 @@
             </p>
         </li>
         <div class="-mt-4 flex justify-center gap-16">
-            <li
-                class="group relative flex aspect-square w-1/4 items-center justify-center justify-self-end hover:cursor-pointer"
-            >
+            <li class="tile group justify-self-end">
                 <div
-                    class="absolute left-0 -z-10 aspect-square w-full rotate-45 rounded-lg bg-slate-200 dark:bg-slate-400 transition-[width,left] group-hover:left-6 group-hover:z-10 group-hover:w-[225%]"
+                    class="tile-bg left-0 transition-[width,left] group-hover:left-6 dark:bg-slate-400"
                 ></div>
                 <LightBulb className="w-8 h-8 group-hover:z-20" />
                 <p
@@ -138,9 +138,9 @@
                     Test your knowledge with our interactive questions
                 </p>
             </li>
-            <li class="group relative flex aspect-square w-1/4 items-center justify-center hover:cursor-pointer">
+            <li class="tile group">
                 <div
-                    class="absolute right-0 -z-10 aspect-square w-full rotate-45 rounded-lg bg-slate-200 dark:bg-slate-400 transition-[width,right] group-hover:right-6 group-hover:z-10 group-hover:w-[225%]"
+                    class="tile-bg right-0 transition-[width,right] group-hover:right-6 dark:bg-slate-400"
                 ></div>
                 <Puzzle className="w-8 h-8 group-hover:z-20" />
                 <p
@@ -150,11 +150,9 @@
                 </p>
             </li>
         </div>
-        <li
-            class="group relative -mt-4 flex aspect-square w-1/4 items-center justify-center self-center hover:cursor-pointer"
-        >
+        <li class="tile group -mt-4 self-center">
             <div
-                class="absolute bottom-0 -z-10 aspect-square w-full rotate-45 rounded-lg bg-slate-200 dark:bg-slate-400 transition-[width,bottom] group-hover:bottom-6 group-hover:z-10 group-hover:w-[225%]"
+                class="tile-bg bottom-0 transition-[width,bottom] group-hover:bottom-6 dark:bg-slate-400"
             ></div>
             <Responsive className="w-12 h-12 group-hover:z-20" />
             <p
@@ -164,9 +162,7 @@
             </p>
         </li>
     </ul>
-    <div
-        style="position: absolute; left: {$atomCoords.x}%; top: {$atomCoords.y}%; z-index: -20;"
-    >
+    <div style="position: absolute; left: {$atomCoords.x}%; top: {$atomCoords.y}%; z-index: -20;">
         <Atom className="w-16 h-16 text-slate-300 dark:text-slate-500" />
     </div>
     <div
@@ -183,3 +179,13 @@
         <RoundBeaker className="w-16 h-16 text-slate-300 dark:text-slate-500" />
     </div>
 </div>
+
+<style lang="postcss">
+    .tile {
+        @apply relative flex aspect-square w-1/4 items-center justify-center hover:cursor-pointer;
+    }
+
+    .tile-bg {
+        @apply absolute -z-10 aspect-square w-full rotate-45 rounded-lg bg-slate-200 group-hover:z-10 group-hover:w-[225%];
+    }
+</style>
