@@ -99,6 +99,10 @@
     const roundBeakerCoords = randomSpringCoords();
 </script>
 
+<svelte:head>
+    <title>SkoutaLab</title>
+</svelte:head>
+
 <div
     class={`relative z-0 flex items-center justify-around lg:h-[calc(100vh-60px)] dark:bg-slate-800 text-slate-800 dark:text-white`}
 >
