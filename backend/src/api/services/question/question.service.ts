@@ -46,15 +46,14 @@ export const getSingleQuestionById = async (questionID: string): Promise<AnyQues
 export const getSidebarMetadata = async (studentID: string) => {
     const chapters = await ChapterModel.find();
     const metadata: SideBarMetadata[] = [];
+    const student = await StudentProgressModel.findOne({ studentID });
+    if (!student) {
+        throw new HttpError(status.NOT_FOUND, `Student not found with ID ${studentID}`);
+    }
+
     for (const chapter of chapters) {
         const questions = await QuestionBaseModel.find({ chapter: chapter.questions});
         for (const question of questions) {
-            const student = await StudentProgressModel.findOne({ studentID });
-
-            if (!student) {
-                throw new HttpError(status.NOT_FOUND, `Student not found with ID ${studentID}`);
-            }
-
             const isBookmarked = student.bookMark.includes(question._id);
             const isCompleted = student.completion.includes(question._id);
 
