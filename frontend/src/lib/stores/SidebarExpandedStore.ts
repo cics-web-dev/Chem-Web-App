@@ -5,7 +5,7 @@ function createIsSidebarOpenStore() {
 
     return {
         subscribe,
-        toggle: () => update((value) => !value)
+        set: (value: boolean) => update(() => value),
     };
 }
 
