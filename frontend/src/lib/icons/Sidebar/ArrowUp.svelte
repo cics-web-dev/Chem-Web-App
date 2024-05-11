@@ -1,5 +1,5 @@
 <svg
-    class="ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 hs-accordion-active:block dark:text-gray-400"
+    class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"

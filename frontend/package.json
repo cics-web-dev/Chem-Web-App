@@ -44,7 +44,9 @@
     "type": "module",
     "dependencies": {
         "@preline/collapse": "^2.0.2",
+        "gsap": "^3.12.5",
         "lodash": "^4.17.21",
-        "preline": "^2.0.3"
+        "preline": "^2.0.3",
+        "split-type": "^0.3.4"
     }
 }

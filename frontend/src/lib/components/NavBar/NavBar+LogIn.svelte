@@ -29,7 +29,7 @@
                 <button
                     type="button"
                     class="text-gray-500 hover:text-gray-600"
-                    data-hs-overlay="#application-sidebar"
+                    on:click={() => sidebarExpanded.update((value) => true)}
                 >
                     <span class="sr-only">Toggle Navigation</span>
                     <Hamburger />
@@ -46,7 +46,7 @@
             <!-- Hamburger icon only exists on the questions page and when its inner width is greater than 1024 pixel -->
             <div class="flex items-center sm:block dark:text-white">
                 {#if $page.url.pathname.startsWith('/question') && innerWidth >= 1024}
-                    <button on:click={sidebarExpanded.toggle}>
+                    <button on:click={() => sidebarExpanded.update((value) => true)}>
                         <Hamburger />
                     </button>
                 {/if}
@@ -108,6 +108,6 @@
 
 <style lang="postcss">
     .dropdown-menu-button {
-        @apply flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300;
+        @apply flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300;
     }
 </style>
