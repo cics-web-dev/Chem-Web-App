@@ -5,6 +5,7 @@
     import Upload from '$icons/Popover/Upload.svelte';
 
     import { page } from '$app/stores';
+    import { enhance } from '$app/forms';
     import { sidebarExpanded } from '$stores/SidebarExpandedStore';
 
     // the store to keep track of the inner width of the window
@@ -28,7 +29,7 @@
                 <button
                     type="button"
                     class="text-gray-500 hover:text-gray-600"
-                    on:click={() => sidebarExpanded.set(true)}
+                    on:click={() => sidebarExpanded.update((value) => true)}
                 >
                     <span class="sr-only">Toggle Navigation</span>
                     <Hamburger />
@@ -45,7 +46,7 @@
             <!-- Hamburger icon only exists on the questions page and when its inner width is greater than 1024 pixel -->
             <div class="flex items-center sm:block dark:text-white">
                 {#if $page.url.pathname.startsWith('/question') && innerWidth >= 1024}
-                    <button on:click={() => sidebarExpanded.set(true)}>
+                    <button on:click={() => sidebarExpanded.update((value) => true)}>
                         <Hamburger />
                     </button>
                 {/if}
@@ -89,11 +90,13 @@
                                         Upload 
                                     </a>
                                 {/if}
-
-                                <a class="dropdown-menu-button" href="/">
-                                    <LogoutIcon />
-                                    Log out
-                                </a>
+                                
+                                <form use:enhance method="POST" action="/login?/logout">
+                                    <button class="dropdown-menu-button w-full">
+                                        <LogoutIcon />
+                                        Log out
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

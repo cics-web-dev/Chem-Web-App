@@ -61,7 +61,8 @@
     <div class="grid justify-center gap-3 md:grid-cols-2 items-start md:justify-between">
         <div class="text-center md:text-start">
             <h1 class="text-ls uppercase tracking-wider text-black">
-                {chapter}.{question} : {title} <Difficulty difficulty={difficulty}/>
+                {chapter}.{question} : {title}
+                <Difficulty {difficulty} />
             </h1>
             <h2 class="mt-2 font-medium text-black">
                 {description}

@@ -60,7 +60,7 @@
 
         <!-- we manually expand the sidebar using our custom logic when the window size >= 1024 pixels -->
         {#if innerWidth >= 1024}
-            <button class="dark:text-white" on:click={() => sidebarExpanded.set(false)}>
+            <button class="dark:text-white" on:click={() => sidebarExpanded.update((value) => true)}>
                 <SidebarLeftCollapseIcon />
             </button>
         {/if}
@@ -84,7 +84,7 @@
         class="absolute right-0 top-0 z-0 h-full w-full bg-slate-800 opacity-50"
         in:fade
         out:fade
-        on:click={() => sidebarExpanded.set(false)}
+        on:click={() => sidebarExpanded.update((value) => true)}
         aria-label="Close Sidebar"
     >
     </button>

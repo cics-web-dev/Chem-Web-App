@@ -3,10 +3,10 @@
     export let difficulty: string;
 </script>
 
-{#if difficulty == "Easy"}
+{#if difficulty == 'Easy'}
     <span class="easy">Easy</span>
-{:else if difficulty == "Medium"}
+{:else if difficulty == 'Medium'}
     <span class="medium">Medium</span>
-{:else if difficulty == "Hard"}
+{:else if difficulty == 'Hard'}
     <span class="hard">Hard</span>
 {/if}
