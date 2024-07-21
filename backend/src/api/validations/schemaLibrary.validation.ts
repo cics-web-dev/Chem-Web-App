@@ -33,7 +33,7 @@ export const password: z.ZodString = z
 
 export const role: z.ZodEnum<['teacher', 'student']> = z.enum(
     ['teacher', 'student'],
-    errorMessage('Role must be teacher or student'),
+    errorMessage('Role is required'),
 );
 /* End of Auth Validation */
 
