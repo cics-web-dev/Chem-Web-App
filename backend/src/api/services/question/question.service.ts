@@ -18,7 +18,7 @@ import { Chapter, ChapterModel } from './chapter.model.js';
 
 import { objectID } from '../../utils/objectID.utils.js';
 import { HttpError } from '../../utils/httpError.utils.js';
-import { Error } from '../../configs/error.config.js';
+import { ApiError } from '../../configs/error.config.js';
 
 // TESTING PURPOSES (WILL REMOVE ONCE WE USE THE ACTUAL DATABASE)
 const DATAFOLDER = path.resolve(process.cwd(), 'src/api/sampleData');
@@ -37,7 +37,7 @@ export const getSingleQuestionById = async (questionID: string): Promise<AnyQues
     const question = await QuestionBaseModel.findById(objectID(questionID));
 
     if (!question) {
-        throw new HttpError(status.NOT_FOUND, Error.QUESTION_NOT_FOUND(questionID));
+        throw new HttpError(status.NOT_FOUND, ApiError.QUESTION_NOT_FOUND(questionID));
     }
 
     return question as AnyQuestionWithID;
