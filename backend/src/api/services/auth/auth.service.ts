@@ -12,7 +12,7 @@ export const createUser = async (payload: SignupPayload) => {
     const existingUser = await UserModel.findOne({ email });
 
     if (existingUser) {
-        throw new HttpError(status.CONFLICT, Error.AuthError.USER_EXISTS);
+        throw new HttpError(status.CONFLICT, Error.Auth.USER_EXISTS);
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -35,13 +35,13 @@ export const loginUser = async (payload: LoginPayload) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-        throw new HttpError(status.NOT_FOUND, Error.AuthError.USER_NOT_FOUND);
+        throw new HttpError(status.NOT_FOUND, Error.Auth.USER_NOT_FOUND);
     }
 
     const isPasswordValid: boolean = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        throw new HttpError(status.UNAUTHORIZED, Error.AuthError.INVALID_CREDENTIALS);
+        throw new HttpError(status.UNAUTHORIZED, Error.Auth.INVALID_CREDENTIALS);
     }
 
     return {

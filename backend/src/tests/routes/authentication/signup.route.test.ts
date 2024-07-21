@@ -3,11 +3,9 @@ import app from '../../../api/app.js';
 import { MongoDB } from '../../../api/configs/mongoose.config.js';
 
 // capitalize the first letter of a string
-function capitalize(s: string): string {
-    return s[0].toUpperCase() + s.slice(1);
-}
+const capitalize = (s: string): string => s[0].toUpperCase() + s.slice(1);
 
-describe('sign up route for signing up a user', () => {
+describe('sign up route testings for signing up a user', () => {
     beforeAll(async () => {
         // Setup code before any tests run for mongoDB
         await MongoDB.connect();
@@ -48,7 +46,7 @@ describe('sign up route for signing up a user', () => {
     describe("unsuccessful request", () => {
 
         describe("failing to meet validation requirments (400)", () => {
-            test("missing name or email password or role", async () => {
+            test("missing name or email or password or role", async () => {
 
                 const user: Record<string, string> = {
                     "name": "John Doe",
@@ -180,7 +178,31 @@ describe('sign up route for signing up a user', () => {
 
                 });
             })
-        })
+        });
+
+        describe("existing user (409)", () => {
+            test("user with the same email already exists in the database", async () => {
+                const user: Record<string, string> = {
+                    "name": "John Doe",
+                    "email": "johnDoe@gmail.com",
+                    "password": "password1",
+                    "role": "student"
+                };
+
+                await request(app)
+                    .post('/api/auth/signup')
+                    .send(user);
+
+                const response = await request(app)
+                    .post('/api/auth/signup')
+                    .send(user);
+
+                expect(response.statusCode).toBe(409);
+                expect(response.body.message).toBeDefined();
+                expect(response.body.message).toBe("User with same email already exists");
+
+            });
+        });
 
     });
 });
