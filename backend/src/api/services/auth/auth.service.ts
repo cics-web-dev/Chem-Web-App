@@ -1,12 +1,12 @@
 import bcrypt from 'bcryptjs';
 import status from 'http-status';
 
-import { UserModel, SignupPayload, LoginPayload } from './auth.model.js';
+import { UserModel, SignupPayload, LoginPayload, AuthUserResponse } from './auth.model.js';
 import { HttpError } from '../../utils/httpError.utils.js';
 import { generateToken } from '../../utils/token.utils.js';
 import Error from '../../configs/error.config.js';
 
-export const createUser = async (payload: SignupPayload) => {
+export const createUser = async (payload: SignupPayload): Promise<{ user: AuthUserResponse }> => {
     const { email, password, name, role } = payload;
 
     const existingUser = await UserModel.findOne({ email });
@@ -29,7 +29,7 @@ export const createUser = async (payload: SignupPayload) => {
     };
 };
 
-export const loginUser = async (payload: LoginPayload) => {
+export const loginUser = async (payload: LoginPayload): Promise<{ user: AuthUserResponse }> => {
     const { email, password } = payload;
 
     const user = await UserModel.findOne({ email });

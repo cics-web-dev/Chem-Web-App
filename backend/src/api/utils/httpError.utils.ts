@@ -13,7 +13,7 @@
  *      "message": <errorMessage>,
  *      "status": "failure"
  * }
- * 
+ *
  * ```
  */
 export class HttpError extends Error {

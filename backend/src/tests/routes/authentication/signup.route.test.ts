@@ -16,19 +16,16 @@ describe('sign up route testings for signing up a user', () => {
         await MongoDB.disconnect();
     });
 
-    describe("successful request", () => {
-        test("match with all requirements (201)", async () => {
-
+    describe('successful request', () => {
+        test('match with all requirements (201)', async () => {
             const user: Record<string, string> = {
-                "name": "John Doe",
-                "email": "johnDoe@gmail.com",
-                "password": "password1",
-                "role": "student"
+                name: 'John Doe',
+                email: 'johnDoe@gmail.com',
+                password: 'password1',
+                role: 'student',
             };
 
-            const response = await request(app)
-                .post('/api/auth/signup')
-                .send(user);
+            const response = await request(app).post('/api/auth/signup').send(user);
 
             expect(response.statusCode).toBe(201);
             expect(response.body.status).toBeDefined();
@@ -39,25 +36,21 @@ describe('sign up route testings for signing up a user', () => {
             expect(response.body.user.role).toBe(user.role);
             expect(response.body.user.token).toBeDefined();
         });
+    });
 
-
-    })
-
-    describe("unsuccessful request", () => {
-
-        describe("failing to meet validation requirments (400)", () => {
-            test("missing name or email or password or role", async () => {
-
+    describe('unsuccessful request', () => {
+        describe('failing to meet validation requirments (400)', () => {
+            test('missing name or email or password or role', async () => {
                 const user: Record<string, string> = {
-                    "name": "John Doe",
-                    "email": "johnDoe@gmail.com",
-                    "password": "password1",
-                    "role": "student"
+                    name: 'John Doe',
+                    email: 'johnDoe@gmail.com',
+                    password: 'password1',
+                    role: 'student',
                 };
 
                 /**
                  * test for each missing field
-                 * expected response: 
+                 * expected response:
                  * ```json
                  * {
                  *    "message": [
@@ -72,9 +65,7 @@ describe('sign up route testings for signing up a user', () => {
                     let missingField = Object.keys(user)[i];
                     delete temp[missingField];
 
-                    const response = await request(app)
-                        .post('/api/auth/signup')
-                        .send(temp);
+                    const response = await request(app).post('/api/auth/signup').send(temp);
 
                     expect(response.statusCode).toBe(400);
                     expect(response.body.status).toBeDefined();
@@ -82,127 +73,107 @@ describe('sign up route testings for signing up a user', () => {
                     expect(response.body.message).toBeDefined();
                     expect(Array.isArray(response.body.message)).toBe(true);
                     expect(response.body.message).toHaveLength(1);
-                    expect(response.body.message[0]).toBe(`${capitalize(missingField)} is required`);
+                    expect(response.body.message[0]).toBe(
+                        `${capitalize(missingField)} is required`,
+                    );
                 }
-
             });
 
-            describe("email validation", () => {
-                test("invalid email format", async () => {
+            describe('email validation', () => {
+                test('invalid email format', async () => {
                     const user: Record<string, string> = {
-                        "name": "John Doe",
-                        "email": "johnDoe@",
-                        "password": "password1",
-                        "role": "student"
+                        name: 'John Doe',
+                        email: 'johnDoe@',
+                        password: 'password1',
+                        role: 'student',
                     };
 
-                    const response = await request(app)
-                        .post('/api/auth/signup')
-                        .send(user);
+                    const response = await request(app).post('/api/auth/signup').send(user);
 
                     expect(response.statusCode).toBe(400);
                     expect(response.body.status).toBe('failure');
                     expect(response.body.message).toHaveLength(1);
-                    expect(response.body.message[0]).toBe("Invalid email format");
-
+                    expect(response.body.message[0]).toBe('Invalid email format');
                 });
             });
 
-            describe("password validation", () => {
-
+            describe('password validation', () => {
                 const user: Record<string, string> = {
-                    "name": "John Doe",
-                    "email": "johnDoe@gmail.com",
-                    "password": "password1",
-                    "role": "student"
+                    name: 'John Doe',
+                    email: 'johnDoe@gmail.com',
+                    password: 'password1',
+                    role: 'student',
                 };
 
                 test('password has less than 8 characters', async () => {
-
                     const temp = { ...user };
-                    temp.password = "pass123";
+                    temp.password = 'pass123';
 
-                    const response = await request(app)
-                        .post('/api/auth/signup')
-                        .send(temp);
+                    const response = await request(app).post('/api/auth/signup').send(temp);
 
                     expect(response.statusCode).toBe(400);
                     expect(response.body.message).toHaveLength(1);
-                    expect(response.body.message[0]).toBe("Password must be at least 8 characters");
-
+                    expect(response.body.message[0]).toBe('Password must be at least 8 characters');
                 });
 
                 test('password has 8 characters, but does not have a number', async () => {
-
                     const temp = { ...user };
-                    temp.password = "password";
+                    temp.password = 'password';
 
-                    const response = await request(app)
-                        .post('/api/auth/signup')
-                        .send(temp);
+                    const response = await request(app).post('/api/auth/signup').send(temp);
 
                     expect(response.statusCode).toBe(400);
                     expect(response.body.message).toHaveLength(1);
-                    expect(response.body.message[0]).toBe("Password must include a number");
+                    expect(response.body.message[0]).toBe('Password must include a number');
                 });
 
                 test('password has 8 characters, has number but no letter', async () => {
-
                     const temp = { ...user };
-                    temp.password = "12345678";
+                    temp.password = '12345678';
 
-                    const response = await request(app)
-                        .post('/api/auth/signup')
-                        .send(temp);
+                    const response = await request(app).post('/api/auth/signup').send(temp);
 
                     expect(response.statusCode).toBe(400);
                     expect(response.body.message).toHaveLength(1);
-                    expect(response.body.message[0]).toBe("Password must include a letter");
+                    expect(response.body.message[0]).toBe('Password must include a letter');
                 });
             });
 
-            describe("role validation", () => {
+            describe('role validation', () => {
                 test('role must be teacher or student', async () => {
-                    const response = await request(app)
-                        .post('/api/auth/signup')
-                        .send({
-                            "name": "John Doe",
-                            "email": "johndoe@gmail.com",
-                            "password": "password1",
-                            "role": "educator"
-                        });
+                    const response = await request(app).post('/api/auth/signup').send({
+                        name: 'John Doe',
+                        email: 'johndoe@gmail.com',
+                        password: 'password1',
+                        role: 'educator',
+                    });
 
                     expect(response.statusCode).toBe(400);
                     expect(response.body.message).toHaveLength(1);
-                    expect(response.body.message[0]).toBe("Role is required");
-
+                    expect(response.body.message[0]).toBe('Role is required');
                 });
-            })
+            });
         });
 
-        describe("existing user (409)", () => {
-            test("user with the same email already exists in the database", async () => {
+        describe('existing user (409)', () => {
+            test('user with the same email already exists in the database', async () => {
                 const user: Record<string, string> = {
-                    "name": "John Doe",
-                    "email": "johnDoe@gmail.com",
-                    "password": "password1",
-                    "role": "student"
+                    name: 'John Doe',
+                    email: 'johnDoe@gmail.com',
+                    password: 'password1',
+                    role: 'student',
                 };
 
-                await request(app)
-                    .post('/api/auth/signup')
-                    .send(user);
+                await request(app).post('/api/auth/signup').send(user);
 
-                const response = await request(app)
-                    .post('/api/auth/signup')
-                    .send(user);
+                const response = await request(app).post('/api/auth/signup').send(user);
 
                 expect(response.statusCode).toBe(409);
                 expect(response.body.message).toBeDefined();
-                expect(response.body.message).toBe("User with same email already exists");
-
+                expect(response.body.message).toBe(
+                    'User with same email already exists when signing up',
+                );
             });
         });
-
     });
 });
