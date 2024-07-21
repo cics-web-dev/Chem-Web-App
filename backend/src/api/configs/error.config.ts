@@ -9,7 +9,7 @@ const AuthError = {
     USER_EXISTS: 'User with same email already exists when signing up',
 };
 
-export default {
+export const Error = {
     // question service error messages
     QUESTION_NOT_FOUND: (id: string) => `Question with id ${id} is not found in the database`,
     Auth: AuthError,

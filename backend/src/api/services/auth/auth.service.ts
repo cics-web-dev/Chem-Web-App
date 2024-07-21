@@ -4,7 +4,7 @@ import status from 'http-status';
 import { UserModel, SignupPayload, LoginPayload, AuthUserResponse } from './auth.model.js';
 import { HttpError } from '../../utils/httpError.utils.js';
 import { generateToken } from '../../utils/token.utils.js';
-import Error from '../../configs/error.config.js';
+import { Error } from '../../configs/error.config.js';
 
 export const createUser = async (payload: SignupPayload): Promise<{ user: AuthUserResponse }> => {
     const { email, password, name, role } = payload;
