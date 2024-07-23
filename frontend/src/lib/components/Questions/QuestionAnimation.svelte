@@ -1,6 +1,6 @@
 <script lang="ts">
     import { viewCanvasStyle } from '$chemdoodle/ChemDoodleCanvasStyles';
-    import type { ViewCanvasStyle } from '$types/chemDoodle';
+    import type { ViewCanvasStyle } from '$types/ChemDoodle';
 
     import { onMount } from 'svelte';
 

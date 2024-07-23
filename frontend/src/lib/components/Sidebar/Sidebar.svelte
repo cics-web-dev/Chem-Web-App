@@ -4,7 +4,7 @@
     import SidebarChapterList from './SidebarChapterList.svelte';
     import SidebarLeftCollapseIcon from '$icons/Sidebar/SidebarLeftCollapseSlide.svelte';
 
-    import type { SidebarMetadata } from '$types/sidebarMetaData';
+    import type { SidebarMetadata } from '$types/SidebarMetaData';
     import { sidebarExpanded } from '$stores/SidebarExpandedStore';
 
     let sidebarMetaData: SidebarMetadata[] = [

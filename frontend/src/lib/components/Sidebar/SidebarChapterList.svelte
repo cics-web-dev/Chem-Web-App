@@ -6,7 +6,7 @@
 
     import '$styles/Button.pcss';
 
-    import type { SidebarMetadata } from '$types/sidebarMetaData';
+    import type { SidebarMetadata } from '$types/SidebarMetaData';
 
     // the metadata of a chapter
     export let chapterMetaData: SidebarMetadata;

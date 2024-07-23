@@ -1,6 +1,6 @@
 <script lang="ts">
     import StatusIcon from '$icons/Sidebar/CompletionStatus.svelte';
-    import type { QuestionMetadata } from '$types/sidebarMetaData';
+    import type { QuestionMetadata } from '$types/SidebarMetaData';
 
     export let questionsMetadata: QuestionMetadata[];
 </script>

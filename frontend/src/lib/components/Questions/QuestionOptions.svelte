@@ -3,7 +3,7 @@
     import BackArrowIcon from '$icons/Question/BackArrow.svelte';
     import NextArrowIcon from '$icons/Question/NextArrow.svelte';
 
-    import type { MultipleChoice } from '$lib/types/question';
+    import type { MultipleChoice } from '$types/Question';
     import { selectedStore } from '$stores/OptionsSelectStore.js';
 
     import '$styles/Button.pcss';

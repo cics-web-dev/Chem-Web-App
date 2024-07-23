@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { MultipleChoice } from '$lib/types/question'; // TODO: Change MultipleChoice to AnyQuestion type in the future
+    import type { MultipleChoice } from '$types/Question'; // TODO: Change MultipleChoice to AnyQuestion type in the future
 
     import QuestionHeader from './QuestionHeader.svelte';
     import QuestionAnimation from './QuestionAnimation.svelte';

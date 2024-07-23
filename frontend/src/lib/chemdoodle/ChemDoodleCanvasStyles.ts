@@ -1,4 +1,4 @@
-import type { ViewCanvasStyle } from '$types/chemDoodle';
+import type { ViewCanvasStyle } from '$types/ChemDoodle';
 
 export const viewCanvasStyle: ViewCanvasStyle = {
     "bonds_width_2D": 0.8,
