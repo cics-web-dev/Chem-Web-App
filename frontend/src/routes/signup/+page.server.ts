@@ -1,5 +1,5 @@
 import type { Actions, PageServerLoad } from './$types';
-import { signupSchema } from '$lib/zodSchema/SignupSchema.js';
+import { signupSchema } from '$lib/validations/SignupSchema.js';
 import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
