@@ -3,10 +3,10 @@
 
     import '$styles/Feedback.pcss';
     import '$styles/Auth.pcss';
-    import EmailIcon from '$icons/Email.svelte';
-    import IncrementIcon from '$icons/Increment.svelte';
-    import DecrementIcon from '$icons/Decrement.svelte';
-    import PersonIcon from '$icons/Person.svelte';
+    import EmailIcon from '$icons/Feedback/Email.svelte';
+    import IncrementIcon from '$icons/Feedback/Increment.svelte';
+    import DecrementIcon from '$icons/Feedback/Decrement.svelte';
+    import PersonIcon from '$icons/Feedback/Person.svelte';
     import '$styles/Button.pcss';
     import type { ActionData } from './$types';
 
